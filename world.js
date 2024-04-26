@@ -476,7 +476,7 @@ function main() {
     GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahariCone3.faces), GL.STATIC_DRAW);
 
     // Matahari Cone 4
-    var matahariCone4 = generateMatahariCone(1.2, -1.2, 0, 0.2, 50, 0, 0, -3 * Math.PI / 4); // matahari: x, y, z, radius, segments, rotationX, rotationY, rotationZ
+    var matahariCone4 = generateMatahariCone(-1.17, 0.9, -1, 0.07, 50, 0, 0, -3 * Math.PI / 4); // matahari: x, y, z, radius, segments, rotationX, rotationY, rotationZ
     var matahariCone4_vbo = GL.createBuffer();
     GL.bindBuffer(GL.ARRAY_BUFFER, matahariCone4_vbo);
     GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahariCone4.vertices), GL.STATIC_DRAW);
@@ -488,7 +488,7 @@ function main() {
     GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahariCone4.faces), GL.STATIC_DRAW);
 
     // Matahari Cone 5
-    var matahariCone5 = generateMatahariCone(0, -1.7, 0, 0.2, 50, 0, 0, Math.PI); // matahari: x, y, z, radius, segments, rotationX, rotationY, rotationZ
+    var matahariCone5 = generateMatahariCone(-1.6, 0.7, -1, 0.07, 50, 0, 0, Math.PI); // matahari: x, y, z, radius, segments, rotationX, rotationY, rotationZ
     var matahariCone5_vbo = GL.createBuffer();
     GL.bindBuffer(GL.ARRAY_BUFFER, matahariCone5_vbo);
     GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahariCone5.vertices), GL.STATIC_DRAW);
@@ -500,7 +500,7 @@ function main() {
     GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahariCone5.faces), GL.STATIC_DRAW);
     
     // Matahari Cone 6
-    var matahariCone6 = generateMatahariCone(-2.05, 1, 0, 0.07, 50, 0, 0, 3 * Math.PI / 4); // matahari: x, y, z, radius, segments, rotationX, rotationY, rotationZ
+    var matahariCone6 = generateMatahariCone(-2.05, 0.9, -1, 0.07, 50, 0, 0, 3 * Math.PI / 4); // matahari: x, y, z, radius, segments, rotationX, rotationY, rotationZ
     var matahariCone6_vbo = GL.createBuffer();
     GL.bindBuffer(GL.ARRAY_BUFFER, matahariCone6_vbo);
     GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahariCone6.vertices), GL.STATIC_DRAW);
@@ -536,7 +536,7 @@ function main() {
     GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahariCone8.faces), GL.STATIC_DRAW);
 
     // Matahari Mata Kanan
-    var matahari_mataKanan = generateMataMatahari(-0.27, 0.1, 0.9, 0.1, 50, 0, 0, Math.PI / 4); // matahari: x, y, z, radius, segments, rotationX, rotationY, rotationZ
+    var matahari_mataKanan = generateMataMatahari(-1.7, 1.3, -0.68, 0.04, 50, 0, 0, Math.PI / 4); // matahari: x, y, z, radius, segments, rotationX, rotationY, rotationZ
     var matahari_mataKanan_vbo = GL.createBuffer();
     GL.bindBuffer(GL.ARRAY_BUFFER, matahari_mataKanan_vbo);
     GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahari_mataKanan.vertices), GL.STATIC_DRAW);
@@ -548,7 +548,7 @@ function main() {
     GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahari_mataKanan.faces), GL.STATIC_DRAW);
 
     // Matahari Mata Kiri
-    var matahari_mataKiri = generateMataMatahari(0.27, 0.1, 0.9, 0.1, 50, 0, 0, Math.PI / 4); // matahari: x, y, z, radius, segments, rotationX, rotationY, rotationZ
+    var matahari_mataKiri = generateMataMatahari(-1.5, 1.3, -0.68, 0.04, 50, 0, 0, Math.PI / 4); // matahari: x, y, z, radius, segments, rotationX, rotationY, rotationZ
     var matahari_mataKiri_vbo = GL.createBuffer();
     GL.bindBuffer(GL.ARRAY_BUFFER, matahari_mataKiri_vbo);
     GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahari_mataKiri.vertices), GL.STATIC_DRAW);
