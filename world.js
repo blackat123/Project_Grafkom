@@ -411,6 +411,200 @@ function generateBall(x, y, z, radius, segments) {
   return { vertices: vertices, colors: colors, faces: faces };
 }
 
+//batang
+function generateBatang(xmin, x, ymin, y, zmin, z, segments, warna) {
+  var colors = [];
+  var vertices = [
+    // Atas
+    xmin,
+    y,
+    zmin,
+    xmin,
+    y,
+    z,
+    x,
+    y,
+    z,
+    x,
+    y,
+    zmin,
+
+    // Kiri
+    xmin,
+    ymin,
+    zmin,
+    xmin,
+    y,
+    zmin,
+    xmin,
+    y,
+    z,
+    xmin,
+    ymin,
+    z,
+
+    // Kanan
+    x,
+    ymin,
+    zmin,
+    x,
+    y,
+    zmin,
+    x,
+    y,
+    z,
+    x,
+    ymin,
+    z,
+
+    // Depan
+    xmin,
+    ymin,
+    z,
+    x,
+    ymin,
+    z,
+    x,
+    y,
+    z,
+    xmin,
+    y,
+    z,
+
+    // Belakang
+    xmin,
+    ymin,
+    zmin,
+    x,
+    ymin,
+    zmin,
+    x,
+    y,
+    zmin,
+    xmin,
+    y,
+    zmin,
+
+    // Bawah
+    xmin,
+    ymin,
+    zmin,
+    xmin,
+    ymin,
+    z,
+    x,
+    ymin,
+    z,
+    x,
+    ymin,
+    zmin,
+  ];
+
+  var rainbowColors = [warna];
+
+  for (var i = 0; i <= segments; i++) {
+    for (var j = 0; j <= segments; j++) {
+      var colorIndex = j % rainbowColors.length;
+      colors = colors.concat(rainbowColors[colorIndex]);
+    }
+  }
+
+  var faces = [
+    // // atas
+    0, 1, 2,
+
+    0, 2, 3,
+
+    // kiri
+    5, 4, 6,
+
+    6, 4, 7,
+
+    // kanan
+    8, 9, 10,
+
+    8, 10, 11,
+
+    // depan
+    13, 12, 14,
+
+    15, 14, 12,
+
+    // belakang
+    16, 17, 18,
+
+    16, 18, 19,
+
+    // bawah
+    21, 20, 22,
+
+    22, 20, 23,
+  ];
+
+  return { vertices: vertices, colors: colors, faces: faces };
+}
+
+//daun
+function generateDaun(x, y, z, radius, segments, rotationX, rotationY, rotationZ) {
+  var vertices = [];
+  var colors = [];
+
+  var rainbowColors = [[27 / 255, 146 / 255, 27 / 255]];
+
+  for (var i = 0; i <= segments; i++) {
+    var latAngle = Math.PI * (-0.5 + i / segments);
+    var sinLat = Math.sin(latAngle);
+    var cosLat = Math.cos(latAngle);
+
+    for (var j = 0; j <= segments; j++) {
+      var lonAngle = Math.PI * (j / segments);
+      var sinLon = Math.sin(lonAngle);
+      var cosLon = Math.cos(lonAngle);
+
+      var xCoord = cosLon * latAngle;
+      var zCoord = sinLon * latAngle;
+      var yCoord = -Math.pow(latAngle, 2) * 1.1;
+
+      // Rotasi
+      var rotatedX = xCoord * Math.cos(rotationZ) - yCoord * Math.sin(rotationZ);
+      var rotatedY = xCoord * Math.sin(rotationZ) + yCoord * Math.cos(rotationZ);
+      var rotatedZ = zCoord;
+
+      // Pemutaran tambahan untuk diagonal
+      rotatedY = rotatedY * Math.cos(rotationX) - rotatedZ * Math.sin(rotationX);
+      rotatedZ = rotatedY * Math.sin(rotationX) + rotatedZ * Math.cos(rotationX);
+      rotatedX = rotatedX * Math.cos(rotationY) - rotatedZ * Math.sin(rotationY);
+      rotatedZ = rotatedX * Math.sin(rotationY) + rotatedZ * Math.cos(rotationY);
+
+      var vertexX = x + radius * rotatedX;
+      var vertexY = y + radius * rotatedY;
+      var vertexZ = z + radius * rotatedZ;
+
+      // var vertexX = x + radius * xCoord;
+      // var vertexY = y + radius * yCoord;
+      // var vertexZ = z + radius * zCoord;
+
+      vertices.push(vertexX, vertexY, vertexZ);
+
+      var colorIndex = j % rainbowColors.length;
+      colors = colors.concat(rainbowColors[colorIndex]);
+    }
+  }
+
+  var faces = [];
+  for (var i = 0; i < segments; i++) {
+    for (var j = 0; j < segments; j++) {
+      var index = i * (segments + 1) + j;
+      var nextIndex = index + segments + 1;
+
+      faces.push(index, nextIndex, index + 1);
+      faces.push(nextIndex, nextIndex + 1, index + 1);
+    }
+  }
+
+  return { vertices: vertices, colors: colors, faces: faces };
+}
+
 // //smpai sini bentuk"nya
 
 function updateViewMatrix() {
@@ -969,6 +1163,87 @@ function main() {
   GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_18_ebo);
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_18.faces), GL.STATIC_DRAW);
 
+  ////pohon start
+  //batang pohon 1
+  //batang :xmin, x, ymin, y, zmin, z, segments, warna
+  var batang = generateKotak(1, 1.25, -0.9, -0.4, -2, -1.70, 50, [108/255, 60/255, 12/255]);
+  var batang_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, batang_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(batang.vertices), GL.STATIC_DRAW);
+  var batang_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, batang_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(batang.colors), GL.STATIC_DRAW);
+  var batang_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, batang_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(batang.faces), GL.STATIC_DRAW);
+
+  // batang pohon 2
+  //batang : xmin, x, ymin, y, zmin, z, segments, warna
+  var batang1 = generateKotak(1.75, 2, -0.9, -0.4, -0.80, -1.05, 50, [108/255, 60/255, 12/255]);
+  var batang1_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, batang1_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(batang1.vertices), GL.STATIC_DRAW);
+  var batang1_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, batang1_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(batang1.colors), GL.STATIC_DRAW);
+  var batang1_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, batang1_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(batang1.faces), GL.STATIC_DRAW);
+
+// Daun Cone Bawah Pohon 1
+// daun: x, y, z, radius, segments, rotationX, rotationY, rotationZ
+var daunCone1 = generateDaun(1.13, 0.30, -1.85, 0.30, 50, 0, 0, 0); 
+var daunCone1_vbo = GL.createBuffer();
+GL.bindBuffer(GL.ARRAY_BUFFER, daunCone1_vbo);
+GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone1.vertices), GL.STATIC_DRAW);
+var daunCone1_color = GL.createBuffer();
+GL.bindBuffer(GL.ARRAY_BUFFER, daunCone1_color);
+GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone1.colors), GL.STATIC_DRAW);
+var daunCone1_faces = GL.createBuffer();
+GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone1_faces);
+GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(daunCone1.faces), GL.STATIC_DRAW);
+
+// Daun Cone Atas Pohon 1
+// daun: x, y, z, radius, segments, rotationX, rotationY, rotationZ
+var daunCone2 = generateDaun(1.13, 0.90, -1.85, 0.30, 50, 0, 0, 0); 
+var daunCone2_vbo = GL.createBuffer();
+GL.bindBuffer(GL.ARRAY_BUFFER, daunCone2_vbo);
+GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone2.vertices), GL.STATIC_DRAW);
+var daunCone2_color = GL.createBuffer();
+GL.bindBuffer(GL.ARRAY_BUFFER, daunCone2_color);
+GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone2.colors), GL.STATIC_DRAW);
+var daunCone2_faces = GL.createBuffer();
+GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone2_faces);
+GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(daunCone2.faces), GL.STATIC_DRAW);
+
+// Daun Cone Bawah Pohon 2
+// daun: x, y, z, radius, segments, rotationX, rotationY, rotationZ
+var daunCone3 = generateDaun(1.89, 0.35, -0.90, 0.30, 50, 0, 0, 0); 
+var daunCone3_vbo = GL.createBuffer();
+GL.bindBuffer(GL.ARRAY_BUFFER, daunCone3_vbo);
+GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone3.vertices), GL.STATIC_DRAW);
+var daunCone3_color = GL.createBuffer();
+GL.bindBuffer(GL.ARRAY_BUFFER, daunCone3_color);
+GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone3.colors), GL.STATIC_DRAW);
+var daunCone3_faces = GL.createBuffer();
+GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone3_faces);
+GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(daunCone3.faces), GL.STATIC_DRAW);
+
+// Daun Cone Atas Pohon 2
+// daun: x, y, z, radius, segments, rotationX, rotationY, rotationZ
+var daunCone4 = generateDaun(1.89, 0.90, -0.90, 0.30, 50, 0, 0, 0); 
+var daunCone4_vbo = GL.createBuffer();
+GL.bindBuffer(GL.ARRAY_BUFFER, daunCone4_vbo);
+GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone4.vertices), GL.STATIC_DRAW);
+var daunCone4_color = GL.createBuffer();
+GL.bindBuffer(GL.ARRAY_BUFFER, daunCone4_color);
+GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone4.colors), GL.STATIC_DRAW);
+var daunCone4_faces = GL.createBuffer();
+GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone4_faces);
+GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(daunCone4.faces), GL.STATIC_DRAW);
+
+////pohon end
+
   //matrix
   var PROJECTION_MATRIX = LIBS.get_projection(40, CANVAS.width / CANVAS.height, 1, 100);
   var VIEW_MATRIX = LIBS.get_I4();
@@ -1523,6 +1798,75 @@ function main() {
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
     GL.drawElements(GL.TRIANGLES, awan1_18.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    ////pohon start
+    //batang pohon 1
+    GL.bindBuffer(GL.ARRAY_BUFFER, batang_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, batang_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, batang_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, batang.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    //batang pohon 2
+    GL.bindBuffer(GL.ARRAY_BUFFER, batang1_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, batang1_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, batang1_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, batang1.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    // daun Cone Bawah Pohon 1
+    GL.bindBuffer(GL.ARRAY_BUFFER, daunCone1_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, daunCone1_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone1_faces);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, daunCone1.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    // daun Cone Atas Pohon 1
+    GL.bindBuffer(GL.ARRAY_BUFFER, daunCone2_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, daunCone2_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone2_faces);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, daunCone2.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    // daun Cone Bawah Pohon 2
+    GL.bindBuffer(GL.ARRAY_BUFFER, daunCone3_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, daunCone3_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone3_faces);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, daunCone3.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    // daun Cone Atas Pohon 2
+    GL.bindBuffer(GL.ARRAY_BUFFER, daunCone4_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, daunCone4_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone4_faces);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, daunCone4.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    ////pohon end
 
     GL.flush();
 
