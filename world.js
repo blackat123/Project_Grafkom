@@ -561,8 +561,6 @@ function main() {
     ////Matahari End
 
 
-    
-
 
 
     //Kotak Kain piknik
@@ -577,17 +575,105 @@ function main() {
     GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kainPiknik_ebo);
     GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(kainPiknik.faces), GL.STATIC_DRAW);
 
-    // // Tutup Kotak Kado 1
-    // var TutupkotakKado1 = generateKotak(-1.8, 1.8, 0.5, 1.1, -3.3, 0.3, 50, [0, 0, 0]);
-    // var TutupkotakKado1_vbo = GL.createBuffer();
-    // GL.bindBuffer(GL.ARRAY_BUFFER, TutupkotakKado1_vbo);
-    // GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(TutupkotakKado1.vertices), GL.STATIC_DRAW);
-    // var TutupkotakKado1_color = GL.createBuffer();
-    // GL.bindBuffer(GL.ARRAY_BUFFER, TutupkotakKado1_color);
-    // GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(TutupkotakKado1.colors), GL.STATIC_DRAW);
-    // var TutupkotakKado1_ebo = GL.createBuffer();
-    // GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, TutupkotakKado1_ebo);
-    // GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(TutupkotakKado1.faces), GL.STATIC_DRAW);
+
+    ////Kado-kado Start
+    //Kotak Kado 1
+    var kotakKado1 = generateKotak(-1.1, -0.5, -1, -0.4, -0.8, -0.2, 50, [0,0,1]);
+    var kotakKado1_vbo = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado1_vbo);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kotakKado1.vertices), GL.STATIC_DRAW);
+    var kotakKado1_color = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado1_color);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kotakKado1.colors), GL.STATIC_DRAW);
+    var kotakKado1_ebo = GL.createBuffer();
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kotakKado1_ebo);
+    GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(kotakKado1.faces), GL.STATIC_DRAW);
+
+    // Tutup Kotak Kado 1
+    var TutupkotakKado1 = generateKotak(-1.125, -0.475, -0.45, -0.3, -0.825, -0.175, 50, [1,0,1]);
+    var TutupkotakKado1_vbo = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, TutupkotakKado1_vbo);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(TutupkotakKado1.vertices), GL.STATIC_DRAW);
+    var TutupkotakKado1_color = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, TutupkotakKado1_color);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(TutupkotakKado1.colors), GL.STATIC_DRAW);
+    var TutupkotakKado1_ebo = GL.createBuffer();
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, TutupkotakKado1_ebo);
+    GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(TutupkotakKado1.faces), GL.STATIC_DRAW);
+
+    //Kotak Kado 2
+    var kotakKado2 = generateKotak(-1.6, -1.1, -1, -0.5, -0.65, -0.1, 50, [0.5,0.5,0.5]);
+    var kotakKado2_vbo = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado2_vbo);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kotakKado2.vertices), GL.STATIC_DRAW);
+    var kotakKado2_color = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado2_color);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kotakKado2.colors), GL.STATIC_DRAW);
+    var kotakKado2_ebo = GL.createBuffer();
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kotakKado2_ebo);
+    GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(kotakKado2.faces), GL.STATIC_DRAW);
+
+    //Kotak Kado 3
+    var kotakKado3 = generateKotak(-1.45, -1.18, -0.5, -0.17, -0.6, -0.3, 50, [1, 0, 0]);
+    var kotakKado3_vbo = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado3_vbo);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kotakKado3.vertices), GL.STATIC_DRAW);
+    var kotakKado3_color = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado3_color);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kotakKado3.colors), GL.STATIC_DRAW);
+    var kotakKado3_ebo = GL.createBuffer();
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kotakKado3_ebo);
+    GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(kotakKado3.faces), GL.STATIC_DRAW);
+
+    //Kotak Kado 4
+    var kotakKado4 = generateKotak(-0.47, 0, -1, -0.6, -0.65, -0.15, 50, [0.5,0.5,0.5]);
+    var kotakKado4_vbo = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado4_vbo);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kotakKado4.vertices), GL.STATIC_DRAW);
+    var kotakKado4_color = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado4_color);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kotakKado4.colors), GL.STATIC_DRAW);
+    var kotakKado4_ebo = GL.createBuffer();
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kotakKado4_ebo);
+    GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(kotakKado4.faces), GL.STATIC_DRAW);
+
+    //Kotak Kado 5
+    var kotakKado5 = generateKotak(-0.4, -0.03, -0.7, -0.45, -0.35, -0.6, 50, [1,1,0]);
+    var kotakKado5_vbo = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado5_vbo);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kotakKado5.vertices), GL.STATIC_DRAW);
+    var kotakKado5_color = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado5_color);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kotakKado5.colors), GL.STATIC_DRAW);
+    var kotakKado5_ebo = GL.createBuffer();
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kotakKado5_ebo);
+    GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(kotakKado5.faces), GL.STATIC_DRAW);
+
+    //Kotak Kado 6
+    var kotakKado6 = generateKotak(-1.2, -0.8, -1, -0.7, -0.1, 0.25, 50, [0,0,0]);
+    var kotakKado6_vbo = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado6_vbo);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kotakKado6.vertices), GL.STATIC_DRAW);
+    var kotakKado6_color = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado6_color);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kotakKado6.colors), GL.STATIC_DRAW);
+    var kotakKado6_ebo = GL.createBuffer();
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kotakKado6_ebo);
+    GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(kotakKado6.faces), GL.STATIC_DRAW);
+
+    //Kotak Kado 7
+    var kotakKado7 = generateKotak(-0.6, -0.25, -1, -0.6, -0.15, 0.15, 50, [0,0.5,0.6]);
+    var kotakKado7_vbo = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado7_vbo);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kotakKado7.vertices), GL.STATIC_DRAW);
+    var kotakKado7_color = GL.createBuffer();
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado7_color);
+    GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kotakKado7.colors), GL.STATIC_DRAW);
+    var kotakKado7_ebo = GL.createBuffer();
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kotakKado7_ebo);
+    GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(kotakKado7.faces), GL.STATIC_DRAW);
+
+    ////Kado-kado End
 
 //matrix
     var PROJECTION_MATRIX = LIBS.get_projection(40, CANVAS.width / CANVAS.height, 1, 100);
@@ -716,7 +802,7 @@ function main() {
         GL.drawElements(GL.TRIANGLES, baseWorld.faces.length, GL.UNSIGNED_SHORT, 0);
 
 
-        ////Matahari Start
+    ////Matahari Start
     // Matahari Bulat
     GL.bindBuffer(GL.ARRAY_BUFFER, matahariBulat_vbo);
     GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
@@ -840,7 +926,7 @@ function main() {
     ////Matahari End
 
 
-    // Kotak Kado1
+    // Kain Piknik
     GL.bindBuffer(GL.ARRAY_BUFFER, kainPiknik_vbo);
     GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
     GL.bindBuffer(GL.ARRAY_BUFFER, kainPiknik_color);
@@ -851,16 +937,97 @@ function main() {
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.drawElements(GL.TRIANGLES, kainPiknik.faces.length, GL.UNSIGNED_SHORT, 0);
 
-    // // Tutup Kotak Kado1
-    // GL.bindBuffer(GL.ARRAY_BUFFER, TutupkotakKado1_vbo);
-    // GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
-    // GL.bindBuffer(GL.ARRAY_BUFFER, TutupkotakKado1_color);
-    // GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
-    // GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, TutupkotakKado1_ebo);
-    // GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
-    // GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
-    // GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
-    // GL.drawElements(GL.TRIANGLES, TutupkotakKado1.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    ////Kado-kado Start
+    // Kotak Kado1
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado1_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado1_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kotakKado1_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, kotakKado1.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    // Tutup Kotak Kado1
+    GL.bindBuffer(GL.ARRAY_BUFFER, TutupkotakKado1_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, TutupkotakKado1_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, TutupkotakKado1_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, TutupkotakKado1.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    // Kotak Kado2
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado2_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado2_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kotakKado2_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, kotakKado2.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    // Kotak Kado3
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado3_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado3_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kotakKado3_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, kotakKado3.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    // Kotak Kado4
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado4_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado4_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kotakKado4_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, kotakKado4.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    // Kotak Kado5
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado5_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado5_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kotakKado5_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, kotakKado5.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    // Kotak Kado6
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado6_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado6_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kotakKado6_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, kotakKado6.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    // Kotak Kado7
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado7_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, kotakKado7_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kotakKado7_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, kotakKado7.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    ////Kado-kado End
 
     GL.flush();
 
