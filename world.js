@@ -13,10 +13,10 @@ var keysPressed = {
 
 // normalize screen
 function normalizeScreen(x, y, width, height) {
-    var nx = (2 * x) / width - 1;
-    var ny = (-2 * y) / height + 1;
-    return [nx, ny];
-  }
+  var nx = (2 * x) / width - 1;
+  var ny = (-2 * y) / height + 1;
+  return [nx, ny];
+}
 
 // //isi bentuk" yg akan digunakan
 
@@ -442,36 +442,37 @@ function generateCircle(x, y, z, radius, warna) {
 }
 
 // generate curves
+// generate curves
 function generateCurves(object, z, segments) {
-    var vertices = [];
-    var colors = [];
-  
-    var rainbowColors = [[0, 0, 0]];
-  
-    for (var i = 0; i <= segments; i++) {
-      var t = i / segments;
-      var x = Math.pow(1 - t, 3) * object[0][0] + 3 * Math.pow(1 - t, 2) * t * object[1][0] + 3 * (1 - t) * Math.pow(t, 2) * object[2][0] + Math.pow(t, 3) * object[3][0];
-      var y = Math.pow(1 - t, 3) * object[0][1] + 3 * Math.pow(1 - t, 2) * t * object[1][1] + 3 * (1 - t) * Math.pow(t, 2) * object[2][1] + Math.pow(t, 3) * object[3][1];
-  
-      // Add vertices for the thicker lines
-      vertices.push(x - 0.01, y - 0.01, z); // offset for thickness
-      vertices.push(x + 0.01, y - 0.01, z);
-      vertices.push(x, y + 0.01, z);
-  
-      for (var j = 0; j <= segments; j++) {
-        var colorIndex = j % rainbowColors.length;
-        colors = colors.concat(rainbowColors[colorIndex]);
-      }
+  var vertices = [];
+  var colors = [];
+
+  var rainbowColors = [[0, 0, 0]];
+
+  for (var i = 0; i <= segments; i++) {
+    var t = i / segments;
+    var x = Math.pow(1 - t, 4) * object[0][0] + 4 * Math.pow(1 - t, 3) * t * object[1][0] + 6 * Math.pow(1 - t, 2) * Math.pow(t, 2) * object[2][0] + 4 * (1 - t) * Math.pow(t, 3) * object[3][0] + Math.pow(t, 4) * object[4][0];
+    var y = Math.pow(1 - t, 4) * object[0][1] + 4 * Math.pow(1 - t, 3) * t * object[1][1] + 6 * Math.pow(1 - t, 2) * Math.pow(t, 2) * object[2][1] + 4 * (1 - t) * Math.pow(t, 3) * object[3][1] + Math.pow(t, 4) * object[4][1];
+
+    //   // Add vertices for the thicker lines
+    //   vertices.push(x - 0.01, y - 0.01, z); // offset for thickness
+    //   vertices.push(x + 0.01, y - 0.01, z);
+    vertices.push(x, y, z);
+
+    for (var j = 0; j <= segments; j++) {
+      var colorIndex = j % rainbowColors.length;
+      colors = colors.concat(rainbowColors[colorIndex]);
     }
-  
-    var faces = [];
-    for (var i = 0; i < segments; i++) {
-      var index = i * 3;
-      faces.push(index, index + 1, index + 2); // create triangles for each vertex
-    }
-  
-    return { vertices: vertices, colors: colors, faces: faces };
   }
+
+  var faces = [];
+  for (var i = 0; i < segments; i++) {
+    var index = i * 3;
+    faces.push(index, index + 1, index + 2); // create triangles for each vertex
+  }
+
+  return { vertices: vertices, colors: colors, faces: faces };
+}
 
 // //smpai sini bentuk"nya
 
@@ -1423,6 +1424,96 @@ function main() {
 
   // kue end
 
+  // balon start
+  /* balon 1 */
+  var balon1 = generateEllipsoid(-2, 0, -0.5, 0.2, 50, 1.2, [243 / 255, 177 / 255, 205 / 255]);
+  var balon1_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, balon1_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(balon1.vertices), GL.STATIC_DRAW);
+  var balon1_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, balon1_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(balon1.colors), GL.STATIC_DRAW);
+  var balon1_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, balon1_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(balon1.faces), GL.STATIC_DRAW);
+
+  var ujungBalon1 = generateEllipticParboloid(-2, -0.23, -0.5, 0.02, 50, 0, 0, 0, [243 / 255, 177 / 255, 205 / 255]);
+  var ujungBalon1_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, ujungBalon1_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(ujungBalon1.vertices), GL.STATIC_DRAW);
+  var ujungBalon1_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, ujungBalon1_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(ujungBalon1.colors), GL.STATIC_DRAW);
+  var ujungBalon1_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, ujungBalon1_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(ujungBalon1.faces), GL.STATIC_DRAW);
+
+  var tali1 = generateCurves(
+    [
+      [-2, -0.23],
+      [-1.95, -0.5],
+      [-2.25, -0.5],
+      [-1.8, -0.7],
+      [-2, -0.9],
+    ],
+    -0.5,
+    100
+  );
+  var tali1_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tali1_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tali1.vertices), GL.STATIC_DRAW);
+  var tali1_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tali1_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tali1.colors), GL.STATIC_DRAW);
+  var tali1_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tali1_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(tali1.faces), GL.STATIC_DRAW);
+
+  /* balon 2 */
+  var balon2 = generateEllipsoid(0.3, 0, -0.5, 0.2, 50, 1.2, [186 / 255, 213 / 255, 240 / 255]);
+  var balon2_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, balon2_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(balon2.vertices), GL.STATIC_DRAW);
+  var balon2_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, balon2_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(balon2.colors), GL.STATIC_DRAW);
+  var balon2_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, balon2_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(balon2.faces), GL.STATIC_DRAW);
+
+  var ujungBalon2 = generateEllipticParboloid(0.3, -0.23, -0.5, 0.02, 50, 0, 0, 0, [186 / 255, 213 / 255, 240 / 255]);
+  var ujungBalon2_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, ujungBalon2_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(ujungBalon2.vertices), GL.STATIC_DRAW);
+  var ujungBalon2_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, ujungBalon2_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(ujungBalon2.colors), GL.STATIC_DRAW);
+  var ujungBalon2_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, ujungBalon2_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(ujungBalon2.faces), GL.STATIC_DRAW);
+
+  var tali2 = generateCurves(
+    [
+      [0.3, -0.23],
+      [0.35, -0.5],
+      [0.05, -0.5],
+      [0.5, -0.7],
+      [0.3, -0.9],
+    ],
+    -0.5,
+    100
+  );
+  var tali2_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tali2_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tali2.vertices), GL.STATIC_DRAW);
+  var tali2_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tali2_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tali2.colors), GL.STATIC_DRAW);
+  var tali2_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tali2_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(tali2.faces), GL.STATIC_DRAW);
+  // balon end
+
   //matrix
   var PROJECTION_MATRIX = LIBS.get_projection(40, CANVAS.width / CANVAS.height, 1, 100);
   var VIEW_MATRIX = LIBS.get_I4();
@@ -2319,6 +2410,69 @@ function main() {
     GL.drawElements(GL.TRIANGLES, api2_lilin3_ball.faces.length, GL.UNSIGNED_SHORT, 0);
 
     // draw kue end
+
+    // draw balon
+    /* balon 1 */
+    GL.bindBuffer(GL.ARRAY_BUFFER, balon1_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, balon1_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, balon1_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, balon1.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, ujungBalon1_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, ujungBalon1_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, ujungBalon1_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, ujungBalon1.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, tali1_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, tali1_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tali1_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawArrays(GL.LINE_STRIP, 0, tali1.vertices.length / 3);
+
+    /* balon 2 */
+    GL.bindBuffer(GL.ARRAY_BUFFER, balon2_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, balon2_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, balon2_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, balon2.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, ujungBalon2_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, ujungBalon2_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, ujungBalon2_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, ujungBalon2.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, tali2_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, tali2_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tali2_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawArrays(GL.LINE_STRIP, 0, tali2.vertices.length / 3);
 
     GL.flush();
 
