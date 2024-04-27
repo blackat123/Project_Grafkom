@@ -11,6 +11,13 @@ var keysPressed = {
   d: false,
 };
 
+// normalize screen
+function normalizeScreen(x, y, width, height) {
+    var nx = (2 * x) / width - 1;
+    var ny = (-2 * y) / height + 1;
+    return [nx, ny];
+  }
+
 // //isi bentuk" yg akan digunakan
 
 //Half Sphere
@@ -434,6 +441,38 @@ function generateCircle(x, y, z, radius, warna) {
   return { vertices: vertices, colors: colors, faces: faces };
 }
 
+// generate curves
+function generateCurves(object, z, segments) {
+    var vertices = [];
+    var colors = [];
+  
+    var rainbowColors = [[0, 0, 0]];
+  
+    for (var i = 0; i <= segments; i++) {
+      var t = i / segments;
+      var x = Math.pow(1 - t, 3) * object[0][0] + 3 * Math.pow(1 - t, 2) * t * object[1][0] + 3 * (1 - t) * Math.pow(t, 2) * object[2][0] + Math.pow(t, 3) * object[3][0];
+      var y = Math.pow(1 - t, 3) * object[0][1] + 3 * Math.pow(1 - t, 2) * t * object[1][1] + 3 * (1 - t) * Math.pow(t, 2) * object[2][1] + Math.pow(t, 3) * object[3][1];
+  
+      // Add vertices for the thicker lines
+      vertices.push(x - 0.01, y - 0.01, z); // offset for thickness
+      vertices.push(x + 0.01, y - 0.01, z);
+      vertices.push(x, y + 0.01, z);
+  
+      for (var j = 0; j <= segments; j++) {
+        var colorIndex = j % rainbowColors.length;
+        colors = colors.concat(rainbowColors[colorIndex]);
+      }
+    }
+  
+    var faces = [];
+    for (var i = 0; i < segments; i++) {
+      var index = i * 3;
+      faces.push(index, index + 1, index + 2); // create triangles for each vertex
+    }
+  
+    return { vertices: vertices, colors: colors, faces: faces };
+  }
+
 // //smpai sini bentuk"nya
 
 function updateViewMatrix() {
@@ -450,10 +489,18 @@ function updateViewMatrix() {
 }
 
 function main() {
-  var CANVAS = document.getElementById('myCanvas');
+  var CANVAS = document.getElementById('your_canvas');
 
   CANVAS.width = window.innerWidth;
   CANVAS.height = window.innerHeight;
+
+  //eventListener
+  var mouseDown = function (e) {
+    var coord = normalizeScreen(e.pageX, e.pageY, CANVAS.width, CANVAS.height);
+    console.log(coord[0] + ', ' + coord[1]);
+  };
+
+  CANVAS.addEventListener('mousedown', mouseDown, false);
 
   var GL;
   try {
@@ -1125,9 +1172,53 @@ function main() {
   var tutup_kue1_ebo = GL.createBuffer();
   GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_kue1_ebo);
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(tutup_kue1.faces), GL.STATIC_DRAW);
-  // kue 1 end
+  // kue 1
 
-  //kue 2 start
+  //kue 2
+  var kue4 = generateTabung(0.5, -0.67, 1.3, 0.14, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
+  var kue4_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, kue4_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kue4.vertices), GL.STATIC_DRAW);
+  var kue4_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, kue4_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kue4.colors), GL.STATIC_DRAW);
+  var kue4_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kue4_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(kue4.faces), GL.STATIC_DRAW);
+
+  var kue5 = generateTabung(0.5, -0.61, 1.3, 0.14, 0.06, 50, [229 / 255, 171 / 255, 124 / 255]);
+  var kue5_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, kue5_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kue5.vertices), GL.STATIC_DRAW);
+  var kue5_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, kue5_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kue5.colors), GL.STATIC_DRAW);
+  var kue5_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kue5_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(kue5.faces), GL.STATIC_DRAW);
+
+  var kue6 = generateTabung(0.5, -0.55, 1.3, 0.14, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
+  var kue6_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, kue6_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kue6.vertices), GL.STATIC_DRAW);
+  var kue6_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, kue6_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kue6.colors), GL.STATIC_DRAW);
+  var kue6_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kue6_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(kue6.faces), GL.STATIC_DRAW);
+
+  var tutup_kue2 = generateCircle(0.5, -0.52, 1.3, 0.14, [239 / 255, 212 / 255, 188 / 255]);
+  var tutup_kue2_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tutup_kue2_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tutup_kue2.vertices), GL.STATIC_DRAW);
+  var tutup_kue2_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tutup_kue2_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tutup_kue2.colors), GL.STATIC_DRAW);
+  var tutup_kue2_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_kue2_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(tutup_kue2.faces), GL.STATIC_DRAW);
+  // kue 2
   // kue end
 
   //matrix
@@ -1760,6 +1851,7 @@ function main() {
     ////pohon end
 
     // draw kue start
+    // kue 1
     GL.bindBuffer(GL.ARRAY_BUFFER, kue1_vbo);
     GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
     GL.bindBuffer(GL.ARRAY_BUFFER, kue1_color);
@@ -1799,6 +1891,48 @@ function main() {
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.drawElements(GL.TRIANGLES, tutup_kue1.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    // kue 2
+    GL.bindBuffer(GL.ARRAY_BUFFER, kue4_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, kue4_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kue4_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, kue4.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, kue5_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, kue5_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kue5_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, kue5.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, kue6_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, kue6_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kue6_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, kue6.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, tutup_kue2_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, tutup_kue2_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_kue2_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, tutup_kue2.faces.length, GL.UNSIGNED_SHORT, 0);
+
     // draw kue end
 
     GL.flush();
