@@ -230,7 +230,7 @@ function generateEllipsoid(x, y, z, radius, segments, ovalY, warna) {
   return { vertices: vertices, colors: colors, faces: faces };
 }
 
-// Cube bisa adjust 
+// Cube bisa adjust
 function generateKotak(xmin, x, ymin, y, zmin, z, segments, warna) {
   var colors = [];
   var vertices = [
@@ -416,6 +416,62 @@ function generateTabung(x, y, z, radius, height, segments, rotationX, rotationY,
       faces.push(nextIndex, nextIndex + 1, index + 1);
     }
   }
+  return { vertices: vertices, colors: colors, faces: faces };
+}
+
+// generate closed cylinder
+function generateTube(x, y, outerRad, innerRad, height, segments) {
+  var vertices = [];
+  var colors = [];
+
+  var angleIncrement = (2 * Math.PI) / segments;
+
+  var rainbowColors = [[1.0, 0.0, 0.0]];
+
+  for (var i = 0; i < segments; i++) {
+    var angle = i * angleIncrement;
+    var cosAngle = Math.cos(angle);
+    var sinAngle = Math.sin(angle);
+
+    var bottomX = outerRad * cosAngle + x;
+    var bottomY = outerRad * sinAngle + y;
+    var bottomZ = 0;
+    vertices.push(bottomX, bottomY, bottomZ);
+    var colorIndex = i % rainbowColors.length;
+    colors = colors.concat(rainbowColors[colorIndex]);
+
+    // Top circle vertex
+    var topX = innerRad * cosAngle + x;
+    var topY = innerRad * sinAngle + y;
+    var topZ = height; // For the top circle
+    vertices.push(topX, topY, topZ);
+    colors = colors.concat(rainbowColors[colorIndex]);
+  }
+
+  vertices.push(vertices[0], vertices[1], 0);
+  colors.push(1, 0, 0);
+  vertices.push(vertices[3], vertices[4], height);
+  colors.push(1, 0, 0);
+
+  // Faces
+  var faces = [];
+  for (var i = 0; i < segments; i++) {
+    var index = i * 2;
+    faces.push(index, index + 1, (index + 3) % (segments * 2));
+    faces.push(index, (index + 3) % (segments * 2), (index + 2) % (segments * 2));
+  }
+
+  for (var i = 0; i < segments; i++) {
+    var bottomIndex = i * 2;
+    var topIndex = bottomIndex + 1;
+    var nextBottomIndex = ((i + 1) % segments) * 2;
+    var nextTopIndex = nextBottomIndex + 1;
+
+    faces.push(bottomIndex, nextBottomIndex, vertices.length / 3 - 2);
+
+    faces.push(nextTopIndex, topIndex, vertices.length / 3 - 1);
+  }
+
   return { vertices: vertices, colors: colors, faces: faces };
 }
 
@@ -761,8 +817,10 @@ function main() {
   ////Kado-kado End
 
   // inisialisasi awan
+
+  // awan 1 start
   // bola 1
-  var awan1_1 = generateBall(0, 2.1, -1, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan1_1 = generateBall(0.1, 1.1, -1, 0.25, 50, [209 / 255, 210 / 255, 212 / 255]);
   var awan1_1_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, awan1_1_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_1.vertices), GL.STATIC_DRAW);
@@ -774,7 +832,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_1.faces), GL.STATIC_DRAW);
 
   // bola 2
-  var awan1_2 = generateBall(-0.6, 1.6, -1, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan1_2 = generateBall(-0.29, 0.9, -1, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
   var awan1_2_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, awan1_2_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_2.vertices), GL.STATIC_DRAW);
@@ -786,7 +844,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_2.faces), GL.STATIC_DRAW);
 
   // bola 3
-  var awan1_3 = generateBall(0.6, 1.6, -1, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan1_3 = generateBall(0.4, 0.9, -1, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
   var awan1_3_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, awan1_3_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_3.vertices), GL.STATIC_DRAW);
@@ -798,7 +856,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_3.faces), GL.STATIC_DRAW);
 
   // bola 4
-  var awan1_4 = generateBall(0, 1.8, -1, 0.3, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan1_4 = generateBall(0, 0.8, -1, 0.15, 50, [209 / 255, 210 / 255, 212 / 255]);
   var awan1_4_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, awan1_4_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_4.vertices), GL.STATIC_DRAW);
@@ -810,7 +868,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_4.faces), GL.STATIC_DRAW);
 
   // bola 5
-  var awan1_5 = generateBall(-0.2, 2, -1, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan1_5 = generateBall(-0.15, 1.1, -1, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
   var awan1_5_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, awan1_5_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_5.vertices), GL.STATIC_DRAW);
@@ -822,7 +880,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_5.faces), GL.STATIC_DRAW);
 
   // bola 6
-  var awan1_6 = generateBall(0.2, 2, -1, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan1_6 = generateBall(-0.55, 0.85, -1, 0.13, 50, [209 / 255, 210 / 255, 212 / 255]);
   var awan1_6_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, awan1_6_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_6.vertices), GL.STATIC_DRAW);
@@ -834,7 +892,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_6.faces), GL.STATIC_DRAW);
 
   // bola 7
-  var awan1_7 = generateBall(-0.2, 1.5, -1, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan1_7 = generateBall(0.2, 0.8, -1, 0.1, 50, [209 / 255, 210 / 255, 212 / 255]);
   var awan1_7_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, awan1_7_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_7.vertices), GL.STATIC_DRAW);
@@ -844,143 +902,148 @@ function main() {
   var awan1_7_ebo = GL.createBuffer();
   GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_7_ebo);
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_7.faces), GL.STATIC_DRAW);
+  // awan 1 end
 
-  // bola 8
-  var awan1_8 = generateBall(0.2, 1.5, -1, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
-  var awan1_8_vbo = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_8_vbo);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_8.vertices), GL.STATIC_DRAW);
-  var awan1_8_color = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_8_color);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_8.colors), GL.STATIC_DRAW);
-  var awan1_8_ebo = GL.createBuffer();
-  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_8_ebo);
-  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_8.faces), GL.STATIC_DRAW);
+  // awan 2 start
+  // bola 1
+  var awan2_1 = generateBall(1.5, 1.3, 0, 0.25, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan2_1_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan2_1_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan2_1.vertices), GL.STATIC_DRAW);
+  var awan2_1_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan2_1_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan2_1.colors), GL.STATIC_DRAW);
+  var awan2_1_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan2_1_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan2_1.faces), GL.STATIC_DRAW);
 
-  // bola 9
-  var awan1_9 = generateBall(0, 1.5, -0.7, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
-  var awan1_9_vbo = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_9_vbo);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_9.vertices), GL.STATIC_DRAW);
-  var awan1_9_color = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_9_color);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_9.colors), GL.STATIC_DRAW);
-  var awan1_9_ebo = GL.createBuffer();
-  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_9_ebo);
-  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_9.faces), GL.STATIC_DRAW);
+  // bola 2
+  var awan2_2 = generateBall(1.2, 1.1, 0, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan2_2_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan2_2_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan2_2.vertices), GL.STATIC_DRAW);
+  var awan2_2_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan2_2_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan2_2.colors), GL.STATIC_DRAW);
+  var awan2_2_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan2_2_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan2_2.faces), GL.STATIC_DRAW);
 
-  // bola 10
-  var awan1_10 = generateBall(-0.4, 1.8, -0.8, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
-  var awan1_10_vbo = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_10_vbo);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_10.vertices), GL.STATIC_DRAW);
-  var awan1_10_color = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_10_color);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_10.colors), GL.STATIC_DRAW);
-  var awan1_10_ebo = GL.createBuffer();
-  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_10_ebo);
-  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_10.faces), GL.STATIC_DRAW);
+  // bola 3
+  var awan2_3 = generateBall(1.8, 1.1, 0, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan2_3_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan2_3_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan2_3.vertices), GL.STATIC_DRAW);
+  var awan2_3_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan2_3_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan2_3.colors), GL.STATIC_DRAW);
+  var awan2_3_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan2_3_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan2_3.faces), GL.STATIC_DRAW);
 
-  //bola 11
-  var awan1_11 = generateBall(0.4, 1.8, -0.8, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
-  var awan1_11_vbo = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_11_vbo);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_11.vertices), GL.STATIC_DRAW);
-  var awan1_11_color = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_11_color);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_11.colors), GL.STATIC_DRAW);
-  var awan1_11_ebo = GL.createBuffer();
-  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_11_ebo);
-  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_11.faces), GL.STATIC_DRAW);
+  // bola 4
+  var awan2_4 = generateBall(1.5, 1, 0, 0.15, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan2_4_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan2_4_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan2_4.vertices), GL.STATIC_DRAW);
+  var awan2_4_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan2_4_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan2_4.colors), GL.STATIC_DRAW);
+  var awan2_4_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan2_4_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan2_4.faces), GL.STATIC_DRAW);
 
-  // bola 12
-  var awan1_12 = generateBall(-0.3, 1.5, -0.8, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
-  var awan1_12_vbo = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_12_vbo);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_12.vertices), GL.STATIC_DRAW);
-  var awan1_12_color = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_12_color);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_12.colors), GL.STATIC_DRAW);
-  var awan1_12_ebo = GL.createBuffer();
-  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_12_ebo);
-  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_12.faces), GL.STATIC_DRAW);
+  // bola 5
+  var awan2_5 = generateBall(0.95, 1.07, 0, 0.13, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan2_5_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan2_5_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan2_5.vertices), GL.STATIC_DRAW);
+  var awan2_5_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan2_5_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_5.colors), GL.STATIC_DRAW);
+  var awan2_5_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan2_5_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan2_5.faces), GL.STATIC_DRAW);
 
-  // bola 13
-  var awan1_13 = generateBall(0.3, 1.5, -0.8, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
-  var awan1_13_vbo = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_13_vbo);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_13.vertices), GL.STATIC_DRAW);
-  var awan1_13_color = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_13_color);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_13.colors), GL.STATIC_DRAW);
-  var awan1_13_ebo = GL.createBuffer();
-  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_13_ebo);
-  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_13.faces), GL.STATIC_DRAW);
+  // bola 6
+  var awan2_6 = generateBall(2.05, 1.07, 0, 0.13, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan2_6_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan2_6_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan2_6.vertices), GL.STATIC_DRAW);
+  var awan2_6_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan2_6_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan2_6.colors), GL.STATIC_DRAW);
+  var awan2_6_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan2_6_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan2_6.faces), GL.STATIC_DRAW);
+  // awan 2 end
 
-  // bola 14
-  var awan1_14 = generateBall(-0.4, 1.8, -1.2, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
-  var awan1_14_vbo = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_14_vbo);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_14.vertices), GL.STATIC_DRAW);
-  var awan1_14_color = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_14_color);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_14.colors), GL.STATIC_DRAW);
-  var awan1_14_ebo = GL.createBuffer();
-  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_14_ebo);
-  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_14.faces), GL.STATIC_DRAW);
+  // awan 3 start
+  // bola 1
+  var awan3_1 = generateBall(0.6, 2.3, -2.1, 0.22, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan3_1_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan3_1_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan3_1.vertices), GL.STATIC_DRAW);
+  var awan3_1_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan3_1_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan3_1.colors), GL.STATIC_DRAW);
+  var awan3_1_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan3_1_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan3_1.faces), GL.STATIC_DRAW);
 
-  // bola 15
-  var awan1_15 = generateBall(0.4, 1.8, -1.2, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
-  var awan1_15_vbo = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_15_vbo);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_15.vertices), GL.STATIC_DRAW);
-  var awan1_15_color = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_15_color);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_15.colors), GL.STATIC_DRAW);
-  var awan1_15_ebo = GL.createBuffer();
-  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_15_ebo);
-  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_15.faces), GL.STATIC_DRAW);
+  // bola 2
+  var awan3_2 = generateBall(0.2, 2.1, -2.1, 0.17, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan3_2_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan3_2_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan3_2.vertices), GL.STATIC_DRAW);
+  var awan3_2_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan3_2_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan3_2.colors), GL.STATIC_DRAW);
+  var awan3_2_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan3_2_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan3_2.faces), GL.STATIC_DRAW);
 
-  // bola 16
-  var awan1_16 = generateBall(-0.3, 1.5, -1.2, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
-  var awan1_16_vbo = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_16_vbo);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_16.vertices), GL.STATIC_DRAW);
-  var awan1_16_color = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_16_color);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_16.colors), GL.STATIC_DRAW);
-  var awan1_16_ebo = GL.createBuffer();
-  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_16_ebo);
-  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_16.faces), GL.STATIC_DRAW);
+  // bola 3
+  var awan3_3 = generateBall(0.85, 2.1, -2.1, 0.17, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan3_3_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan3_3_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan3_3.vertices), GL.STATIC_DRAW);
+  var awan3_3_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan3_3_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan3_3.colors), GL.STATIC_DRAW);
+  var awan3_3_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan3_3_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan3_3.faces), GL.STATIC_DRAW);
 
-  // bola 17
-  var awan1_17 = generateBall(0.3, 1.5, -1.2, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
-  var awan1_17_vbo = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_17_vbo);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_17.vertices), GL.STATIC_DRAW);
-  var awan1_17_color = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_17_color);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_17.colors), GL.STATIC_DRAW);
-  var awan1_17_ebo = GL.createBuffer();
-  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_17_ebo);
-  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_17.faces), GL.STATIC_DRAW);
+  // bola 4
+  var awan3_4 = generateBall(0.65, 2.05, -2.1, 0.1, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan3_4_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan3_4_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan3_4.vertices), GL.STATIC_DRAW);
+  var awan3_4_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan3_4_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan3_4.colors), GL.STATIC_DRAW);
+  var awan3_4_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan3_4_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan3_4.faces), GL.STATIC_DRAW);
 
-  // bola 18
-  var awan1_18 = generateBall(0, 1.5, -1.3, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
-  var awan1_18_vbo = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_18_vbo);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_18.vertices), GL.STATIC_DRAW);
-  var awan1_18_color = GL.createBuffer();
-  GL.bindBuffer(GL.ARRAY_BUFFER, awan1_18_color);
-  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan1_18.colors), GL.STATIC_DRAW);
-  var awan1_18_ebo = GL.createBuffer();
-  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_18_ebo);
-  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan1_18.faces), GL.STATIC_DRAW);
+  // bola 5
+  var awan3_5 = generateBall(0.45, 2.11, -2.1, 0.15, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan3_5_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan3_5_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan3_5.vertices), GL.STATIC_DRAW);
+  var awan3_5_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, awan3_5_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(awan3_5.colors), GL.STATIC_DRAW);
+  var awan3_5_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan3_5_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(awan3_5.faces), GL.STATIC_DRAW);
+  // awan 3 end
 
   ////pohon start
   //batang pohon 1
   //batang :xmin, x, ymin, y, zmin, z, segments, warna
-  var batang = generateKotak(1, 1.25, -0.9, -0.4, -2, -1.70, 50, [108/255, 60/255, 12/255]);
+  var batang = generateKotak(1, 1.25, -0.9, -0.4, -2, -1.7, 50, [108 / 255, 60 / 255, 12 / 255]);
   var batang_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, batang_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(batang.vertices), GL.STATIC_DRAW);
@@ -993,7 +1056,7 @@ function main() {
 
   // batang pohon 2
   //batang : xmin, x, ymin, y, zmin, z, segments, warna
-  var batang1 = generateKotak(1.75, 2, -0.9, -0.4, -0.80, -1.05, 50, [108/255, 60/255, 12/255]);
+  var batang1 = generateKotak(1.75, 2, -0.9, -0.4, -0.8, -1.05, 50, [108 / 255, 60 / 255, 12 / 255]);
   var batang1_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, batang1_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(batang1.vertices), GL.STATIC_DRAW);
@@ -1004,59 +1067,59 @@ function main() {
   GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, batang1_ebo);
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(batang1.faces), GL.STATIC_DRAW);
 
-// Daun Cone Bawah Pohon 1
-// daun: x, y, z, radius, segments, rotationX, rotationY, rotationZ
-var daunCone1 = generateEllipticParboloid(1.13, 0.30, -1.85, 0.30, 50, 0, 0, 0, [27 / 255, 146 / 255, 27 / 255]); 
-var daunCone1_vbo = GL.createBuffer();
-GL.bindBuffer(GL.ARRAY_BUFFER, daunCone1_vbo);
-GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone1.vertices), GL.STATIC_DRAW);
-var daunCone1_color = GL.createBuffer();
-GL.bindBuffer(GL.ARRAY_BUFFER, daunCone1_color);
-GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone1.colors), GL.STATIC_DRAW);
-var daunCone1_faces = GL.createBuffer();
-GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone1_faces);
-GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(daunCone1.faces), GL.STATIC_DRAW);
+  // Daun Cone Bawah Pohon 1
+  // daun: x, y, z, radius, segments, rotationX, rotationY, rotationZ
+  var daunCone1 = generateEllipticParboloid(1.13, 0.3, -1.85, 0.3, 50, 0, 0, 0, [27 / 255, 146 / 255, 27 / 255]);
+  var daunCone1_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, daunCone1_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone1.vertices), GL.STATIC_DRAW);
+  var daunCone1_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, daunCone1_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone1.colors), GL.STATIC_DRAW);
+  var daunCone1_faces = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone1_faces);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(daunCone1.faces), GL.STATIC_DRAW);
 
-// Daun Cone Atas Pohon 1
-// daun: x, y, z, radius, segments, rotationX, rotationY, rotationZ
-var daunCone2 = generateEllipticParboloid(1.13, 0.90, -1.85, 0.30, 50, 0, 0, 0, [27 / 255, 146 / 255, 27 / 255]); 
-var daunCone2_vbo = GL.createBuffer();
-GL.bindBuffer(GL.ARRAY_BUFFER, daunCone2_vbo);
-GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone2.vertices), GL.STATIC_DRAW);
-var daunCone2_color = GL.createBuffer();
-GL.bindBuffer(GL.ARRAY_BUFFER, daunCone2_color);
-GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone2.colors), GL.STATIC_DRAW);
-var daunCone2_faces = GL.createBuffer();
-GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone2_faces);
-GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(daunCone2.faces), GL.STATIC_DRAW);
+  // Daun Cone Atas Pohon 1
+  // daun: x, y, z, radius, segments, rotationX, rotationY, rotationZ
+  var daunCone2 = generateEllipticParboloid(1.13, 0.9, -1.85, 0.3, 50, 0, 0, 0, [27 / 255, 146 / 255, 27 / 255]);
+  var daunCone2_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, daunCone2_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone2.vertices), GL.STATIC_DRAW);
+  var daunCone2_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, daunCone2_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone2.colors), GL.STATIC_DRAW);
+  var daunCone2_faces = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone2_faces);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(daunCone2.faces), GL.STATIC_DRAW);
 
-// Daun Cone Bawah Pohon 2
-// daun: x, y, z, radius, segments, rotationX, rotationY, rotationZ
-var daunCone3 = generateEllipticParboloid(1.89, 0.35, -0.90, 0.30, 50, 0, 0, 0, [27 / 255, 146 / 255, 27 / 255]); 
-var daunCone3_vbo = GL.createBuffer();
-GL.bindBuffer(GL.ARRAY_BUFFER, daunCone3_vbo);
-GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone3.vertices), GL.STATIC_DRAW);
-var daunCone3_color = GL.createBuffer();
-GL.bindBuffer(GL.ARRAY_BUFFER, daunCone3_color);
-GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone3.colors), GL.STATIC_DRAW);
-var daunCone3_faces = GL.createBuffer();
-GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone3_faces);
-GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(daunCone3.faces), GL.STATIC_DRAW);
+  // Daun Cone Bawah Pohon 2
+  // daun: x, y, z, radius, segments, rotationX, rotationY, rotationZ
+  var daunCone3 = generateEllipticParboloid(1.89, 0.35, -0.9, 0.3, 50, 0, 0, 0, [27 / 255, 146 / 255, 27 / 255]);
+  var daunCone3_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, daunCone3_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone3.vertices), GL.STATIC_DRAW);
+  var daunCone3_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, daunCone3_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone3.colors), GL.STATIC_DRAW);
+  var daunCone3_faces = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone3_faces);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(daunCone3.faces), GL.STATIC_DRAW);
 
-// Daun Cone Atas Pohon 2
-// daun: x, y, z, radius, segments, rotationX, rotationY, rotationZ
-var daunCone4 = generateEllipticParboloid(1.89, 0.90, -0.90, 0.30, 50, 0, 0, 0, [27 / 255, 146 / 255, 27 / 255]); 
-var daunCone4_vbo = GL.createBuffer();
-GL.bindBuffer(GL.ARRAY_BUFFER, daunCone4_vbo);
-GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone4.vertices), GL.STATIC_DRAW);
-var daunCone4_color = GL.createBuffer();
-GL.bindBuffer(GL.ARRAY_BUFFER, daunCone4_color);
-GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone4.colors), GL.STATIC_DRAW);
-var daunCone4_faces = GL.createBuffer();
-GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone4_faces);
-GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(daunCone4.faces), GL.STATIC_DRAW);
+  // Daun Cone Atas Pohon 2
+  // daun: x, y, z, radius, segments, rotationX, rotationY, rotationZ
+  var daunCone4 = generateEllipticParboloid(1.89, 0.9, -0.9, 0.3, 50, 0, 0, 0, [27 / 255, 146 / 255, 27 / 255]);
+  var daunCone4_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, daunCone4_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone4.vertices), GL.STATIC_DRAW);
+  var daunCone4_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, daunCone4_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(daunCone4.colors), GL.STATIC_DRAW);
+  var daunCone4_faces = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, daunCone4_faces);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(daunCone4.faces), GL.STATIC_DRAW);
 
-////pohon end
+  ////pohon end
 
   //matrix
   var PROJECTION_MATRIX = LIBS.get_projection(40, CANVAS.width / CANVAS.height, 1, 100);
@@ -1491,127 +1554,132 @@ GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(daunCone4.faces), GL.STAT
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
     GL.drawElements(GL.TRIANGLES, awan1_7.faces.length, GL.UNSIGNED_SHORT, 0);
+    // awan 1 end
 
-    // bola8
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_8_vbo);
+    // awan 2 start
+    // bola 1
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan2_1_vbo);
     GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_8_color);
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan2_1_color);
     GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_8_ebo);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan2_1_ebo);
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
-    GL.drawElements(GL.TRIANGLES, awan1_8.faces.length, GL.UNSIGNED_SHORT, 0);
+    GL.drawElements(GL.TRIANGLES, awan2_1.faces.length, GL.UNSIGNED_SHORT, 0);
 
-    // bola9
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_9_vbo);
+    // bola2
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan2_2_vbo);
     GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_9_color);
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan2_2_color);
     GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_9_ebo);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan2_2_ebo);
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
-    GL.drawElements(GL.TRIANGLES, awan1_9.faces.length, GL.UNSIGNED_SHORT, 0);
+    GL.drawElements(GL.TRIANGLES, awan2_2.faces.length, GL.UNSIGNED_SHORT, 0);
 
-    // bola10
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_10_vbo);
+    // bola3
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan2_3_vbo);
     GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_10_color);
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan2_3_color);
     GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_10_ebo);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan2_3_ebo);
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
-    GL.drawElements(GL.TRIANGLES, awan1_10.faces.length, GL.UNSIGNED_SHORT, 0);
+    GL.drawElements(GL.TRIANGLES, awan2_3.faces.length, GL.UNSIGNED_SHORT, 0);
 
-    // bola11
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_11_vbo);
+    // bola4
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan2_4_vbo);
     GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_11_color);
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan2_4_color);
     GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_11_ebo);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan2_4_ebo);
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
-    GL.drawElements(GL.TRIANGLES, awan1_11.faces.length, GL.UNSIGNED_SHORT, 0);
+    GL.drawElements(GL.TRIANGLES, awan2_4.faces.length, GL.UNSIGNED_SHORT, 0);
 
-    // bola12
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_12_vbo);
+    // bola5
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan2_5_vbo);
     GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_12_color);
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan2_5_color);
     GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_12_ebo);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan2_5_ebo);
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
-    GL.drawElements(GL.TRIANGLES, awan1_12.faces.length, GL.UNSIGNED_SHORT, 0);
+    GL.drawElements(GL.TRIANGLES, awan2_5.faces.length, GL.UNSIGNED_SHORT, 0);
 
-    // bola13
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_13_vbo);
+    // bola6
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan2_6_vbo);
     GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_13_color);
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan2_6_color);
     GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_13_ebo);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan2_6_ebo);
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
-    GL.drawElements(GL.TRIANGLES, awan1_13.faces.length, GL.UNSIGNED_SHORT, 0);
+    GL.drawElements(GL.TRIANGLES, awan2_6.faces.length, GL.UNSIGNED_SHORT, 0);
+    // awan 2 end
 
-    // bola14
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_14_vbo);
+    // awan 3 start
+    // bola 1
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan3_1_vbo);
     GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_14_color);
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan3_1_color);
     GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_14_ebo);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan3_1_ebo);
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
-    GL.drawElements(GL.TRIANGLES, awan1_14.faces.length, GL.UNSIGNED_SHORT, 0);
+    GL.drawElements(GL.TRIANGLES, awan3_1.faces.length, GL.UNSIGNED_SHORT, 0);
 
-    // bola15
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_15_vbo);
+    // bola2
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan3_2_vbo);
     GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_15_color);
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan3_2_color);
     GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_15_ebo);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan3_2_ebo);
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
-    GL.drawElements(GL.TRIANGLES, awan1_15.faces.length, GL.UNSIGNED_SHORT, 0);
+    GL.drawElements(GL.TRIANGLES, awan3_2.faces.length, GL.UNSIGNED_SHORT, 0);
 
-    // bola16
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_16_vbo);
+    // bola3
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan3_3_vbo);
     GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_16_color);
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan3_3_color);
     GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_16_ebo);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan3_3_ebo);
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
-    GL.drawElements(GL.TRIANGLES, awan1_16.faces.length, GL.UNSIGNED_SHORT, 0);
+    GL.drawElements(GL.TRIANGLES, awan3_3.faces.length, GL.UNSIGNED_SHORT, 0);
 
-    // bola17
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_17_vbo);
+    // bola4
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan3_4_vbo);
     GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_17_color);
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan3_4_color);
     GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_17_ebo);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan3_4_ebo);
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
-    GL.drawElements(GL.TRIANGLES, awan1_17.faces.length, GL.UNSIGNED_SHORT, 0);
+    GL.drawElements(GL.TRIANGLES, awan3_4.faces.length, GL.UNSIGNED_SHORT, 0);
 
-    // bola18
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_18_vbo);
+    // bola5
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan3_5_vbo);
     GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ARRAY_BUFFER, awan1_18_color);
+    GL.bindBuffer(GL.ARRAY_BUFFER, awan3_5_color);
     GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan1_18_ebo);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, awan3_5_ebo);
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
-    GL.drawElements(GL.TRIANGLES, awan1_18.faces.length, GL.UNSIGNED_SHORT, 0);
+    GL.drawElements(GL.TRIANGLES, awan3_5.faces.length, GL.UNSIGNED_SHORT, 0);
+    // awan 3 end
 
     ////pohon start
     //batang pohon 1
