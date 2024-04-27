@@ -363,10 +363,11 @@ function generateKotak(xmin, x, ymin, y, zmin, z, segments, warna) {
   return { vertices: vertices, colors: colors, faces: faces };
 }
 
-//Tabung (untuk tiang)
-function generateTabung(x, y, z, radius, height, segments, rotationX, rotationY, rotationZ, warna) {
+// generate badan
+function generateTabung(x, y, z, radius, height, segments, warna) {
   var vertices = [];
   var colors = [];
+
   var rainbowColors = [warna];
 
   for (var i = 0; i <= segments; i++) {
@@ -377,27 +378,12 @@ function generateTabung(x, y, z, radius, height, segments, rotationX, rotationY,
     for (var j = 0; j <= segments; j++) {
       var heightFraction = j / segments;
       var xCoord = radius * cosAngle;
-      var yCoord = height * heightFraction - height / 2;
       var zCoord = radius * sinAngle;
+      var yCoord = height * heightFraction - height / 2;
 
-      // var vertexX = x + xCoord;
-      // var vertexY = y + yCoord;
-      // var vertexZ = z + zCoord;
-
-      // Rotasi
-      var rotatedX = xCoord * Math.cos(rotationZ) - yCoord * Math.sin(rotationZ);
-      var rotatedY = xCoord * Math.sin(rotationZ) + yCoord * Math.cos(rotationZ);
-      var rotatedZ = zCoord;
-
-      // Pemutaran tambahan untuk diagonal
-      rotatedY = rotatedY * Math.cos(rotationX) - rotatedZ * Math.sin(rotationX);
-      rotatedZ = rotatedY * Math.sin(rotationX) + rotatedZ * Math.cos(rotationX);
-      rotatedX = rotatedX * Math.cos(rotationY) - rotatedZ * Math.sin(rotationY);
-      rotatedZ = rotatedX * Math.sin(rotationY) + rotatedZ * Math.cos(rotationY);
-
-      var vertexX = x + radius * rotatedX;
-      var vertexY = y + radius * rotatedY;
-      var vertexZ = z + radius * rotatedZ;
+      var vertexX = x + xCoord;
+      var vertexY = y + yCoord;
+      var vertexZ = z + zCoord;
 
       vertices.push(vertexX, vertexY, vertexZ);
 
@@ -419,59 +405,32 @@ function generateTabung(x, y, z, radius, height, segments, rotationX, rotationY,
   return { vertices: vertices, colors: colors, faces: faces };
 }
 
-// generate closed cylinder
-function generateTube(x, y, outerRad, innerRad, height, segments) {
+// generate circle untuk tutup tabung
+// generate circle
+function generateCircle(x, y, z, radius, warna) {
   var vertices = [];
   var colors = [];
 
-  var angleIncrement = (2 * Math.PI) / segments;
+  var rainbowColors = [warna];
 
-  var rainbowColors = [[1.0, 0.0, 0.0]];
+  for (let i = 0; i < 360; i++) {
+    var a = radius * Math.cos((i / 180) * Math.PI) + x;
+    var b = radius * Math.sin((i / 180) * Math.PI) + z;
+    vertices.push(a, y, b);
 
-  for (var i = 0; i < segments; i++) {
-    var angle = i * angleIncrement;
-    var cosAngle = Math.cos(angle);
-    var sinAngle = Math.sin(angle);
-
-    var bottomX = outerRad * cosAngle + x;
-    var bottomY = outerRad * sinAngle + y;
-    var bottomZ = 0;
-    vertices.push(bottomX, bottomY, bottomZ);
     var colorIndex = i % rainbowColors.length;
     colors = colors.concat(rainbowColors[colorIndex]);
-
-    // Top circle vertex
-    var topX = innerRad * cosAngle + x;
-    var topY = innerRad * sinAngle + y;
-    var topZ = height; // For the top circle
-    vertices.push(topX, topY, topZ);
-    colors = colors.concat(rainbowColors[colorIndex]);
   }
 
-  vertices.push(vertices[0], vertices[1], 0);
-  colors.push(1, 0, 0);
-  vertices.push(vertices[3], vertices[4], height);
-  colors.push(1, 0, 0);
-
-  // Faces
   var faces = [];
-  for (var i = 0; i < segments; i++) {
-    var index = i * 2;
-    faces.push(index, index + 1, (index + 3) % (segments * 2));
-    faces.push(index, (index + 3) % (segments * 2), (index + 2) % (segments * 2));
+  for (let i = 1; i < vertices.length / 3 - 1; i++) {
+    faces.push(0);
+    faces.push(i);
+
+    if (i == vertices.length / 3 - 1 - 1) {
+      faces.push(1);
+    } else faces.push(i + 1);
   }
-
-  for (var i = 0; i < segments; i++) {
-    var bottomIndex = i * 2;
-    var topIndex = bottomIndex + 1;
-    var nextBottomIndex = ((i + 1) % segments) * 2;
-    var nextTopIndex = nextBottomIndex + 1;
-
-    faces.push(bottomIndex, nextBottomIndex, vertices.length / 3 - 2);
-
-    faces.push(nextTopIndex, topIndex, vertices.length / 3 - 1);
-  }
-
   return { vertices: vertices, colors: colors, faces: faces };
 }
 
@@ -491,7 +450,7 @@ function updateViewMatrix() {
 }
 
 function main() {
-  var CANVAS = document.getElementById('your_canvas');
+  var CANVAS = document.getElementById('myCanvas');
 
   CANVAS.width = window.innerWidth;
   CANVAS.height = window.innerHeight;
@@ -1121,6 +1080,56 @@ function main() {
 
   ////pohon end
 
+  // kue start
+  // kue 1
+  var kue1 = generateTabung(0.5, -0.85, 1.3, 0.18, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
+  var kue1_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, kue1_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kue1.vertices), GL.STATIC_DRAW);
+  var kue1_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, kue1_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kue1.colors), GL.STATIC_DRAW);
+  var kue1_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kue1_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(kue1.faces), GL.STATIC_DRAW);
+
+  var kue2 = generateTabung(0.5, -0.79, 1.3, 0.18, 0.06, 50, [229 / 255, 171 / 255, 124 / 255]);
+  var kue2_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, kue2_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kue2.vertices), GL.STATIC_DRAW);
+  var kue2_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, kue2_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kue2.colors), GL.STATIC_DRAW);
+  var kue2_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kue2_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(kue2.faces), GL.STATIC_DRAW);
+
+  var kue3 = generateTabung(0.5, -0.73, 1.3, 0.18, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
+  var kue3_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, kue3_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kue3.vertices), GL.STATIC_DRAW);
+  var kue3_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, kue3_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(kue3.colors), GL.STATIC_DRAW);
+  var kue3_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kue3_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(kue3.faces), GL.STATIC_DRAW);
+
+  var tutup_kue1 = generateCircle(0.5, -0.7, 1.3, 0.18, [239 / 255, 212 / 255, 188 / 255]);
+  var tutup_kue1_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tutup_kue1_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tutup_kue1.vertices), GL.STATIC_DRAW);
+  var tutup_kue1_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tutup_kue1_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tutup_kue1.colors), GL.STATIC_DRAW);
+  var tutup_kue1_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_kue1_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(tutup_kue1.faces), GL.STATIC_DRAW);
+  // kue 1 end
+
+  //kue 2 start
+  // kue end
+
   //matrix
   var PROJECTION_MATRIX = LIBS.get_projection(40, CANVAS.width / CANVAS.height, 1, 100);
   var VIEW_MATRIX = LIBS.get_I4();
@@ -1749,6 +1758,48 @@ function main() {
     GL.drawElements(GL.TRIANGLES, daunCone4.faces.length, GL.UNSIGNED_SHORT, 0);
 
     ////pohon end
+
+    // draw kue start
+    GL.bindBuffer(GL.ARRAY_BUFFER, kue1_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, kue1_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kue1_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, kue1.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, kue2_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, kue2_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kue2_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, kue2.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, kue3_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, kue3_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, kue3_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, kue3.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, tutup_kue1_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, tutup_kue1_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_kue1_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, tutup_kue1.faces.length, GL.UNSIGNED_SHORT, 0);
+    // draw kue end
 
     GL.flush();
 
