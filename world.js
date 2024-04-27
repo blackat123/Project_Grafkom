@@ -580,7 +580,7 @@ function main() {
 
   ////Matahari Start
   // Matahari Bulat
-  var matahariBulat = generateBall(-1.6, 1.3, -1, 0.35, 50, [255 / 255, 214 / 255, 79 / 255]); // matahari: x, y, z, radius, segments, warna
+  var matahariBulat = generateBall(-1.6, 1.7, -1.7, 0.35, 50, [255 / 255, 214 / 255, 79 / 255]); // matahari: x, y, z, radius, segments, warna
   var matahariBulat_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, matahariBulat_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahariBulat.vertices), GL.STATIC_DRAW);
@@ -592,7 +592,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahariBulat.faces), GL.STATIC_DRAW);
 
   // Matahari Cone 1
-  var matahariCone1 = generateEllipticParboloid(-1.6, 1.9, -1, 0.07, 50, 0, 0, 0, [255 / 255, 180 / 255, 50 / 255]); // matahari: x, y, z, radius, segments, rotationX, rotationY, rotationZ, warna
+  var matahariCone1 = generateEllipticParboloid(-1.6, 2.3, -1.7, 0.07, 50, 0, 0, 0, [255 / 255, 180 / 255, 50 / 255]); // matahari: x, y, z, radius, segments, rotationX, rotationY, rotationZ, warna
   var matahariCone1_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, matahariCone1_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahariCone1.vertices), GL.STATIC_DRAW);
@@ -604,7 +604,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahariCone1.faces), GL.STATIC_DRAW);
 
   // Matahari Cone 2
-  var matahariCone2 = generateEllipticParboloid(-1.17, 1.73, -1, 0.07, 50, 0, 0, -Math.PI / 4, [255 / 255, 180 / 255, 50 / 255]);
+  var matahariCone2 = generateEllipticParboloid(-1.16, 2.13, -1.7, 0.07, 50, 0, 0, -Math.PI / 4, [255 / 255, 180 / 255, 50 / 255]);
   var matahariCone2_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, matahariCone2_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahariCone2.vertices), GL.STATIC_DRAW);
@@ -616,7 +616,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahariCone2.faces), GL.STATIC_DRAW);
 
   // Matahari Cone 3
-  var matahariCone3 = generateEllipticParboloid(-1, 1.3, -1, 0.07, 50, 0, 0, -Math.PI / 2, [255 / 255, 180 / 255, 50 / 255]);
+  var matahariCone3 = generateEllipticParboloid(-1, 1.7, -1.7, 0.07, 50, 0, 0, -Math.PI / 2, [255 / 255, 180 / 255, 50 / 255]);
   var matahariCone3_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, matahariCone3_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahariCone3.vertices), GL.STATIC_DRAW);
@@ -628,7 +628,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahariCone3.faces), GL.STATIC_DRAW);
 
   // Matahari Cone 4
-  var matahariCone4 = generateEllipticParboloid(-1.17, 0.9, -1, 0.07, 50, 0, 0, (-3 * Math.PI) / 4, [255 / 255, 180 / 255, 50 / 255]);
+  var matahariCone4 = generateEllipticParboloid(-1.17, 1.3, -1.7, 0.07, 50, 0, 0, (-3 * Math.PI) / 4, [255 / 255, 180 / 255, 50 / 255]);
   var matahariCone4_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, matahariCone4_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahariCone4.vertices), GL.STATIC_DRAW);
@@ -640,7 +640,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahariCone4.faces), GL.STATIC_DRAW);
 
   // Matahari Cone 5
-  var matahariCone5 = generateEllipticParboloid(-1.6, 0.7, -1, 0.07, 50, 0, 0, Math.PI, [255 / 255, 180 / 255, 50 / 255]);
+  var matahariCone5 = generateEllipticParboloid(-1.6, 1.1, -1.7, 0.07, 50, 0, 0, Math.PI, [255 / 255, 180 / 255, 50 / 255]);
   var matahariCone5_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, matahariCone5_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahariCone5.vertices), GL.STATIC_DRAW);
@@ -652,7 +652,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahariCone5.faces), GL.STATIC_DRAW);
 
   // Matahari Cone 6
-  var matahariCone6 = generateEllipticParboloid(-2.05, 0.9, -1, 0.07, 50, 0, 0, (3 * Math.PI) / 4, [255 / 255, 180 / 255, 50 / 255]);
+  var matahariCone6 = generateEllipticParboloid(-2.05, 1.3, -1.7, 0.07, 50, 0, 0, (3 * Math.PI) / 4, [255 / 255, 180 / 255, 50 / 255]);
   var matahariCone6_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, matahariCone6_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahariCone6.vertices), GL.STATIC_DRAW);
@@ -664,7 +664,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahariCone6.faces), GL.STATIC_DRAW);
 
   // Matahari Cone 7
-  var matahariCone7 = generateEllipticParboloid(-2.2, 1.3, -1, 0.07, 50, 0, 0, Math.PI / 2, [255 / 255, 180 / 255, 50 / 255]);
+  var matahariCone7 = generateEllipticParboloid(-2.2, 1.7, -1.7, 0.07, 50, 0, 0, Math.PI / 2, [255 / 255, 180 / 255, 50 / 255]);
   var matahariCone7_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, matahariCone7_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahariCone7.vertices), GL.STATIC_DRAW);
@@ -676,7 +676,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahariCone7.faces), GL.STATIC_DRAW);
 
   // Matahari Cone 8
-  var matahariCone8 = generateEllipticParboloid(-2.05, 1.73, -1, 0.07, 50, 0, 0, Math.PI / 4, [255 / 255, 180 / 255, 50 / 255]);
+  var matahariCone8 = generateEllipticParboloid(-2.05, 2.13, -1.7, 0.07, 50, 0, 0, Math.PI / 4, [255 / 255, 180 / 255, 50 / 255]);
   var matahariCone8_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, matahariCone8_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahariCone8.vertices), GL.STATIC_DRAW);
@@ -688,7 +688,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahariCone8.faces), GL.STATIC_DRAW);
 
   // Matahari Mata Kanan
-  var matahari_mataKanan = generateEllipsoid(-1.7, 1.3, -0.68, 0.04, 50, 1.3, 0, 0, Math.PI / 4, [0 / 255, 0 / 255, 0 / 255]); // matahari: x, y, z, radius, segments, ovalY, rotationX, rotationY, rotationZ, warna
+  var matahari_mataKanan = generateEllipsoid(-1.7, 1.7, -1.38, 0.04, 50, 1.3, 0, 0, Math.PI / 4, [0 / 255, 0 / 255, 0 / 255]); // matahari: x, y, z, radius, segments, ovalY, rotationX, rotationY, rotationZ, warna
   var matahari_mataKanan_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, matahari_mataKanan_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahari_mataKanan.vertices), GL.STATIC_DRAW);
@@ -700,7 +700,7 @@ function main() {
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(matahari_mataKanan.faces), GL.STATIC_DRAW);
 
   // Matahari Mata Kiri
-  var matahari_mataKiri = generateEllipsoid(-1.5, 1.3, -0.68, 0.04, 50, 1.3, 0, 0, Math.PI / 4, [0 / 255, 0 / 255, 0 / 255]);
+  var matahari_mataKiri = generateEllipsoid(-1.5, 1.7, -1.38, 0.04, 50, 1.3, 0, 0, Math.PI / 4, [0 / 255, 0 / 255, 0 / 255]);
   var matahari_mataKiri_vbo = GL.createBuffer();
   GL.bindBuffer(GL.ARRAY_BUFFER, matahari_mataKiri_vbo);
   GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(matahari_mataKiri.vertices), GL.STATIC_DRAW);
@@ -1513,6 +1513,69 @@ function main() {
   GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tali2_ebo);
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(tali2.faces), GL.STATIC_DRAW);
   // balon end
+
+  //Papan start
+  //tiang1
+  var tiang1 = generateTabung(-1.8, -0.5, -1, 0.035, 1.7, 50, [46 / 255, 28 / 255, 2 / 255]);
+  var tiang1_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tiang1_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tiang1.vertices), GL.STATIC_DRAW);
+  var tiang1_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tiang1_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tiang1.colors), GL.STATIC_DRAW);
+  var tiang1_faces = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tiang1_faces);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(tiang1.faces), GL.STATIC_DRAW);
+
+  var tutup_tiang1 = generateCircle(-1.8, 0.35, -1, 0.035, [46 / 255, 28 / 255, 2 / 255]);
+  var tutup_tiang1_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tutup_tiang1_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tutup_tiang1.vertices), GL.STATIC_DRAW);
+  var tutup_tiang1_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tutup_tiang1_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tutup_tiang1.colors), GL.STATIC_DRAW);
+  var tutup_tiang1_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_tiang1_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(tutup_tiang1.faces), GL.STATIC_DRAW);
+
+  //tiang2
+  var tiang2 = generateTabung(-0.15, -0.5, -1, 0.035, 1.7, 50, [46 / 255, 28 / 255, 2 / 255]);
+  var tiang2_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tiang2_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tiang2.vertices), GL.STATIC_DRAW);
+  var tiang2_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tiang2_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tiang2.colors), GL.STATIC_DRAW);
+  var tiang2_faces = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tiang2_faces);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(tiang2.faces), GL.STATIC_DRAW);
+
+  var tutup_tiang2 = generateCircle(-0.15, 0.35, -1, 0.035, [46 / 255, 28 / 255, 2 / 255]);
+  var tutup_tiang2_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tutup_tiang2_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tutup_tiang2.vertices), GL.STATIC_DRAW);
+  var tutup_tiang2_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tutup_tiang2_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tutup_tiang2.colors), GL.STATIC_DRAW);
+  var tutup_tiang2_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_tiang2_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(tutup_tiang2.faces), GL.STATIC_DRAW);
+
+  //Banner
+  var bannerPapan = generateKotak(-1.8, -0.15, 0.05, 0.5, -1, -0.98, 50, [254 / 255, 184 / 255, 147 / 255]);
+  var bannerPapan_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, bannerPapan_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(bannerPapan.vertices), GL.STATIC_DRAW);
+  var bannerPapan_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, bannerPapan_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(bannerPapan.colors), GL.STATIC_DRAW);
+  var bannerPapan_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, bannerPapan_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(bannerPapan.faces), GL.STATIC_DRAW);
+
+  //Papan end
+
+
 
   //matrix
   var PROJECTION_MATRIX = LIBS.get_projection(40, CANVAS.width / CANVAS.height, 1, 100);
@@ -2329,7 +2392,7 @@ function main() {
     GL.drawElements(GL.TRIANGLES, api1_lilin2_ball.faces.length, GL.UNSIGNED_SHORT, 0);
 
     GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin2_cone_vbo);
-    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+      GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
     GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin2_cone_color);
     GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
     GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api2_lilin2_cone_ebo);
@@ -2473,6 +2536,60 @@ function main() {
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.drawArrays(GL.LINE_STRIP, 0, tali2.vertices.length / 3);
+
+    //Papan start
+    //Tiang1
+    GL.bindBuffer(GL.ARRAY_BUFFER, tiang1_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, tiang1_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tiang1_faces);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, tiang1.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, tutup_tiang1_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, tutup_tiang1_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_tiang1_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, tutup_tiang1.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    //Tiang2
+    GL.bindBuffer(GL.ARRAY_BUFFER, tiang2_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, tiang2_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tiang2_faces);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, tiang2.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, tutup_tiang2_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, tutup_tiang2_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_tiang2_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, tutup_tiang2.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, bannerPapan_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, bannerPapan_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, bannerPapan_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, bannerPapan.faces.length, GL.UNSIGNED_SHORT, 0);
+    //Papan end
 
     GL.flush();
 
