@@ -370,7 +370,7 @@ function generateKotak(xmin, x, ymin, y, zmin, z, segments, warna) {
   return { vertices: vertices, colors: colors, faces: faces };
 }
 
-// generate badan
+// Tabung
 function generateTabung(x, y, z, radius, height, segments, warna) {
   var vertices = [];
   var colors = [];
@@ -1219,6 +1219,208 @@ function main() {
   GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_kue2_ebo);
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(tutup_kue2.faces), GL.STATIC_DRAW);
   // kue 2
+
+  // lilin 1
+  var lilin1 = generateTabung(0.5, -0.5, 1.27, 0.01, 0.09, 50, [0 / 255, 0 / 255, 188 / 255]);
+  var lilin1_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, lilin1_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(lilin1.vertices), GL.STATIC_DRAW);
+  var lilin1_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, lilin1_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(lilin1.colors), GL.STATIC_DRAW);
+  var lilin1_faces = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, lilin1_faces);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(lilin1.faces), GL.STATIC_DRAW);
+
+  var tutup_lilin1 = generateCircle(0.5, -0.455, 1.27, 0.01, [255 / 255, 0 / 255, 0 / 255]);
+  var tutup_lilin1_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tutup_lilin1_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tutup_lilin1.vertices), GL.STATIC_DRAW);
+  var tutup_lilin1_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tutup_lilin1_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tutup_lilin1.colors), GL.STATIC_DRAW);
+  var tutup_lilin1_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_lilin1_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(tutup_lilin1.faces), GL.STATIC_DRAW);
+
+  var api1_lilin1_cone = generateEllipticParboloid(0.5, -0.4, 1.27, 0.009, 50, 0, 0, 0, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin1_cone_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin1_cone_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api1_lilin1_cone.vertices), GL.STATIC_DRAW);
+  var api1_lilin1_cone_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin1_cone_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api1_lilin1_cone.colors), GL.STATIC_DRAW);
+  var api1_lilin1_cone_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api1_lilin1_cone_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(api1_lilin1_cone.faces), GL.STATIC_DRAW);
+
+  var api1_lilin1_ball = generateBall(0.5, -0.425, 1.27, 0.0139, 50, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin1_ball_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin1_ball_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api1_lilin1_ball.vertices), GL.STATIC_DRAW);
+  var api1_lilin1_ball_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin1_ball_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api1_lilin1_ball.colors), GL.STATIC_DRAW);
+  var api1_lilin1_ball_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api1_lilin1_ball_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(api1_lilin1_ball.faces), GL.STATIC_DRAW);
+
+  var api2_lilin1_cone = generateEllipticParboloid(0.5, -0.405, 1.2755, 0.005, 50, 0, 0, 0, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin1_cone_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin1_cone_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api2_lilin1_cone.vertices), GL.STATIC_DRAW);
+  var api2_lilin1_cone_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin1_cone_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api2_lilin1_cone.colors), GL.STATIC_DRAW);
+  var api2_lilin1_cone_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api2_lilin1_cone_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(api2_lilin1_cone.faces), GL.STATIC_DRAW);
+
+  var api2_lilin1_ball = generateBall(0.5, -0.425, 1.2755, 0.01, 50, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin1_ball_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin1_ball_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api2_lilin1_ball.vertices), GL.STATIC_DRAW);
+  var api2_lilin1_ball_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin1_ball_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api2_lilin1_ball.colors), GL.STATIC_DRAW);
+  var api2_lilin1_ball_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api2_lilin1_ball_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(api2_lilin1_ball.faces), GL.STATIC_DRAW);
+
+  // lilin 2
+  var lilin2 = generateTabung(0.44, -0.5, 1.32, 0.01, 0.09, 50, [0 / 255, 0 / 255, 188 / 255]);
+  var lilin2_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, lilin2_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(lilin2.vertices), GL.STATIC_DRAW);
+  var lilin2_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, lilin2_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(lilin2.colors), GL.STATIC_DRAW);
+  var lilin2_faces = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, lilin2_faces);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(lilin2.faces), GL.STATIC_DRAW);
+
+  var tutup_lilin2 = generateCircle(0.44, -0.455, 1.32, 0.01, [255 / 255, 0 / 255, 0 / 255]);
+  var tutup_lilin2_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tutup_lilin2_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tutup_lilin2.vertices), GL.STATIC_DRAW);
+  var tutup_lilin2_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tutup_lilin2_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tutup_lilin2.colors), GL.STATIC_DRAW);
+  var tutup_lilin2_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_lilin2_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(tutup_lilin2.faces), GL.STATIC_DRAW);
+
+  var api1_lilin2_cone = generateEllipticParboloid(0.44, -0.4, 1.32, 0.009, 50, 0, 0, 0, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin2_cone_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin2_cone_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api1_lilin2_cone.vertices), GL.STATIC_DRAW);
+  var api1_lilin2_cone_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin2_cone_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api1_lilin2_cone.colors), GL.STATIC_DRAW);
+  var api1_lilin2_cone_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api1_lilin2_cone_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(api1_lilin2_cone.faces), GL.STATIC_DRAW);
+
+  var api1_lilin2_ball = generateBall(0.44, -0.425, 1.32, 0.0139, 50, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin2_ball_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin2_ball_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api1_lilin2_ball.vertices), GL.STATIC_DRAW);
+  var api1_lilin2_ball_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin2_ball_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api1_lilin2_ball.colors), GL.STATIC_DRAW);
+  var api1_lilin2_ball_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api1_lilin2_ball_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(api1_lilin2_ball.faces), GL.STATIC_DRAW);
+
+  var api2_lilin2_cone = generateEllipticParboloid(0.44, -0.405, 1.3255, 0.005, 50, 0, 0, 0, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin2_cone_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin2_cone_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api2_lilin2_cone.vertices), GL.STATIC_DRAW);
+  var api2_lilin2_cone_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin2_cone_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api2_lilin2_cone.colors), GL.STATIC_DRAW);
+  var api2_lilin2_cone_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api2_lilin2_cone_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(api2_lilin2_cone.faces), GL.STATIC_DRAW);
+
+  var api2_lilin2_ball = generateBall(0.44, -0.425, 1.3255, 0.01, 50, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin2_ball_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin2_ball_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api2_lilin2_ball.vertices), GL.STATIC_DRAW);
+  var api2_lilin2_ball_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin2_ball_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api2_lilin2_ball.colors), GL.STATIC_DRAW);
+  var api2_lilin2_ball_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api2_lilin2_ball_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(api2_lilin2_ball.faces), GL.STATIC_DRAW);
+
+  // lilin 3
+  var lilin3 = generateTabung(0.56, -0.5, 1.32, 0.01, 0.09, 50, [0 / 255, 0 / 255, 188 / 255]);
+  var lilin3_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, lilin3_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(lilin3.vertices), GL.STATIC_DRAW);
+  var lilin3_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, lilin3_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(lilin3.colors), GL.STATIC_DRAW);
+  var lilin3_faces = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, lilin3_faces);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(lilin3.faces), GL.STATIC_DRAW);
+
+  var tutup_lilin3 = generateCircle(0.56, -0.455, 1.32, 0.01, [255 / 255, 0 / 255, 0 / 255]);
+  var tutup_lilin3_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tutup_lilin3_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tutup_lilin3.vertices), GL.STATIC_DRAW);
+  var tutup_lilin3_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, tutup_lilin3_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tutup_lilin3.colors), GL.STATIC_DRAW);
+  var tutup_lilin3_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_lilin3_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(tutup_lilin3.faces), GL.STATIC_DRAW);
+
+  var api1_lilin3_cone = generateEllipticParboloid(0.56, -0.4, 1.32, 0.009, 50, 0, 0, 0, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin3_cone_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin3_cone_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api1_lilin3_cone.vertices), GL.STATIC_DRAW);
+  var api1_lilin3_cone_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin3_cone_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api1_lilin3_cone.colors), GL.STATIC_DRAW);
+  var api1_lilin3_cone_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api1_lilin3_cone_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(api1_lilin3_cone.faces), GL.STATIC_DRAW);
+
+  var api1_lilin3_ball = generateBall(0.56, -0.425, 1.32, 0.0139, 50, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin3_ball_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin3_ball_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api1_lilin3_ball.vertices), GL.STATIC_DRAW);
+  var api1_lilin3_ball_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin3_ball_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api1_lilin3_ball.colors), GL.STATIC_DRAW);
+  var api1_lilin3_ball_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api1_lilin3_ball_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(api1_lilin3_ball.faces), GL.STATIC_DRAW);
+
+  var api2_lilin3_cone = generateEllipticParboloid(0.56, -0.405, 1.3255, 0.005, 50, 0, 0, 0, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin3_cone_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin3_cone_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api2_lilin3_cone.vertices), GL.STATIC_DRAW);
+  var api2_lilin3_cone_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin3_cone_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api2_lilin3_cone.colors), GL.STATIC_DRAW);
+  var api2_lilin3_cone_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api2_lilin3_cone_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(api2_lilin3_cone.faces), GL.STATIC_DRAW);
+
+  var api2_lilin3_ball = generateBall(0.56, -0.425, 1.3255, 0.01, 50, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin3_ball_vbo = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin3_ball_vbo);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api2_lilin3_ball.vertices), GL.STATIC_DRAW);
+  var api2_lilin3_ball_color = GL.createBuffer();
+  GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin3_ball_color);
+  GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(api2_lilin3_ball.colors), GL.STATIC_DRAW);
+  var api2_lilin3_ball_ebo = GL.createBuffer();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api2_lilin3_ball_ebo);
+  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(api2_lilin3_ball.faces), GL.STATIC_DRAW);
+
   // kue end
 
   //matrix
@@ -1932,6 +2134,189 @@ function main() {
     GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
     GL.drawElements(GL.TRIANGLES, tutup_kue2.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    //lilin1
+    GL.bindBuffer(GL.ARRAY_BUFFER, lilin1_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, lilin1_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, lilin1_faces);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, lilin1.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, tutup_lilin1_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, tutup_lilin1_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_lilin1_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, tutup_lilin1.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin1_cone_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin1_cone_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api1_lilin1_cone_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, api1_lilin1_cone.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin1_ball_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin1_ball_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api1_lilin1_ball_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, api1_lilin1_ball.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin1_cone_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin1_cone_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api2_lilin1_cone_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, api2_lilin1_cone.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin1_ball_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin1_ball_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api2_lilin1_ball_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, api2_lilin1_ball.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    //lilin2
+    GL.bindBuffer(GL.ARRAY_BUFFER, lilin2_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, lilin2_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, lilin2_faces);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, lilin2.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, tutup_lilin2_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, tutup_lilin2_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_lilin2_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, tutup_lilin2.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin2_cone_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin2_cone_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api1_lilin2_cone_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, api1_lilin2_cone.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin2_ball_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin2_ball_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api1_lilin2_ball_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, api1_lilin2_ball.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin2_cone_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin2_cone_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api2_lilin2_cone_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, api2_lilin2_cone.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin2_ball_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin2_ball_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api2_lilin2_ball_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, api2_lilin2_ball.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    //lilin3
+    GL.bindBuffer(GL.ARRAY_BUFFER, lilin3_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, lilin3_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, lilin3_faces);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, lilin3.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, tutup_lilin3_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, tutup_lilin3_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, tutup_lilin3_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, tutup_lilin3.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin3_cone_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin3_cone_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api1_lilin3_cone_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, api1_lilin3_cone.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin3_ball_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, api1_lilin3_ball_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api1_lilin3_ball_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, api1_lilin3_ball.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin3_cone_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin3_cone_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api2_lilin3_cone_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, api2_lilin3_cone.faces.length, GL.UNSIGNED_SHORT, 0);
+
+    GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin3_ball_vbo);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin3_ball_color);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api2_lilin3_ball_ebo);
+    GL.uniformMatrix4fv(_PMatrix, false, PROJECTION_MATRIX);
+    GL.uniformMatrix4fv(_VMatrix, false, VIEW_MATRIX);
+    GL.uniformMatrix4fv(_MMatrix, false, MODEL_MATRIX);
+    GL.drawElements(GL.TRIANGLES, api2_lilin3_ball.faces.length, GL.UNSIGNED_SHORT, 0);
 
     // draw kue end
 
