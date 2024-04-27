@@ -364,12 +364,10 @@ function generateKotak(xmin, x, ymin, y, zmin, z, segments, warna) {
 }
 
 //Tabung (untuk tiang)
-function generateTabung(x, y, z, radius, height, segments, rotationX, rotationY, rotationZ) {
+function generateTabung(x, y, z, radius, height, segments, rotationX, rotationY, rotationZ, warna) {
   var vertices = [];
   var colors = [];
-  var rainbowColors = [
-    [21 / 255, 76 / 255, 121 / 255], //warna : #042f66
-  ];
+  var rainbowColors = [warna];
 
   for (var i = 0; i <= segments; i++) {
     var angle = 2 * Math.PI * (i / segments);
