@@ -1,4 +1,4 @@
-var bonbon = {
+var environment = {
   // normalize screen
   normalizeScreen: function (x, y, width, height) {
     var nx = (2 * x) / width - 1;
