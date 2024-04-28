@@ -7,7 +7,7 @@ var bonbon = {
   },
 
   // generate heart
-  generateHead: function (x, y, z, radius, segments, rotationX, rotationY, rotationZ) {
+  generateHead: function (x, y, z, radius, segments) {
     var vertices = [];
     var colors = [];
 
@@ -27,20 +27,9 @@ var bonbon = {
         var yCoord = sinLon * cosLat;
         var zCoord = sinLat;
 
-        // Rotasi
-        var rotatedX = xCoord * Math.cos(rotationZ) - yCoord * Math.sin(rotationZ);
-        var rotatedY = xCoord * Math.sin(rotationZ) + yCoord * Math.cos(rotationZ);
-        var rotatedZ = zCoord;
-
-        // Pemutaran tambahan untuk diagonal
-        rotatedY = rotatedY * Math.cos(rotationX) - rotatedZ * Math.sin(rotationX);
-        rotatedZ = rotatedY * Math.sin(rotationX) + rotatedZ * Math.cos(rotationX);
-        rotatedX = rotatedX * Math.cos(rotationY) - rotatedZ * Math.sin(rotationY);
-        rotatedZ = rotatedX * Math.sin(rotationY) + rotatedZ * Math.cos(rotationY);
-
-        var vertexX = x + radius * rotatedX;
-        var vertexY = y + radius * rotatedY;
-        var vertexZ = z + radius * rotatedZ;
+        var vertexX = x + radius * xCoord;
+        var vertexY = y + radius * yCoord;
+        var vertexZ = z + radius * zCoord;
 
         vertices.push(vertexX, vertexY, vertexZ);
 
