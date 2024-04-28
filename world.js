@@ -622,7 +622,7 @@ function main() {
   var leftHand = new myObject(leftHandData.vertices, leftHandData.faces, leftHandData.colors, shader_vertex_source, shader_fragment_source);
   leftHand.setup();
 
-  var rightHandData = bonbon.generateBodyParts(1.7, -0.67, 0, 0.04, 50, 1.2, 4, 1.2, 0, 0, LIBS.degToRad(45));
+  var rightHandData = bonbon.generateBodyParts(1.7, -0.67, 0, 0.04, 50, 1.2, 4, 1.2, 0, 0, LIBS.degToRad(80));
   var rightHand = new myObject(rightHandData.vertices, rightHandData.faces, rightHandData.colors, shader_vertex_source, shader_fragment_source);
   rightHand.setup();
 
@@ -1007,6 +1007,9 @@ function main() {
   GL.depthFunc(GL.LEQUAL);
 
   var cameraSpeed = 0.4; // Kecepatan pergerakan kamera
+  var waveAngle = 0; // Initial angle for walking animation
+  var waveSpeed = 0.0006; // Speed of the walking animation
+  var maxWaveAngle = LIBS.degToRad(0.7)
 
   var time_prev = 0;
   var animate = function (time) {
@@ -1028,6 +1031,21 @@ function main() {
     if (keysPressed.d) {
       LIBS.translateX(VIEW_MATRIX, -cameraSpeed);
     }
+
+    /* animation */
+    // Logic for waving animation
+    waveAngle += waveSpeed;
+    if (waveAngle > maxWaveAngle) {
+      waveSpeed = -waveSpeed; // Reverse direction if reaching the maximum angle
+    } else if (waveAngle < -maxWaveAngle) {
+      waveSpeed = -waveSpeed; // Reverse direction if reaching the minimum angle
+    }
+
+    var tanganAngle = waveAngle;
+
+    TANGAN_MODEL_MATRIX = LIBS.get_I4();
+    LIBS.rotateZ(TANGAN_MODEL_MATRIX, tanganAngle);
+    rightHand.MODEL_MATRIX = TANGAN_MODEL_MATRIX;
 
     /* render object */
     /* ENVIRONMENT */
