@@ -696,6 +696,16 @@ function main() {
   var w_wajah = new myObject(w_wajahData.vertices, w_wajahData.faces, w_wajahData.colors, shader_vertex_source, shader_fragment_source);
   w_wajah.setup();
 
+  // Pipi Kanan
+  var w_pipiKananData = woopy.generatePipi(-1, -0.519, 2, 0.05, 5);
+  var w_pipiKanan = new myObject(w_pipiKananData.vertices, w_pipiKananData.faces, w_pipiKananData.colors, shader_vertex_source, shader_fragment_source);
+  w_pipiKanan.setup();
+
+  //Pipi Kiri
+  var w_pipiKiriData = woopy.generatePipi(1, -0.519, 2, 0.05, 500);
+  var w_pipiKiri = new myObject(w_pipiKiriData.vertices, w_pipiKiriData.faces, w_pipiKiriData.colors, shader_vertex_source, shader_fragment_source);
+  w_pipiKiri.setup();
+
   // Kaki Kanan
   var w_kakiKananData = woopy.generateKaki(-0.32, -0.75, -0.07, 0.35, 1.1, 50, 0, 0, 0);
   var w_kakiKanan = new myObject(w_kakiKananData.vertices, w_kakiKananData.faces, w_kakiKananData.colors, shader_vertex_source, shader_fragment_source);
@@ -1100,41 +1110,43 @@ function main() {
     // r_topiUltah.render(VIEW_MATRIX, PROJECTION_MATRIX);
     // r_circle.render(VIEW_MATRIX, PROJECTION_MATRIX);
 
-    /* BONBON */
-    leftHead.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightHead.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    leftEye.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightEye.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    leftEyeHorizontal.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    leftEyeVertical.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightEyeHorizontal.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightEyeVertical.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    body.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    circle.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    leftHand.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightHand.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    leftLeg.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightLeg.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    mouth.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
-    leftEyebrow.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightEyebrow.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
+    // /* BONBON */
+    // leftHead.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // rightHead.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // leftEye.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // rightEye.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // leftEyeHorizontal.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // leftEyeVertical.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // rightEyeHorizontal.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // rightEyeVertical.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // body.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // circle.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // leftHand.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // rightHand.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // leftLeg.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // rightLeg.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // mouth.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
+    // leftEyebrow.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
+    // rightEyebrow.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
 
     /* WOOPY */
-    // w_badankepala.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_telingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_wajah.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_kakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_kakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_tanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_tanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_ujungKakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_ujungKakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_ujungTanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_ujungTanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_Hidung.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_badankepala.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_telingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_wajah.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_pipiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_pipiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_kakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_kakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_tanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_tanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_ujungKakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_ujungKakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_ujungTanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_ujungTanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_Hidung.render(VIEW_MATRIX, PROJECTION_MATRIX);
 
     GL.flush();
 
