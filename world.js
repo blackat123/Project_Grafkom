@@ -622,7 +622,7 @@ function main() {
   var leftHand = new myObject(leftHandData.vertices, leftHandData.faces, leftHandData.colors, shader_vertex_source, shader_fragment_source);
   leftHand.setup();
 
-  var rightHandData = bonbon.generateBodyParts(1.7, -0.67, 0, 0.04, 50, 1.2, 4, 1.2, 0, 0, LIBS.degToRad(45));
+  var rightHandData = bonbon.generateBodyParts(1.7, -0.68, 0, 0.04, 50, 1.2, 4, 1.2, 0, 0, LIBS.degToRad(80));
   var rightHand = new myObject(rightHandData.vertices, rightHandData.faces, rightHandData.colors, shader_vertex_source, shader_fragment_source);
   rightHand.setup();
 
@@ -810,12 +810,12 @@ function main() {
   /* RURU */
 
   //badan
-  var r_badanData = ruru.generateSphere(0.8, -0.55, 0.15, 0.30, 50, 1.15, 0.9, 1);
+  var r_badanData = ruru.generateSphere(0.8, -0.55, 0.15, 0.3, 50, 1.15, 0.9, 1);
   var r_badan = new myObject(r_badanData.vertices, r_badanData.faces, r_badanData.colors, shader_vertex_source, shader_fragment_source);
   r_badan.setup();
 
   //telinga kanan
-  var r_telingaKananData = ruru.generateEllipticParaboloid(1, -0.25, 0.15, 0.15, 50, 0.35, 0.25, 0.35, 0, (5*Math.PI), 0.3);
+  var r_telingaKananData = ruru.generateEllipticParaboloid(1, -0.25, 0.15, 0.15, 50, 0.35, 0.25, 0.35, 0, 5 * Math.PI, 0.3);
   var r_telingaKanan = new myObject(r_telingaKananData.vertices, r_telingaKananData.faces, r_telingaKananData.colors, shader_vertex_source, shader_fragment_source);
   r_telingaKanan.setup();
 
@@ -845,12 +845,12 @@ function main() {
   r_dalamTelingaKiri.setup();
 
   //tangan kanan
-  var r_tanganKananData = ruru.generateTangan(1.19, -0.55, 0.15, 0.20, 1, 50, 50, 0, 1.6);
+  var r_tanganKananData = ruru.generateTangan(1.19, -0.55, 0.15, 0.2, 1, 50, 50, 0, 1.6);
   var r_tanganKanan = new myObject(r_tanganKananData.vertices, r_tanganKananData.faces, r_tanganKananData.colors, shader_vertex_source, shader_fragment_source);
   r_tanganKanan.setup();
 
   //tangan kiri
-  var r_tanganKiriData = ruru.generateTangan(0.40, -0.55, 0.15, 0.20, 1, 50, 50, 0, 1.6);
+  var r_tanganKiriData = ruru.generateTangan(0.4, -0.55, 0.15, 0.2, 1, 50, 50, 0, 1.6);
   var r_tanganKiri = new myObject(r_tanganKiriData.vertices, r_tanganKiriData.faces, r_tanganKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_tanganKiri.setup();
 
@@ -860,12 +860,12 @@ function main() {
   r_jariTanganKanan.setup();
 
   //jari tangan kiri
-  var r_jariTanganKiriData = ruru.generateJari(0.30, -0.55, 0.15, 0.039, 50, 0, 0, -20.45, [245 / 255, 239 / 255, 230 / 255]);
+  var r_jariTanganKiriData = ruru.generateJari(0.3, -0.55, 0.15, 0.039, 50, 0, 0, -20.45, [245 / 255, 239 / 255, 230 / 255]);
   var r_jariTanganKiri = new myObject(r_jariTanganKiriData.vertices, r_jariTanganKiriData.faces, r_jariTanganKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_jariTanganKiri.setup();
 
   //mata kanan
-  var r_mataKananData = ruru.generateEllipsoid(0.90, -0.45, 0.428, 0.013, 50, 2.5, 0, 0, 0, [0 / 255, 0 / 255, 0 / 255]);
+  var r_mataKananData = ruru.generateEllipsoid(0.9, -0.45, 0.428, 0.013, 50, 2.5, 0, 0, 0, [0 / 255, 0 / 255, 0 / 255]);
   var r_mataKanan = new myObject(r_mataKananData.vertices, r_mataKananData.faces, r_mataKananData.colors, shader_vertex_source, shader_fragment_source);
   r_mataKanan.setup();
 
@@ -884,7 +884,7 @@ function main() {
   var r_pipiKiri = new myObject(r_pipiKiriData.vertices, r_pipiKiriData.faces, r_pipiKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_pipiKiri.setup();
 
-  //mulut 
+  //mulut
   var r_mulutData = ruru.generateCurves(
     [
       [-0.2, -0.1],
@@ -896,7 +896,7 @@ function main() {
     0.425,
     100
   );
-  var r_mulut = new myObject(r_mulutData.vertices,r_mulutData.faces, r_mulutData.colors, shader_vertex_source, shader_fragment_source);
+  var r_mulut = new myObject(r_mulutData.vertices, r_mulutData.faces, r_mulutData.colors, shader_vertex_source, shader_fragment_source);
   r_mulut.setup();
 
   //topi ultah
@@ -908,7 +908,6 @@ function main() {
   var r_circleData = ruru.generateEllipsoid(0.815, -0.1, 0.15, 0.035, 50, 1, 0, 0, 20.45, [255 / 255, 205 / 255, 234 / 255]);
   var r_circle = new myObject(r_circleData.vertices, r_circleData.faces, r_circleData.colors, shader_vertex_source, shader_fragment_source);
   r_circle.setup();
-
 
   //matrix
   var PROJECTION_MATRIX = LIBS.get_projection(40, CANVAS.width / CANVAS.height, 1, 100);
@@ -1009,6 +1008,10 @@ function main() {
 
   var cameraSpeed = 0.4; // Kecepatan pergerakan kamera
 
+  var waveAngle = 0; // Initial angle for walking animation
+  var waveSpeed = 0.0006; // Speed of the walking animation
+  var maxWaveAngle = LIBS.degToRad(0.7);
+
   var time_prev = 0;
   var animate = function (time) {
     GL.viewport(0, 0, CANVAS.width, CANVAS.height);
@@ -1029,6 +1032,21 @@ function main() {
     if (keysPressed.d) {
       LIBS.translateX(VIEW_MATRIX, -cameraSpeed);
     }
+
+    /* animation */
+    // Logic for waving animation
+    waveAngle += waveSpeed;
+    if (waveAngle > maxWaveAngle) {
+      waveSpeed = -waveSpeed; // Reverse direction if reaching the maximum angle
+    } else if (waveAngle < -maxWaveAngle) {
+      waveSpeed = -waveSpeed; // Reverse direction if reaching the minimum angle
+    }
+
+    var tanganAngle = waveAngle;
+
+    TANGAN_MODEL_MATRIX = LIBS.get_I4();
+    LIBS.rotateZ(TANGAN_MODEL_MATRIX, tanganAngle);
+    rightHand.MODEL_MATRIX = TANGAN_MODEL_MATRIX;
 
     /* render object */
     /* ENVIRONMENT */
