@@ -259,7 +259,7 @@ function main() {
   matahari_mataKiri.setup();
 
   // kain piknik
-  var kainPiknikData = environment.generateKotak(-0.4, 1.4, -1, -0.88, 0.5, 1.7, 50, [0.3, 0, 0]);
+  var kainPiknikData = environment.generateKotak(-0.4, 1.4, -1, -0.88, 0.5, 1.7, 50, [1, 0, 0]);
   var kainPiknik = new myObject(kainPiknikData.vertices, kainPiknikData.faces, kainPiknikData.colors, shader_vertex_source, shader_fragment_source);
   kainPiknik.setup();
 
@@ -574,70 +574,76 @@ function main() {
   bannerPapan.setup();
 
   /* BONBON */
-  var leftHeadData = bonbon.generateHead(-0.7, 0.8, 0, 1.3, 50, 0, 0, 0);
+  // kepala
+  var leftHeadData = bonbon.generateHead(1.4, -0.44, 0, 0.25, 50, 0, 0, 0);
   var leftHead = new myObject(leftHeadData.vertices, leftHeadData.faces, leftHeadData.colors, shader_vertex_source, shader_fragment_source);
   leftHead.setup();
 
-  var rightHeadData = bonbon.generateHead(0.7, 0.8, 0, 1.3, 50, 0, 0, 0);
+  var rightHeadData = bonbon.generateHead(1.7, -0.44, 0, 0.25, 50, 0, 0, 0);
   var rightHead = new myObject(rightHeadData.vertices, rightHeadData.faces, rightHeadData.colors, shader_vertex_source, shader_fragment_source);
   rightHead.setup();
 
-  var leftEyeData = bonbon.generateEyes(-0.55, 0.3, 1, 0.28, 50, 1, 1, 1, 0, 0, 0, [2 / 255, 147 / 255, 238 / 255]);
+  // mata
+  var leftEyeData = bonbon.generateEyes(1.43, -0.52, 0.22, 0.05, 50, 1, 1, 1, 0, 0, 0, [2 / 255, 147 / 255, 238 / 255]);
   var leftEye = new myObject(leftEyeData.vertices, leftEyeData.faces, leftEyeData.colors, shader_vertex_source, shader_fragment_source);
   leftEye.setup();
 
-  var rightEyeData = bonbon.generateEyes(0.55, 0.3, 1, 0.28, 50, 1, 1, 1, 0, 0, 0, [255 / 255, 47 / 255, 84 / 255]);
+  var rightEyeData = bonbon.generateEyes(1.67, -0.52, 0.22, 0.05, 50, 1, 1, 1, 0, 0, 0, [255 / 255, 47 / 255, 84 / 255]);
   var rightEye = new myObject(rightEyeData.vertices, rightEyeData.faces, rightEyeData.colors, shader_vertex_source, shader_fragment_source);
   rightEye.setup();
 
-  var leftEyeHorizontalData = bonbon.generateEyes(-0.55, 0.2, 1.2, 0.15, 50, 0.2, 1, 1, 0, 0, 0, [0, 0, 0]);
+  var leftEyeHorizontalData = bonbon.generateEyes(1.43, -0.525, 0.25, 0.03, 50, 0.2, 1, 1, 0, 0, Math.PI / 2, [0, 0, 0]);
   var leftEyeHorizontal = new myObject(leftEyeHorizontalData.vertices, leftEyeHorizontalData.faces, leftEyeHorizontalData.colors, shader_vertex_source, shader_fragment_source);
   leftEyeHorizontal.setup();
 
-  var leftEyeVerticalData = bonbon.generateEyes(-0.55, 0.2, 1.2, 0.15, 50, 0.2, 1, 1, 0, 0, Math.PI / 2, [0, 0, 0]);
+  var leftEyeVerticalData = bonbon.generateEyes(1.43, -0.525, 0.25, 0.036, 50, 0.2, 1, 1, 0, 0, 0, [0, 0, 0]);
   var leftEyeVertical = new myObject(leftEyeVerticalData.vertices, leftEyeVerticalData.faces, leftEyeVerticalData.colors, shader_vertex_source, shader_fragment_source);
   leftEyeVertical.setup();
 
-  var rightEyeHorizontalData = bonbon.generateEyes(0.55, 0.2, 1.2, 0.15, 50, 0.2, 1, 1, 0, 0, 0, [0, 0, 0]);
+  var rightEyeHorizontalData = bonbon.generateEyes(1.67, -0.525, 0.25, 0.03, 50, 0.2, 1, 1, 0, 0, Math.PI / 2, [0, 0, 0]);
   var rightEyeHorizontal = new myObject(rightEyeHorizontalData.vertices, rightEyeHorizontalData.faces, rightEyeHorizontalData.colors, shader_vertex_source, shader_fragment_source);
   rightEyeHorizontal.setup();
 
-  var rightEyeVerticalData = bonbon.generateEyes(0.55, 0.2, 1.2, 0.15, 50, 0.2, 1, 1, 0, 0, Math.PI / 2, [0, 0, 0]);
+  var rightEyeVerticalData = bonbon.generateEyes(1.67, -0.525, 0.25, 0.036, 50, 0.2, 1, 1, 0, 0, 0, [0, 0, 0]);
   var rightEyeVertical = new myObject(rightEyeVerticalData.vertices, rightEyeVerticalData.faces, rightEyeVerticalData.colors, shader_vertex_source, shader_fragment_source);
   rightEyeVertical.setup();
 
-  var bodyData = bonbon.generateBody(0, 0, 0, 0.8, 2, 50, 0, 0, 0, 0.1, 50);
+  // badan
+  var bodyData = bonbon.generateBody(1.55, -0.62, 0, 0.165, 0.35, 50, 0, 0, 0, 0.1, 50);
   var body = new myObject(bodyData.vertices, bodyData.faces, bodyData.colors, shader_vertex_source, shader_fragment_source);
   body.setup();
 
-  var circleData = bonbon.generateCircle(0, 2, 0, 0.8);
+  var circleData = bonbon.generateCircle(1.55, -0.795, 0, 0.165);
   var circle = new myObject(circleData.vertices, circleData.faces, circleData.colors, shader_vertex_source, shader_fragment_source);
   circle.setup();
 
-  var leftHandData = bonbon.generateBodyParts(-0.6, -0.4, 0, 0.2, 50, 1.2, 4, 1.2, 0, 0, -1);
+  // tangan
+  var leftHandData = bonbon.generateBodyParts(1.4, -0.67, 0, 0.04, 50, 1.2, 4, 1.2, 0, 0, -1);
   var leftHand = new myObject(leftHandData.vertices, leftHandData.faces, leftHandData.colors, shader_vertex_source, shader_fragment_source);
   leftHand.setup();
 
-  var rightHandData = bonbon.generateBodyParts(0.6, -0.4, 0, 0.2, 50, 1.2, 4, 1.2, 0, 0, 1);
+  var rightHandData = bonbon.generateBodyParts(1.7, -0.67, 0, 0.04, 50, 1.2, 4, 1.2, 0, 0, 1);
   var rightHand = new myObject(rightHandData.vertices, rightHandData.faces, rightHandData.colors, shader_vertex_source, shader_fragment_source);
   rightHand.setup();
 
-  var leftLegData = bonbon.generateBodyParts(-0.35, -1, 0, 0.2, 50, 1.2, 2.5, 1.2, 0, 0, 0);
+  // kaki
+  var leftLegData = bonbon.generateBodyParts(1.47, -0.795, 0, 0.04, 50, 1.2, 2.5, 1.2, 0, 0, 0);
   var leftLeg = new myObject(leftLegData.vertices, leftLegData.faces, leftLegData.colors, shader_vertex_source, shader_fragment_source);
   leftLeg.setup();
 
-  var rightLegData = bonbon.generateBodyParts(0.35, -1, 0, 0.2, 50, 1.2, 2.5, 1.2, 0, 0, 0);
+  var rightLegData = bonbon.generateBodyParts(1.63, -0.795, 0, 0.04, 50, 1.2, 2.5, 1.2, 0, 0, 0);
   var rightLeg = new myObject(rightLegData.vertices, rightLegData.faces, rightLegData.colors, shader_vertex_source, shader_fragment_source);
   rightLeg.setup();
 
+  // mulut dan alis
   var mouthData = bonbon.generateCurves(
     [
-      [-0.15, -0.1],
-      [-0.12, -0.3],
-      [0.12, -0.3],
-      [0.15, -0.1],
+      [1.51, -0.61],
+      [1.51, -0.66],
+      [1.59, -0.66],
+      [1.59, -0.61],
     ],
-    0.8,
+    0.165,
     100
   );
   var mouth = new myObject(mouthData.vertices, mouthData.faces, mouthData.colors, shader_vertex_source, shader_fragment_source);
@@ -645,12 +651,12 @@ function main() {
 
   var leftEyebrowData = bonbon.generateCurves(
     [
-      [-0.83, 0.7],
-      [-0.73, 0.9],
-      [-0.37, 0.9],
-      [-0.27, 0.7],
+      [1.38, -0.4],
+      [1.4, -0.35],
+      [1.46, -0.35],
+      [1.48, -0.4],
     ],
-    1.3,
+    0.245,
     100
   );
   var leftEyebrow = new myObject(leftEyebrowData.vertices, leftEyebrowData.faces, leftEyebrowData.colors, shader_vertex_source, shader_fragment_source);
@@ -658,12 +664,12 @@ function main() {
 
   var rightEyebrowData = bonbon.generateCurves(
     [
-      [0.27, 0.7],
-      [0.37, 0.9],
-      [0.73, 0.9],
-      [0.83, 0.7],
+      [1.62, -0.4],
+      [1.64, -0.35],
+      [1.7, -0.35],
+      [1.72, -0.4],
     ],
-    1.5,
+    0.245,
     100
   );
   var rightEyebrow = new myObject(rightEyebrowData.vertices, rightEyebrowData.faces, rightEyebrowData.colors, shader_vertex_source, shader_fragment_source);
@@ -671,7 +677,7 @@ function main() {
 
   /* WOOPY */
   //Badan Kepala
-  var w_badankepalaData = woopy.generateBadan(0, 0, 0, 0.7, 50);
+  var w_badankepalaData = woopy.generateBadan(0.1, -0.55, 0, 0.25, 50);
   var w_badankepala = new myObject(w_badankepalaData.vertices, w_badankepalaData.faces, w_badankepalaData.colors, shader_vertex_source, shader_fragment_source);
   w_badankepala.setup();
 
@@ -1076,23 +1082,23 @@ function main() {
     bannerPapan.render(VIEW_MATRIX, PROJECTION_MATRIX);
 
     /* RURU */
-    r_badan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_telingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_kakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_kakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_dalamTelingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_dalamTelingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_tanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_tanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_jariTanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_jariTanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_pipiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_pipiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_topiUltah.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_circle.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_badan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_telingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_kakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_kakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_dalamTelingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_dalamTelingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_tanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_tanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_jariTanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_jariTanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_pipiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_pipiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_topiUltah.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_circle.render(VIEW_MATRIX, PROJECTION_MATRIX);
 
     /* BONBON */
     leftHead.render(VIEW_MATRIX, PROJECTION_MATRIX);
@@ -1115,21 +1121,20 @@ function main() {
 
     /* WOOPY */
     w_badankepala.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_badankepala.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_telingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_wajah.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_kakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_kakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_tanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_tanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_ujungKakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_ujungKakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_ujungTanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_ujungTanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_Hidung.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_telingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_wajah.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_kakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_kakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_tanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_tanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_ujungKakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_ujungKakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_ujungTanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_ujungTanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_Hidung.render(VIEW_MATRIX, PROJECTION_MATRIX);
 
     GL.flush();
 
