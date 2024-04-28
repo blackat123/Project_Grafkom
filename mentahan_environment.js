@@ -1575,8 +1575,6 @@ function main() {
 
   //Papan end
 
-
-
   //matrix
   var PROJECTION_MATRIX = LIBS.get_projection(40, CANVAS.width / CANVAS.height, 1, 100);
   var VIEW_MATRIX = LIBS.get_I4();
@@ -2392,7 +2390,7 @@ function main() {
     GL.drawElements(GL.TRIANGLES, api1_lilin2_ball.faces.length, GL.UNSIGNED_SHORT, 0);
 
     GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin2_cone_vbo);
-      GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false, 0, 0);
     GL.bindBuffer(GL.ARRAY_BUFFER, api2_lilin2_cone_color);
     GL.vertexAttribPointer(_color, 3, GL.FLOAT, false, 0, 0);
     GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, api2_lilin2_cone_ebo);

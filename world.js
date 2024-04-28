@@ -237,7 +237,6 @@ function main() {
   var matahari_mataKiri = new myObject(matahari_mataKiriData.vertices, matahari_mataKiriData.faces, matahari_mataKiriData.colors, shader_vertex_source, shader_fragment_source);
   matahari_mataKiri.setup();
 
-
   /* WOOPY */
   //Badan Kepala
   var w_badankepalaData = woopy.generateBadan(0, 0, 0, 0.7, 50);
@@ -452,7 +451,6 @@ function main() {
     matahari_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
     matahari_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
 
-
     /* WOOPY */
     //Woopy
     w_badankepala.render(VIEW_MATRIX, PROJECTION_MATRIX);
@@ -471,7 +469,6 @@ function main() {
     w_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_Hidung.render(VIEW_MATRIX, PROJECTION_MATRIX);
-
 
     GL.flush();
 
