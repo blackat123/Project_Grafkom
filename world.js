@@ -12,7 +12,6 @@ var keysPressed = {
 };
 
 var GL;
-
 class myObject {
   CANVAS = null;
   vertex = [];
@@ -28,8 +27,8 @@ class myObject {
   _VMatrix = LIBS.get_I4();
 
   object_vbo = null;
-  object_ebo = null;
   object_colors = null;
+  object_ebo = null;
 
   MODEL_MATRIX = LIBS.get_I4();
   childs = [];
@@ -74,8 +73,8 @@ class myObject {
 
     // create buffer
     this.object_vbo = GL.createBuffer();
-    this.object_ebo = GL.createBuffer();
     this.object_colors = GL.createBuffer();
+    this.object_ebo = GL.createBuffer();
   }
 
   setup() {
@@ -98,18 +97,16 @@ class myObject {
 
   render(VIEW_MATRIX, PROJECTION_MATRIX) {
     GL.useProgram(this.SHADER_PROGRAM);
-    GL.bindBuffer(GL.ARRAY_BUFFER, this.object_vbo);
-    GL.bindBuffer(GL.ARRAY_BUFFER, this.object_colors);
-    GL.bindBuffer(GL.ELEMENTS_ARRAY_BUFFER, this.object_ebo);
 
-    GL.vertexAttribPointer(this._position, 3, GL.FLOAT, Float32Array.BYTES_PER_ELEMENT, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, this.object_vbo);
+    GL.vertexAttribPointer(this._position, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
+    GL.bindBuffer(GL.ARRAY_BUFFER, this.object_colors);
     GL.vertexAttribPointer(this._color, 3, GL.FLOAT, false, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, this.object_ebo);
 
     GL.uniformMatrix4fv(this._PMatrix, false, PROJECTION_MATRIX);
     GL.uniformMatrix4fv(this._VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(this._MMatrix, false, this.MODEL_MATRIX);
-    GL.uniform1f(this._greyScality, 1);
-
     GL.drawElements(GL.TRIANGLES, this.faces.length, GL.UNSIGNED_SHORT, 0);
 
     this.childs.forEach((childs) => {
@@ -147,7 +144,6 @@ function main() {
 
   CANVAS.addEventListener('mousedown', mouseDown, false);
 
-  var GL;
   try {
     GL = CANVAS.getContext('webgl', { antialias: true });
     var EXT = GL.getExtension('OES_element_index_uint');
@@ -158,6 +154,7 @@ function main() {
 
   //shaders
   var shader_vertex_source = `
+      precision mediump float;
       attribute vec3 position;
       attribute vec3 color;
   
@@ -167,16 +164,15 @@ function main() {
       
       varying vec3 vColor;
       void main(void) {
-      gl_Position = PMatrix*VMatrix*MMatrix*vec4(position, 1.);
+      gl_Position = PMatrix * VMatrix * MMatrix * vec4(position, 1.);
       vColor = color;
       }`;
   var shader_fragment_source = `
       precision mediump float;
+
       varying vec3 vColor;
-        // uniform vec3 color;
       void main(void) {
-      gl_FragColor = vec4(vColor, 1.);
-      
+        gl_FragColor = vec4(vColor, 1.);
       }`;
   var compile_shader = function (source, type, typeString) {
     var shader = GL.createShader(type);
@@ -188,6 +184,58 @@ function main() {
     }
     return shader;
   };
+
+  /* inisialisasi object */
+  /* environment */
+  // base world
+  var baseWorldData = environment.generateHalfSphere(0, -0.9, 0, 2.7, 50, [0.0, 1.0, 0.0]);
+  var baseWorld = new myObject(baseWorldData.vertices, baseWorldData.faces, baseWorldData.colors, shader_vertex_source, shader_fragment_source);
+  baseWorld.setup();
+
+  // matahari
+  var matahariBulatData = environment.generateBall(-1.6, 1.3, -1, 0.35, 50, [255 / 255, 214 / 255, 79 / 255]); // matahari: x, y, z, radius, segments, warna
+  var matahariBulat = new myObject(matahariBulatData.vertices, matahariBulatData.faces, matahariBulatData.colors, shader_vertex_source, shader_fragment_source);
+  matahariBulat.setup();
+
+  var matahariCone1Data = environment.generateEllipticParboloid(-1.6, 1.9, -1, 0.07, 50, 0, 0, 0, [255 / 255, 180 / 255, 50 / 255]); // matahari: x, y, z, radius, segments, rotationX, rotationY, rotationZ, warna
+  var matahariCone1 = new myObject(matahariCone1Data.vertices, matahariCone1Data.faces, matahariCone1Data.colors, shader_vertex_source, shader_fragment_source);
+  matahariCone1.setup();
+
+  var matahariCone2Data = environment.generateEllipticParboloid(-1.17, 1.73, -1, 0.07, 50, 0, 0, -Math.PI / 4, [255 / 255, 180 / 255, 50 / 255]);
+  var matahariCone2 = new myObject(matahariCone2Data.vertices, matahariCone2Data.faces, matahariCone2Data.colors, shader_vertex_source, shader_fragment_source);
+  matahariCone2.setup();
+
+  var matahariCone3Data = environment.generateEllipticParboloid(-1, 1.3, -1, 0.07, 50, 0, 0, -Math.PI / 2, [255 / 255, 180 / 255, 50 / 255]);
+  var matahariCone3 = new myObject(matahariCone3Data.vertices, matahariCone3Data.faces, matahariCone3Data.colors, shader_vertex_source, shader_fragment_source);
+  matahariCone3.setup();
+
+  var matahariCone4Data = environment.generateEllipticParboloid(-1.17, 0.9, -1, 0.07, 50, 0, 0, (-3 * Math.PI) / 4, [255 / 255, 180 / 255, 50 / 255]);
+  var matahariCone4 = new myObject(matahariCone4Data.vertices, matahariCone4Data.faces, matahariCone4Data.colors, shader_vertex_source, shader_fragment_source);
+  matahariCone4.setup();
+
+  var matahariCone5Data = environment.generateEllipticParboloid(-1.6, 0.7, -1, 0.07, 50, 0, 0, Math.PI, [255 / 255, 180 / 255, 50 / 255]);
+  var matahariCone5 = new myObject(matahariCone5Data.vertices, matahariCone5Data.faces, matahariCone5Data.colors, shader_vertex_source, shader_fragment_source);
+  matahariCone5.setup();
+
+  var matahariCone6Data = environment.generateEllipticParboloid(-2.05, 0.9, -1, 0.07, 50, 0, 0, (3 * Math.PI) / 4, [255 / 255, 180 / 255, 50 / 255]);
+  var matahariCone6 = new myObject(matahariCone6Data.vertices, matahariCone6Data.faces, matahariCone6Data.colors, shader_vertex_source, shader_fragment_source);
+  matahariCone6.setup();
+
+  var matahariCone7Data = environment.generateEllipticParboloid(-2.2, 1.3, -1, 0.07, 50, 0, 0, Math.PI / 2, [255 / 255, 180 / 255, 50 / 255]);
+  var matahariCone7 = new myObject(matahariCone7Data.vertices, matahariCone7Data.faces, matahariCone7Data.colors, shader_vertex_source, shader_fragment_source);
+  matahariCone7.setup();
+
+  var matahariCone8Data = environment.generateEllipticParboloid(-2.05, 1.73, -1, 0.07, 50, 0, 0, Math.PI / 4, [255 / 255, 180 / 255, 50 / 255]);
+  var matahariCone8 = new myObject(matahariCone8Data.vertices, matahariCone8Data.faces, matahariCone8Data.colors, shader_vertex_source, shader_fragment_source);
+  matahariCone8.setup();
+
+  var matahari_mataKananData = environment.generateEllipsoid(-1.7, 1.3, -0.68, 0.04, 50, 1.3, 0, 0, Math.PI / 4, [0 / 255, 0 / 255, 0 / 255]); // matahari: x, y, z, radius, segments, ovalY, rotationX, rotationY, rotationZ, warna
+  var matahari_mataKanan = new myObject(matahari_mataKananData.vertices, matahari_mataKananData.faces, matahari_mataKananData.colors, shader_vertex_source, shader_fragment_source);
+  matahari_mataKanan.setup();
+
+  var matahari_mataKiriData = environment.generateEllipsoid(-1.5, 1.3, -0.68, 0.04, 50, 1.3, 0, 0, Math.PI / 4, [0 / 255, 0 / 255, 0 / 255]);
+  var matahari_mataKiri = new myObject(matahari_mataKiriData.vertices, matahari_mataKiriData.faces, matahari_mataKiriData.colors, shader_vertex_source, shader_fragment_source);
+  matahari_mataKiri.setup();
 
   //matrix
   var PROJECTION_MATRIX = LIBS.get_projection(40, CANVAS.width / CANVAS.height, 1, 100);
@@ -308,6 +356,24 @@ function main() {
     if (keysPressed.d) {
       LIBS.translateX(VIEW_MATRIX, -cameraSpeed);
     }
+
+    /* render object */
+    // base world render
+    baseWorld.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // matahari render
+    matahariBulat.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone3.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone4.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone5.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone6.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone7.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone8.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    matahari_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    matahari_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
     GL.flush();
 
     window.requestAnimationFrame(animate);
