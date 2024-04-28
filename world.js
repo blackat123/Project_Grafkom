@@ -592,19 +592,19 @@ function main() {
   var rightEye = new myObject(rightEyeData.vertices, rightEyeData.faces, rightEyeData.colors, shader_vertex_source, shader_fragment_source);
   rightEye.setup();
 
-  var leftEyeHorizontalData = bonbon.generateEyes(1.43, -0.525, 0.25, 0.025, 50, 0.2, 1, 1, 0, 0, Math.PI / 2, [0, 0, 0]);
+  var leftEyeHorizontalData = bonbon.generateEyes(1.43, -0.525, 0.25, 0.025, 50, 0.4, 1, 1, 0, 0, Math.PI / 2, [0, 0, 0]);
   var leftEyeHorizontal = new myObject(leftEyeHorizontalData.vertices, leftEyeHorizontalData.faces, leftEyeHorizontalData.colors, shader_vertex_source, shader_fragment_source);
   leftEyeHorizontal.setup();
 
-  var leftEyeVerticalData = bonbon.generateEyes(1.43, -0.525, 0.25, 0.03, 50, 0.2, 1, 1, 0, 0, 0, [0, 0, 0]);
+  var leftEyeVerticalData = bonbon.generateEyes(1.43, -0.525, 0.25, 0.03, 50, 0.3, 1, 1, 0, 0, 0, [0, 0, 0]);
   var leftEyeVertical = new myObject(leftEyeVerticalData.vertices, leftEyeVerticalData.faces, leftEyeVerticalData.colors, shader_vertex_source, shader_fragment_source);
   leftEyeVertical.setup();
 
-  var rightEyeHorizontalData = bonbon.generateEyes(1.67, -0.525, 0.25, 0.025, 50, 0.2, 1, 1, 0, 0, Math.PI / 2, [0, 0, 0]);
+  var rightEyeHorizontalData = bonbon.generateEyes(1.67, -0.525, 0.25, 0.025, 50, 0.4, 1, 1, 0, 0, Math.PI / 2, [0, 0, 0]);
   var rightEyeHorizontal = new myObject(rightEyeHorizontalData.vertices, rightEyeHorizontalData.faces, rightEyeHorizontalData.colors, shader_vertex_source, shader_fragment_source);
   rightEyeHorizontal.setup();
 
-  var rightEyeVerticalData = bonbon.generateEyes(1.67, -0.525, 0.25, 0.03, 50, 0.2, 1, 1, 0, 0, 0, [0, 0, 0]);
+  var rightEyeVerticalData = bonbon.generateEyes(1.67, -0.525, 0.25, 0.03, 50, 0.3, 1, 1, 0, 0, 0, [0, 0, 0]);
   var rightEyeVertical = new myObject(rightEyeVerticalData.vertices, rightEyeVerticalData.faces, rightEyeVerticalData.colors, shader_vertex_source, shader_fragment_source);
   rightEyeVertical.setup();
 

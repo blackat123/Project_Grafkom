@@ -247,7 +247,10 @@ var bonbon = {
       var x = Math.pow(1 - t, 3) * object[0][0] + 3 * Math.pow(1 - t, 2) * t * object[1][0] + 3 * (1 - t) * Math.pow(t, 2) * object[2][0] + Math.pow(t, 3) * object[3][0];
       var y = Math.pow(1 - t, 3) * object[0][1] + 3 * Math.pow(1 - t, 2) * t * object[1][1] + 3 * (1 - t) * Math.pow(t, 2) * object[2][1] + Math.pow(t, 3) * object[3][1];
 
-      vertices.push(x, y, z);
+      // Add vertices for the thicker lines
+      vertices.push(x - 0.003, y - 0.003, z); // offset for thickness
+      vertices.push(x + 0.003, y - 0.003, z);
+      vertices.push(x, y + 0.003, z);
 
       for (var j = 0; j <= segments; j++) {
         var colorIndex = j % rainbowColors.length;
