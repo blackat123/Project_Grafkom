@@ -677,88 +677,88 @@ function main() {
 
   /* WOOPY */
   //Badan Kepala
-  var w_badankepalaData = woopy.generateBadan(0.1, -0.55, 0, 0.25, 50);
+  var w_badankepalaData = woopy.generateBadan(0.1, -0.519, 0.4, 0.25, 50);
   var w_badankepala = new myObject(w_badankepalaData.vertices, w_badankepalaData.faces, w_badankepalaData.colors, shader_vertex_source, shader_fragment_source);
   w_badankepala.setup();
 
   // Telinga Kiri
-  var w_telingaKiriData = woopy.generateTelinga(0.5, 0.9, 0, 0.19, 50, 1, 1, 1, -0.3, 0.6, 0);
+  var w_telingaKiriData = woopy.generateTelinga(0.29, -0.199, 0.4, 0.072, 50, 1, 1, 1, -0.3, 0.6, 0);
   var w_telingaKiri = new myObject(w_telingaKiriData.vertices, w_telingaKiriData.faces, w_telingaKiriData.colors, shader_vertex_source, shader_fragment_source);
   w_telingaKiri.setup();
 
   // Telinga Kanan
-  var w_telingaKananData = woopy.generateTelinga(-0.5, 0.9, 0, 0.19, 50, 1, 1, 1, -0.3, -0.6, 0);
+  var w_telingaKananData = woopy.generateTelinga(-0.09, -0.199, 0.4, 0.072, 50, 1, 1, 1, -0.3, -0.6, 0);
   var w_telingaKanan = new myObject(w_telingaKananData.vertices, w_telingaKananData.faces, w_telingaKananData.colors, shader_vertex_source, shader_fragment_source);
   w_telingaKanan.setup();
 
   // Wajah
-  var w_wajahData = woopy.generateWajah(0, 0, 0.3, 0.5, 50); // badan: x, y, z, radius, segments
+  var w_wajahData = woopy.generateWajah(0.1, -0.519, 0.475, 0.2, 50);
   var w_wajah = new myObject(w_wajahData.vertices, w_wajahData.faces, w_wajahData.colors, shader_vertex_source, shader_fragment_source);
   w_wajah.setup();
 
   // Pipi Kanan
-  var w_pipiKananData = woopy.generatePipi(-1, -0.519, 2, 0.05, 5);
+  var w_pipiKananData = woopy.generatePipi(-1, -0.519, 1, 0.2, 50);
   var w_pipiKanan = new myObject(w_pipiKananData.vertices, w_pipiKananData.faces, w_pipiKananData.colors, shader_vertex_source, shader_fragment_source);
   w_pipiKanan.setup();
 
   //Pipi Kiri
-  var w_pipiKiriData = woopy.generatePipi(1, -0.519, 2, 0.05, 500);
+  var w_pipiKiriData = woopy.generatePipi(0.3, -0.519, 0.3, 0.2, 50);
   var w_pipiKiri = new myObject(w_pipiKiriData.vertices, w_pipiKiriData.faces, w_pipiKiriData.colors, shader_vertex_source, shader_fragment_source);
   w_pipiKiri.setup();
 
   // Kaki Kanan
-  var w_kakiKananData = woopy.generateKaki(-0.32, -0.75, -0.07, 0.35, 1.1, 50, 0, 0, 0);
+  var w_kakiKananData = woopy.generateKaki(-0.063, -0.769, 0.4, 0.175, 1.1, 50, 0, 0, 0);
   var w_kakiKanan = new myObject(w_kakiKananData.vertices, w_kakiKananData.faces, w_kakiKananData.colors, shader_vertex_source, shader_fragment_source);
   w_kakiKanan.setup();
 
   // Kaki Kiri
-  var w_kakiKiriData = woopy.generateKaki(0.32, -0.75, -0.07, 0.35, 1.1, 50, 0, 0, 0);
+  var w_kakiKiriData = woopy.generateKaki(0.25, -0.769, 0.4, 0.175, 1.1, 50, 0, 0, 0);
   var w_kakiKiri = new myObject(w_kakiKiriData.vertices, w_kakiKiriData.faces, w_kakiKiriData.colors, shader_vertex_source, shader_fragment_source);
   w_kakiKiri.setup();
 
   // Tangan kanan
-  var w_tanganKananData = woopy.generateTangan(-0.9, -0.2, 0.1, 0.28, 2, 50, 0, 0, LIBS.degToRad(-45));
+  var w_tanganKananData = woopy.generateTangan(-0.23, -0.609, 0.4, 0.15, 1.5, 50, 0, 0, LIBS.degToRad(-45));
   var w_tanganKanan = new myObject(w_tanganKananData.vertices, w_tanganKananData.faces, w_tanganKananData.colors, shader_vertex_source, shader_fragment_source);
   w_tanganKanan.setup();
 
   // Tangan kiri
-  var w_tanganKiriData = woopy.generateTangan(0.9, -0.2, 0.1, 0.28, 2, 50, 0, 0, LIBS.degToRad(45));
+  var w_tanganKiriData = woopy.generateTangan(0.43, -0.609, 0.4, 0.15, 1.5, 50, 0, 0, LIBS.degToRad(45));
   var w_tanganKiri = new myObject(w_tanganKiriData.vertices, w_tanganKiriData.faces, w_tanganKiriData.colors, shader_vertex_source, shader_fragment_source);
   w_tanganKiri.setup();
 
   // Ujung kaki kanan
-  var w_ujungKakiKananData = woopy.generateUjungKaki(-0.32, -0.94, -0.07, 0.122, 50, 0, 0, 0);
+  var w_ujungKakiKananData = woopy.generateUjungKaki(-0.063, -0.864, 0.4, 0.031, 50, 0, 0, 0);
   var w_ujungKakiKanan = new myObject(w_ujungKakiKananData.vertices, w_ujungKakiKananData.faces, w_ujungKakiKananData.colors, shader_vertex_source, shader_fragment_source);
   w_ujungKakiKanan.setup();
 
   // Ujung kaki kiri
-  var w_ujungKakiKiriData = woopy.generateUjungKaki(0.32, -0.94, -0.07, 0.122, 50, 0, 0, 0);
+  var w_ujungKakiKiriData = woopy.generateUjungKaki(0.25, -0.864, 0.4, 0.031, 50, 0, 0, 0);
   var w_ujungKakiKiri = new myObject(w_ujungKakiKiriData.vertices, w_ujungKakiKiriData.faces, w_ujungKakiKiriData.colors, shader_vertex_source, shader_fragment_source);
   w_ujungKakiKiri.setup();
 
   // Ujung tangan kanan
-  var w_ujungTanganKananData = woopy.generateUjungTangan(-1.1, -0.4, 0.175, 0.067, 50, 0, 0, LIBS.degToRad(45));
+  var w_ujungTanganKananData = woopy.generateUjungTangan(-0.31, -0.69, 0.4, 0.024, 50, 0, 0, LIBS.degToRad(45));
   var w_ujungTanganKanan = new myObject(w_ujungTanganKananData.vertices, w_ujungTanganKananData.faces, w_ujungTanganKananData.colors, shader_vertex_source, shader_fragment_source);
   w_ujungTanganKanan.setup();
 
   // Ujung tangan kiri
-  var w_ujungTanganKiriData = woopy.generateUjungTangan(1.17, -0.2, 0.175, 0.067, 50, 0, 0, LIBS.degToRad(135));
+  var w_ujungTanganKiriData = woopy.generateUjungTangan(0.51, -0.69, 0.4, 0.024, 50, 0, 0, LIBS.degToRad(135));
   var w_ujungTanganKiri = new myObject(w_ujungTanganKiriData.vertices, w_ujungTanganKiriData.faces, w_ujungTanganKiriData.colors, shader_vertex_source, shader_fragment_source);
   w_ujungTanganKiri.setup();
 
   // Isi Wajah Woopy
   // Mata Kanan
-  var w_mataKananData = woopy.generateMata(-0.22, 0.08, 0.75, 0.06, 50); // matahari: x, y, z, radius, segments
+  var w_mataKananData = woopy.generateMata(0.02, -0.489, 0.64, 0.03, 50);
   var w_mataKanan = new myObject(w_mataKananData.vertices, w_mataKananData.faces, w_mataKananData, shader_vertex_source, shader_fragment_source);
   w_mataKanan.setup();
 
   // Mata Kiri
-  var w_mataKiriData = woopy.generateMata(0.22, 0.08, 0.75, 0.06, 50); // matahari: x, y, z, radius, segments
+  var w_mataKiriData = woopy.generateMata(0.18, -0.489, 0.64, 0.03, 50);
   var w_mataKiri = new myObject(w_mataKiriData.vertices, w_mataKiriData.faces, w_mataKiriData.colors, shader_vertex_source, shader_fragment_source);
   w_mataKiri.setup();
 
   // Hidung
-  var w_HidungData = woopy.generateHidung(0, 0, 0.8, 0.06, 50); // matahari: x, y, z, radius, segments
+  var w_HidungData = woopy.generateHidung(0.1, -0.519, 0.65, 0.034, 50);
   var w_Hidung = new myObject(w_HidungData.vertices, w_HidungData.faces, w_HidungData.colors, shader_vertex_source, shader_fragment_source);
   w_Hidung.setup();
 
@@ -806,7 +806,6 @@ function main() {
   );
   var w_mulut = new myObject(w_mulutData.vertices, w_mulutData.faces, w_mulutData.colors, shader_vertex_source, shader_fragment_source);
   w_mulut.setup();
-  
 
   /* RURU */
 
@@ -1157,31 +1156,31 @@ function main() {
     // r_circle.render(VIEW_MATRIX, PROJECTION_MATRIX);
 
     // /* BONBON */
-    // leftHead.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // rightHead.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // leftEye.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // rightEye.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // leftEyeHorizontal.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // leftEyeVertical.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // rightEyeHorizontal.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // rightEyeVertical.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // body.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // circle.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // leftHand.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // rightHand.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // leftLeg.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // rightLeg.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // mouth.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
-    // leftEyebrow.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
-    // rightEyebrow.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
+    leftHead.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    rightHead.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    leftEye.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    rightEye.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    leftEyeHorizontal.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    leftEyeVertical.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    rightEyeHorizontal.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    rightEyeVertical.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    body.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    circle.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    leftHand.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    rightHand.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    leftLeg.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    rightLeg.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    mouth.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
+    leftEyebrow.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
+    rightEyebrow.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
 
     /* WOOPY */
     w_badankepala.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_telingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_wajah.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_pipiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_pipiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_pipiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_pipiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_kakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_kakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_tanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
@@ -1193,6 +1192,9 @@ function main() {
     w_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_Hidung.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_mulut.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_alisKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_alisKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
 
     GL.flush();
 
