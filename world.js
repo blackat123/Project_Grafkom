@@ -762,6 +762,52 @@ function main() {
   var w_Hidung = new myObject(w_HidungData.vertices, w_HidungData.faces, w_HidungData.colors, shader_vertex_source, shader_fragment_source);
   w_Hidung.setup();
 
+  // Alis Kanan
+  var w_alisKananData = woopy.generateCurves(
+    [
+      [-0.02, -0.44],
+      [0, -0.43],
+      [0.014, -0.42],
+      [0.04, -0.43],
+      [0.05, -0.44],
+    ],
+    0.66,
+    100
+  );
+  var w_alisKanan = new myObject(w_alisKananData.vertices, w_alisKananData.faces, w_alisKananData.colors, shader_vertex_source, shader_fragment_source);
+  w_alisKanan.setup();
+
+  // Alis Kiri
+  var w_alisKiriData = woopy.generateCurves(
+    [
+      [0.15, -0.44],
+      [0.16, -0.43],
+      [0.184, -0.42],
+      [0.21, -0.43],
+      [0.22, -0.44],
+    ],
+    0.66,
+    100
+  );
+  var w_alisKiri = new myObject(w_alisKiriData.vertices, w_alisKiriData.faces, w_alisKiriData.colors, shader_vertex_source, shader_fragment_source);
+  w_alisKiri.setup();
+
+  // Mulut
+  var w_mulutData = woopy.generateCurves(
+    [
+      [0.015, -0.55],
+      [0.06, -0.67],
+      [0.1, -0.42],
+      [0.12, -0.67],
+      [0.18, -0.55],
+    ],
+    0.675,
+    100
+  );
+  var w_mulut = new myObject(w_mulutData.vertices, w_mulutData.faces, w_mulutData.colors, shader_vertex_source, shader_fragment_source);
+  w_mulut.setup();
+  
+
   /* RURU */
 
   //badan
