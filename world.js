@@ -116,7 +116,7 @@ class myObject {
     GL.flush();
   }
 
-  renderCurve(VIEW_MATRIX, PROJECTION_MATRIX){
+  renderCurves(VIEW_MATRIX, PROJECTION_MATRIX) {
     GL.useProgram(this.SHADER_PROGRAM);
 
     GL.bindBuffer(GL.ARRAY_BUFFER, this.object_vbo);
@@ -128,7 +128,7 @@ class myObject {
     GL.uniformMatrix4fv(this._PMatrix, false, PROJECTION_MATRIX);
     GL.uniformMatrix4fv(this._VMatrix, false, VIEW_MATRIX);
     GL.uniformMatrix4fv(this._MMatrix, false, this.MODEL_MATRIX);
-    GL.drawArrays(GL.LINE_STRIP, 0, this.faces.length / 3);
+    GL.drawArrays(GL.LINE_STRIP, 0, this.vertex.length / 3);
 
     this.childs.forEach((childs) => {
       childs.render(VIEW_MATRIX, PROJECTION_MATRIX);
@@ -207,7 +207,7 @@ function main() {
   };
 
   /* inisialisasi object */
-  /* environment */
+  /* ENVIRONMENT */
   // base world
   var baseWorldData = environment.generateHalfSphere(0, -0.9, 0, 2.7, 50, [0.0, 1.0, 0.0]);
   var baseWorld = new myObject(baseWorldData.vertices, baseWorldData.faces, baseWorldData.colors, shader_vertex_source, shader_fragment_source);
@@ -258,6 +258,320 @@ function main() {
   var matahari_mataKiri = new myObject(matahari_mataKiriData.vertices, matahari_mataKiriData.faces, matahari_mataKiriData.colors, shader_vertex_source, shader_fragment_source);
   matahari_mataKiri.setup();
 
+  // kain piknik
+  var kainPiknikData = environment.generateKotak(-0.4, 1.4, -1, -0.88, 0.5, 1.7, 50, [0.3, 0, 0]);
+  var kainPiknik = new myObject(kainPiknikData.vertices, kainPiknikData.faces, kainPiknikData.colors, shader_vertex_source, shader_fragment_source);
+  kainPiknik.setup();
+
+  // kado
+  var kotakKado1Data = environment.generateKotak(-1.1, -0.5, -1, -0.4, -0.8, -0.2, 50, [0, 0, 1]);
+  var kotakKado1 = new myObject(kotakKado1Data.vertices, kotakKado1Data.faces, kotakKado1Data.colors, shader_vertex_source, shader_fragment_source);
+  kotakKado1.setup();
+
+  var TutupkotakKado1Data = environment.generateKotak(-1.125, -0.475, -0.45, -0.3, -0.825, -0.175, 50, [1, 0, 1]);
+  var TutupkotakKado1 = new myObject(TutupkotakKado1Data.vertices, TutupkotakKado1Data.faces, TutupkotakKado1Data.colors, shader_vertex_source, shader_fragment_source);
+  TutupkotakKado1.setup();
+
+  var kotakKado2Data = environment.generateKotak(-1.6, -1.1, -1, -0.5, -0.65, -0.1, 50, [0.5, 0.5, 0.5]);
+  var kotakKado2 = new myObject(kotakKado2Data.vertices, kotakKado2Data.faces, kotakKado2Data.colors, shader_vertex_source, shader_fragment_source);
+  kotakKado2.setup();
+
+  var kotakKado3Data = environment.generateKotak(-1.45, -1.18, -0.5, -0.17, -0.6, -0.3, 50, [1, 0, 0]);
+  var kotakKado3 = new myObject(kotakKado3Data.vertices, kotakKado3Data.faces, kotakKado3Data.colors, shader_vertex_source, shader_fragment_source);
+  kotakKado3.setup();
+
+  var kotakKado4Data = environment.generateKotak(-0.47, 0, -1, -0.6, -0.65, -0.15, 50, [0.5, 0.5, 0.5]);
+  var kotakKado4 = new myObject(kotakKado4Data.vertices, kotakKado4Data.faces, kotakKado4Data.colors, shader_vertex_source, shader_fragment_source);
+  kotakKado4.setup();
+
+  var kotakKado5Data = environment.generateKotak(-0.4, -0.03, -0.7, -0.45, -0.35, -0.6, 50, [1, 1, 0]);
+  var kotakKado5 = new myObject(kotakKado5Data.vertices, kotakKado5Data.faces, kotakKado5Data.colors, shader_vertex_source, shader_fragment_source);
+  kotakKado5.setup();
+
+  var kotakKado6Data = environment.generateKotak(-1.2, -0.8, -1, -0.7, -0.1, 0.25, 50, [0, 0, 0]);
+  var kotakKado6 = new myObject(kotakKado6Data.vertices, kotakKado6Data.faces, kotakKado6Data.colors, shader_vertex_source, shader_fragment_source);
+  kotakKado6.setup();
+
+  var kotakKado7Data = environment.generateKotak(-0.6, -0.25, -1, -0.6, -0.15, 0.15, 50, [0, 0.5, 0.6]);
+  var kotakKado7 = new myObject(kotakKado7Data.vertices, kotakKado7Data.faces, kotakKado7Data.colors, shader_vertex_source, shader_fragment_source);
+  kotakKado7.setup();
+
+  // awan satu
+  var awan1_1Data = environment.generateBall(0.1, 1.1, -1, 0.25, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan1_1 = new myObject(awan1_1Data.vertices, awan1_1Data.faces, awan1_1Data.colors, shader_vertex_source, shader_fragment_source);
+  awan1_1.setup();
+
+  var awan1_2Data = environment.generateBall(-0.29, 0.9, -1, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan1_2 = new myObject(awan1_2Data.vertices, awan1_2Data.faces, awan1_2Data.colors, shader_vertex_source, shader_fragment_source);
+  awan1_2.setup();
+
+  var awan1_3Data = environment.generateBall(0.4, 0.9, -1, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan1_3 = new myObject(awan1_3Data.vertices, awan1_3Data.faces, awan1_3Data.colors, shader_vertex_source, shader_fragment_source);
+  awan1_3.setup();
+
+  var awan1_4Data = environment.generateBall(0, 0.8, -1, 0.15, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan1_4 = new myObject(awan1_4Data.vertices, awan1_4Data.faces, awan1_4Data.colors, shader_vertex_source, shader_fragment_source);
+  awan1_4.setup();
+
+  var awan1_5Data = environment.generateBall(-0.15, 1.1, -1, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan1_5 = new myObject(awan1_5Data.vertices, awan1_5Data.faces, awan1_5Data.colors, shader_vertex_source, shader_fragment_source);
+  awan1_5.setup();
+
+  var awan1_6Data = environment.generateBall(-0.55, 0.85, -1, 0.13, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan1_6 = new myObject(awan1_6Data.vertices, awan1_6Data.faces, awan1_6Data.colors, shader_vertex_source, shader_fragment_source);
+  awan1_6.setup();
+
+  var awan1_7Data = environment.generateBall(0.2, 0.8, -1, 0.1, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan1_7 = new myObject(awan1_7Data.vertices, awan1_7Data.faces, awan1_7Data.colors, shader_vertex_source, shader_fragment_source);
+  awan1_7.setup();
+
+  // awan dua
+  var awan2_1Data = environment.generateBall(1.5, 1.3, 0, 0.25, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan2_1 = new myObject(awan2_1Data.vertices, awan2_1Data.faces, awan2_1Data.colors, shader_vertex_source, shader_fragment_source);
+  awan2_1.setup();
+
+  var awan2_2Data = environment.generateBall(1.2, 1.1, 0, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan2_2 = new myObject(awan2_2Data.vertices, awan2_2Data.faces, awan2_2Data.colors, shader_vertex_source, shader_fragment_source);
+  awan2_2.setup();
+
+  var awan2_3Data = environment.generateBall(1.8, 1.1, 0, 0.2, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan2_3 = new myObject(awan2_3Data.vertices, awan2_3Data.faces, awan2_3Data.colors, shader_vertex_source, shader_fragment_source);
+  awan2_3.setup();
+
+  var awan2_4Data = environment.generateBall(1.5, 1, 0, 0.15, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan2_4 = new myObject(awan2_4Data.vertices, awan2_4Data.faces, awan2_4Data.colors, shader_vertex_source, shader_fragment_source);
+  awan2_4.setup();
+
+  var awan2_5Data = environment.generateBall(0.95, 1.07, 0, 0.13, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan2_5 = new myObject(awan2_5Data.vertices, awan2_5Data.faces, awan2_5Data.colors, shader_vertex_source, shader_fragment_source);
+  awan2_5.setup();
+
+  var awan2_6Data = environment.generateBall(2.05, 1.07, 0, 0.13, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan2_6 = new myObject(awan2_6Data.vertices, awan2_6Data.faces, awan2_6Data.colors, shader_vertex_source, shader_fragment_source);
+  awan2_6.setup();
+
+  // awan tiga
+  var awan3_1Data = environment.generateBall(0.6, 2.3, -2.1, 0.22, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan3_1 = new myObject(awan3_1Data.vertices, awan3_1Data.faces, awan3_1Data.colors, shader_vertex_source, shader_fragment_source);
+  awan3_1.setup();
+
+  var awan3_2Data = environment.generateBall(0.2, 2.1, -2.1, 0.17, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan3_2 = new myObject(awan3_2Data.vertices, awan3_2Data.faces, awan3_2Data.colors, shader_vertex_source, shader_fragment_source);
+  awan3_2.setup();
+
+  var awan3_3Data = environment.generateBall(0.85, 2.1, -2.1, 0.17, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan3_3 = new myObject(awan3_3Data.vertices, awan3_3Data.faces, awan3_3Data.colors, shader_vertex_source, shader_fragment_source);
+  awan3_3.setup();
+
+  var awan3_4Data = environment.generateBall(0.65, 2.05, -2.1, 0.1, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan3_4 = new myObject(awan3_4Data.vertices, awan3_4Data.faces, awan3_4Data.colors, shader_vertex_source, shader_fragment_source);
+  awan3_4.setup();
+
+  var awan3_5Data = environment.generateBall(0.45, 2.11, -2.1, 0.15, 50, [209 / 255, 210 / 255, 212 / 255]);
+  var awan3_5 = new myObject(awan3_5Data.vertices, awan3_5Data.faces, awan3_5Data.colors, shader_vertex_source, shader_fragment_source);
+  awan3_5.setup();
+
+  // pohon satu
+  var batangData = environment.generateKotak(1, 1.25, -0.9, -0.4, -2, -1.7, 50, [108 / 255, 60 / 255, 12 / 255]);
+  var batang = new myObject(batangData.vertices, batangData.faces, batangData.colors, shader_vertex_source, shader_fragment_source);
+  batang.setup();
+
+  var daunCone1Data = environment.generateEllipticParboloid(1.13, 0.3, -1.85, 0.3, 50, 0, 0, 0, [27 / 255, 146 / 255, 27 / 255]);
+  var daunCone1 = new myObject(daunCone1Data.vertices, daunCone1Data.faces, daunCone1Data.colors, shader_vertex_source, shader_fragment_source);
+  daunCone1.setup();
+
+  var daunCone2Data = environment.generateEllipticParboloid(1.13, 0.9, -1.85, 0.3, 50, 0, 0, 0, [27 / 255, 146 / 255, 27 / 255]);
+  var daunCone2 = new myObject(daunCone2Data.vertices, daunCone2Data.faces, daunCone2Data.colors, shader_vertex_source, shader_fragment_source);
+  daunCone2.setup();
+
+  // pohon dua
+  var batang1Data = environment.generateKotak(1.75, 2, -0.9, -0.4, -0.8, -1.05, 50, [108 / 255, 60 / 255, 12 / 255]);
+  var batang1 = new myObject(batang1Data.vertices, batang1Data.faces, batang1Data.colors, shader_vertex_source, shader_fragment_source);
+  batang1.setup();
+
+  var daunCone3Data = environment.generateEllipticParboloid(1.89, 0.35, -0.9, 0.3, 50, 0, 0, 0, [27 / 255, 146 / 255, 27 / 255]);
+  var daunCone3 = new myObject(daunCone3Data.vertices, daunCone3Data.faces, daunCone3Data.colors, shader_vertex_source, shader_fragment_source);
+  daunCone3.setup();
+
+  var daunCone4Data = environment.generateEllipticParboloid(1.89, 0.9, -0.9, 0.3, 50, 0, 0, 0, [27 / 255, 146 / 255, 27 / 255]);
+  var daunCone4 = new myObject(daunCone4Data.vertices, daunCone4Data.faces, daunCone4Data.colors, shader_vertex_source, shader_fragment_source);
+  daunCone4.setup();
+
+  // kue
+  var kue1Data = environment.generateTabung(0.5, -0.85, 1.3, 0.18, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
+  var kue1 = new myObject(kue1Data.vertices, kue1Data.faces, kue1Data.colors, shader_vertex_source, shader_fragment_source);
+  kue1.setup();
+
+  var kue2Data = environment.generateTabung(0.5, -0.79, 1.3, 0.18, 0.06, 50, [229 / 255, 171 / 255, 124 / 255]);
+  var kue2 = new myObject(kue2Data.vertices, kue2Data.faces, kue2Data.colors, shader_vertex_source, shader_fragment_source);
+  kue2.setup();
+
+  var kue3Data = environment.generateTabung(0.5, -0.73, 1.3, 0.18, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
+  var kue3 = new myObject(kue3Data.vertices, kue3Data.faces, kue3Data.colors, shader_vertex_source, shader_fragment_source);
+  kue3.setup();
+
+  var tutup_kue1Data = environment.generateCircle(0.5, -0.7, 1.3, 0.18, [239 / 255, 212 / 255, 188 / 255]);
+  var tutup_kue1 = new myObject(tutup_kue1Data.vertices, tutup_kue1Data.faces, tutup_kue1Data.colors, shader_vertex_source, shader_fragment_source);
+  tutup_kue1.setup();
+
+  var kue4Data = environment.generateTabung(0.5, -0.67, 1.3, 0.14, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
+  var kue4 = new myObject(kue4Data.vertices, kue4Data.faces, kue4Data.colors, shader_vertex_source, shader_fragment_source);
+  kue4.setup();
+
+  var kue5Data = environment.generateTabung(0.5, -0.61, 1.3, 0.14, 0.06, 50, [229 / 255, 171 / 255, 124 / 255]);
+  var kue5 = new myObject(kue5Data.vertices, kue5Data.faces, kue5Data.colors, shader_vertex_source, shader_fragment_source);
+  kue5.setup();
+
+  var kue6Data = environment.generateTabung(0.5, -0.55, 1.3, 0.14, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
+  var kue6 = new myObject(kue6Data.vertices, kue6Data.faces, kue6Data.colors, shader_vertex_source, shader_fragment_source);
+  kue6.setup();
+
+  var tutup_kue2Data = environment.generateCircle(0.5, -0.52, 1.3, 0.14, [239 / 255, 212 / 255, 188 / 255]);
+  var tutup_kue2 = new myObject(tutup_kue2Data.vertices, tutup_kue2Data.faces, tutup_kue2Data.colors, shader_vertex_source, shader_fragment_source);
+  tutup_kue2.setup();
+
+  // lilin satu
+  var lilin1Data = environment.generateTabung(0.5, -0.5, 1.27, 0.01, 0.09, 50, [0 / 255, 0 / 255, 188 / 255]);
+  var lilin1 = new myObject(lilin1Data.vertices, lilin1Data.faces, lilin1Data.colors, shader_vertex_source, shader_fragment_source);
+  lilin1.setup();
+
+  var tutup_lilin1Data = environment.generateCircle(0.5, -0.455, 1.27, 0.01, [255 / 255, 0 / 255, 0 / 255]);
+  var tutup_lilin1 = new myObject(tutup_lilin1Data.vertices, tutup_lilin1Data.faces, tutup_lilin1Data.colors, shader_vertex_source, shader_fragment_source);
+  tutup_lilin1.setup();
+
+  var api1_lilin1_coneData = environment.generateEllipticParboloid(0.5, -0.4, 1.27, 0.009, 50, 0, 0, 0, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin1_cone = new myObject(api1_lilin1_coneData.vertices, api1_lilin1_coneData.faces, api1_lilin1_coneData.colors, shader_vertex_source, shader_fragment_source);
+  api1_lilin1_cone.setup();
+
+  var api1_lilin1_ballData = environment.generateBall(0.5, -0.425, 1.27, 0.0139, 50, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin1_ball = new myObject(api1_lilin1_ballData.vertices, api1_lilin1_ballData.faces, api1_lilin1_ballData.colors, shader_vertex_source, shader_fragment_source);
+  api1_lilin1_ball.setup();
+
+  var api2_lilin1_coneData = environment.generateEllipticParboloid(0.5, -0.405, 1.2755, 0.005, 50, 0, 0, 0, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin1_cone = new myObject(api2_lilin1_coneData.vertices, api2_lilin1_coneData.faces, api2_lilin1_coneData.colors, shader_vertex_source, shader_fragment_source);
+  api2_lilin1_cone.setup();
+
+  var api2_lilin1_ballData = environment.generateBall(0.5, -0.425, 1.2755, 0.01, 50, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin1_ball = new myObject(api2_lilin1_ballData.vertices, api2_lilin1_ballData.faces, api2_lilin1_ballData.colors, shader_vertex_source, shader_fragment_source);
+  api2_lilin1_ball.setup();
+
+  // lilin dua
+  var lilin2Data = environment.generateTabung(0.44, -0.5, 1.32, 0.01, 0.09, 50, [0 / 255, 0 / 255, 188 / 255]);
+  var lilin2 = new myObject(lilin2Data.vertices, lilin2Data.faces, lilin2Data.colors, shader_vertex_source, shader_fragment_source);
+  lilin2.setup();
+
+  var tutup_lilin2Data = environment.generateCircle(0.44, -0.455, 1.32, 0.01, [255 / 255, 0 / 255, 0 / 255]);
+  var tutup_lilin2 = new myObject(tutup_lilin2Data.vertices, tutup_lilin2Data.faces, tutup_lilin2Data.colors, shader_vertex_source, shader_fragment_source);
+  tutup_lilin2.setup();
+
+  var api1_lilin2_coneData = environment.generateEllipticParboloid(0.44, -0.4, 1.32, 0.009, 50, 0, 0, 0, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin2_cone = new myObject(api1_lilin2_coneData.vertices, api1_lilin2_coneData.faces, api1_lilin2_coneData.colors, shader_vertex_source, shader_fragment_source);
+  api1_lilin2_cone.setup();
+
+  var api1_lilin2_ballData = environment.generateBall(0.44, -0.425, 1.32, 0.0139, 50, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin2_ball = new myObject(api1_lilin2_ballData.vertices, api1_lilin2_ballData.faces, api1_lilin2_ballData.colors, shader_vertex_source, shader_fragment_source);
+  api1_lilin2_ball.setup();
+
+  var api2_lilin2_coneData = environment.generateEllipticParboloid(0.44, -0.405, 1.3255, 0.005, 50, 0, 0, 0, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin2_cone = new myObject(api2_lilin2_coneData.vertices, api2_lilin2_coneData.faces, api2_lilin2_coneData.colors, shader_vertex_source, shader_fragment_source);
+  api2_lilin2_cone.setup();
+
+  var api2_lilin2_ballData = environment.generateBall(0.44, -0.425, 1.3255, 0.01, 50, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin2_ball = new myObject(api2_lilin2_ballData.vertices, api2_lilin2_ballData.faces, api2_lilin2_ballData.colors, shader_vertex_source, shader_fragment_source);
+  api2_lilin2_ball.setup();
+
+  // lilin tiga
+  var lilin3Data = environment.generateTabung(0.56, -0.5, 1.32, 0.01, 0.09, 50, [0 / 255, 0 / 255, 188 / 255]);
+  var lilin3 = new myObject(lilin3Data.vertices, lilin3Data.faces, lilin3Data.colors, shader_vertex_source, shader_fragment_source);
+  lilin3.setup();
+
+  var tutup_lilin3Data = environment.generateCircle(0.56, -0.455, 1.32, 0.01, [255 / 255, 0 / 255, 0 / 255]);
+  var tutup_lilin3 = new myObject(tutup_lilin3Data.vertices, tutup_lilin3Data.faces, tutup_lilin3Data.colors, shader_vertex_source, shader_fragment_source);
+  tutup_lilin3.setup();
+
+  var api1_lilin3_coneData = environment.generateEllipticParboloid(0.56, -0.4, 1.32, 0.009, 50, 0, 0, 0, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin3_cone = new myObject(api1_lilin3_coneData.vertices, api1_lilin3_coneData.faces, api1_lilin3_coneData.colors, shader_vertex_source, shader_fragment_source);
+  api1_lilin3_cone.setup();
+
+  var api1_lilin3_ballData = environment.generateBall(0.56, -0.425, 1.32, 0.0139, 50, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin3_ball = new myObject(api1_lilin3_ballData.vertices, api1_lilin3_ballData.faces, api1_lilin3_ballData.colors, shader_vertex_source, shader_fragment_source);
+  api1_lilin3_ball.setup();
+
+  var api2_lilin3_coneData = environment.generateEllipticParboloid(0.56, -0.405, 1.3255, 0.005, 50, 0, 0, 0, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin3_cone = new myObject(api2_lilin3_coneData.vertices, api2_lilin3_coneData.faces, api2_lilin3_coneData.colors, shader_vertex_source, shader_fragment_source);
+  api2_lilin3_cone.setup();
+
+  var api2_lilin3_ballData = environment.generateBall(0.56, -0.425, 1.3255, 0.01, 50, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin3_ball = new myObject(api2_lilin3_ballData.vertices, api2_lilin3_ballData.faces, api2_lilin3_ballData.colors, shader_vertex_source, shader_fragment_source);
+  api2_lilin3_ball.setup();
+
+  // balon satu
+  var balon1Data = environment.generateEllipsoid(-2, 0, -0.5, 0.2, 50, 1.2, [243 / 255, 177 / 255, 205 / 255]);
+  var balon1 = new myObject(balon1Data.vertices, balon1Data.faces, balon1Data.colors, shader_vertex_source, shader_fragment_source);
+  balon1.setup();
+
+  var ujungBalon1Data = environment.generateEllipticParboloid(-2, -0.23, -0.5, 0.02, 50, 0, 0, 0, [243 / 255, 177 / 255, 205 / 255]);
+  var ujungBalon1 = new myObject(ujungBalon1Data.vertices, ujungBalon1Data.faces, ujungBalon1Data.colors, shader_vertex_source, shader_fragment_source);
+  ujungBalon1.setup();
+
+  var tali1Data = environment.generateCurves(
+    [
+      [-2, -0.23],
+      [-1.95, -0.5],
+      [-2.25, -0.5],
+      [-1.8, -0.7],
+      [-2, -0.9],
+    ],
+    -0.5,
+    100
+  );
+  var tali1 = new myObject(tali1Data.vertices, tali1Data.faces, tali1Data.colors, shader_vertex_source, shader_fragment_source);
+  tali1.setup();
+
+  // balon dua
+  var balon2Data = environment.generateEllipsoid(0.3, 0, -0.5, 0.2, 50, 1.2, [186 / 255, 213 / 255, 240 / 255]);
+  var balon2 = new myObject(balon2Data.vertices, balon2Data.faces, balon2Data.colors, shader_vertex_source, shader_fragment_source);
+  balon2.setup();
+
+  var ujungBalon2Data = environment.generateEllipticParboloid(0.3, -0.23, -0.5, 0.02, 50, 0, 0, 0, [186 / 255, 213 / 255, 240 / 255]);
+  var ujungBalon2 = new myObject(ujungBalon2Data.vertices, ujungBalon2Data.faces, ujungBalon2Data.colors, shader_vertex_source, shader_fragment_source);
+  ujungBalon2.setup();
+
+  var tali2Data = environment.generateCurves(
+    [
+      [0.3, -0.23],
+      [0.35, -0.5],
+      [0.05, -0.5],
+      [0.5, -0.7],
+      [0.3, -0.9],
+    ],
+    -0.5,
+    100
+  );
+  var tali2 = new myObject(tali2Data.vertices, tali2Data.faces, tali2Data.colors, shader_vertex_source, shader_fragment_source);
+  tali2.setup();
+
+  // papan
+  var tiang1Data = environment.generateTabung(-1.8, -0.5, -1.2, 0.035, 1.7, 50, [46 / 255, 28 / 255, 2 / 255]);
+  var tiang1 = new myObject(tiang1Data.vertices, tiang1Data.faces, tiang1Data.colors, shader_vertex_source, shader_fragment_source);
+  tiang1.setup();
+
+  var tutup_tiang1Data = environment.generateCircle(-1.8, 0.35, -1.2, 0.035, [46 / 255, 28 / 255, 2 / 255]);
+  var tutup_tiang1 = new myObject(tutup_tiang1Data.vertices, tutup_tiang1Data.faces, tutup_tiang1Data.colors, shader_vertex_source, shader_fragment_source);
+  tutup_tiang1.setup();
+
+  var tiang2Data = environment.generateTabung(-0.15, -0.5, -1.2, 0.035, 1.7, 50, [46 / 255, 28 / 255, 2 / 255]);
+  var tiang2 = new myObject(tiang2Data.vertices, tiang2Data.faces, tiang2Data.colors, shader_vertex_source, shader_fragment_source);
+  tiang2.setup();
+
+  var tutup_tiang2Data = environment.generateCircle(-0.15, 0.35, -1.2, 0.035, [46 / 255, 28 / 255, 2 / 255]);
+  var tutup_tiang2 = new myObject(tutup_tiang2Data.vertices, tutup_tiang2Data.faces, tutup_tiang2Data.colors, shader_vertex_source, shader_fragment_source);
+  tutup_tiang2.setup();
+
+  // banner
+  var bannerPapanData = environment.generateKotak(-1.8, -0.15, 0.05, 0.5, -1.19, -1.21, 50, [254 / 255, 184 / 255, 147 / 255]);
+  var bannerPapan = new myObject(bannerPapanData.vertices, bannerPapanData.faces, bannerPapanData.colors, shader_vertex_source, shader_fragment_source);
+  bannerPapan.setup();
 
   /* BONBON */
   var leftHeadData = bonbon.generateHead(-0.7, 0.8, 0, 1.3, 50, 0, 0, 0);
@@ -328,7 +642,7 @@ function main() {
   );
   var mouth = new myObject(mouthData.vertices, mouthData.faces, mouthData.colors, shader_vertex_source, shader_fragment_source);
   mouth.setup();
-  
+
   var leftEyebrowData = bonbon.generateCurves(
     [
       [-0.83, 0.7],
@@ -432,92 +746,91 @@ function main() {
   var w_Hidung = new myObject(w_HidungData.vertices, w_HidungData.faces, w_HidungData.colors, shader_vertex_source, shader_fragment_source);
   w_Hidung.setup();
 
-
   /* RURU */
 
   //badan
-  var r_badanData = ruru.generateSphere (0, 0, 0, 1.2, 50, 1.15, 0.9, 1);
-  var r_badan = new myObject (r_badanData.vertices, r_badanData.faces, r_badanData.colors, shader_vertex_source, shader_fragment_source);
+  var r_badanData = ruru.generateSphere(0, 0, 0, 1.2, 50, 1.15, 0.9, 1);
+  var r_badan = new myObject(r_badanData.vertices, r_badanData.faces, r_badanData.colors, shader_vertex_source, shader_fragment_source);
   r_badan.setup();
 
   //telinga kanan
-  var r_telingaKananData = ruru.generateEllipticParaboloid((0.6, 1.25, 0, 1, 50, 0.35, 0.25, 0.35, 0, (5*Math.PI), 0.3));
+  var r_telingaKananData = ruru.generateEllipticParaboloid((0.6, 1.25, 0, 1, 50, 0.35, 0.25, 0.35, 0, 5 * Math.PI, 0.3));
   var r_telingaKanan = new myObject(r_telingaKananData.vertices, r_telingaKananData.faces, r_telingaKananData.colors, shader_vertex_source, shader_fragment_source);
   r_telingaKanan.setup();
 
   //telinga kiri
-  var r_telingaKiriData = ruru.generateEllipticParaboloid(-0.6, 1.26, 0, 1, 50, 0.35, 0.25, 0.35, 0, -(5*Math.PI), -0.3);
-  var r_telingaKiri = new myObject (r_telingaKiriData.vertices, r_telingaKiriData.faces, r_telingaKiriData.colors, shader_vertex_source, shader_fragment_source);
+  var r_telingaKiriData = ruru.generateEllipticParaboloid(-0.6, 1.26, 0, 1, 50, 0.35, 0.25, 0.35, 0, -(5 * Math.PI), -0.3);
+  var r_telingaKiri = new myObject(r_telingaKiriData.vertices, r_telingaKiriData.faces, r_telingaKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_telingaKiri.setup();
 
   //kaki kanan
-  var r_kakiKananData = ruru.generateEllipticParaboloid1(0.6, -1.4, 0, 1, 50,  0.25, 0.25, 0.35, 0, 18 * Math.PI / 180, 0.3);
-  var r_kakiKanan = new myObject (r_kakiKananData.vertices, r_kakiKananData.faces, r_kakiKananData.colors, shader_vertex_source, shader_fragment_source);
+  var r_kakiKananData = ruru.generateEllipticParaboloid1(0.6, -1.4, 0, 1, 50, 0.25, 0.25, 0.35, 0, (18 * Math.PI) / 180, 0.3);
+  var r_kakiKanan = new myObject(r_kakiKananData.vertices, r_kakiKananData.faces, r_kakiKananData.colors, shader_vertex_source, shader_fragment_source);
   r_kakiKanan.setup();
 
   //kaki kiri
-  var r_kakiKiriData = ruru.generateEllipticParaboloid1(-0.6, -1.4, 0, 1, 50,  0.25, 0.25, 0.35, 0, -18 * Math.PI / 180, -0.3);
-  var r_kakiKiri = new myObject (r_kakiKiriData.vertices, r_kakiKiriData.faces, r_kakiKiriData.colors, shader_vertex_source, shader_fragment_source);
+  var r_kakiKiriData = ruru.generateEllipticParaboloid1(-0.6, -1.4, 0, 1, 50, 0.25, 0.25, 0.35, 0, (-18 * Math.PI) / 180, -0.3);
+  var r_kakiKiri = new myObject(r_kakiKiriData.vertices, r_kakiKiriData.faces, r_kakiKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_kakiKiri.setup();
 
   //dalam telinga kanan
-  var r_dalamTelingaKananData = ruru.generateTelinga(0.4, 1, 0.20, 0.5, 50, 0.08, 0.08, 0.5, 0.5, (5*Math.PI), 0.5);
-  var r_dalamTelingaKanan = new myObject (r_dalamTelingaKananData.vertices, r_dalamTelingaKananData.faces, r_dalamTelingaKananData.colors, shader_vertex_source, shader_fragment_source);
+  var r_dalamTelingaKananData = ruru.generateTelinga(0.4, 1, 0.2, 0.5, 50, 0.08, 0.08, 0.5, 0.5, 5 * Math.PI, 0.5);
+  var r_dalamTelingaKanan = new myObject(r_dalamTelingaKananData.vertices, r_dalamTelingaKananData.faces, r_dalamTelingaKananData.colors, shader_vertex_source, shader_fragment_source);
   r_dalamTelingaKanan.setup();
 
   //dalam telinga kiri
-  var r_dalamTelingaKiriData = ruru.generateTelinga(-0.41, 1, 0.20, 0.5, 50, 0.08, 0.08, 0.5, -0.5, -(8*Math.PI), 0.3);
-  var r_dalamTelingaKiri = new myObject (r_dalamTelingaKiriData.vertices, r_dalamTelingaKiriData.faces, r_dalamTelingaKiriData.colors, shader_vertex_source, shader_fragment_source);
+  var r_dalamTelingaKiriData = ruru.generateTelinga(-0.41, 1, 0.2, 0.5, 50, 0.08, 0.08, 0.5, -0.5, -(8 * Math.PI), 0.3);
+  var r_dalamTelingaKiri = new myObject(r_dalamTelingaKiriData.vertices, r_dalamTelingaKiriData.faces, r_dalamTelingaKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_dalamTelingaKiri.setup();
 
   //tangan kanan
-  var r_tanganKananData = ruru.generateTangan(1.55, 0, 0, 0.40, 1, 50, 50, 0, 1.6);
-  var r_tanganKanan = new myObject (r_tanganKananData.vertices, r_tanganKananData.faces, r_tanganKananData.colors, shader_vertex_source, shader_fragment_source);
+  var r_tanganKananData = ruru.generateTangan(1.55, 0, 0, 0.4, 1, 50, 50, 0, 1.6);
+  var r_tanganKanan = new myObject(r_tanganKananData.vertices, r_tanganKananData.faces, r_tanganKananData.colors, shader_vertex_source, shader_fragment_source);
   r_tanganKanan.setup();
 
   //tangan kiri
-  var r_tanganKiriData = ruru.generateTangan(-1.55, 0, 0, 0.40, 1, 50, 50, 0, 1.6);
-  var r_tanganKiri =  new myObject (r_tanganKiriData.vertices, r_tanganKiriData.faces, r_tanganKiriData.colors, shader_vertex_source, shader_fragment_source);
+  var r_tanganKiriData = ruru.generateTangan(-1.55, 0, 0, 0.4, 1, 50, 50, 0, 1.6);
+  var r_tanganKiri = new myObject(r_tanganKiriData.vertices, r_tanganKiriData.faces, r_tanganKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_tanganKiri.setup();
 
   //jari tangan kanan
   var r_jariTanganKananData = ruru.generateJari(1.75, 0.007, 0, 0.159, 50, 0, 0, 20.45, [245 / 255, 239 / 255, 230 / 255]);
-  var r_jariTanganKanan = new myObject (r_jariTanganKananData.vertices, r_jariTanganKananData.faces, r_jariTanganKananData.colors, shader_vertex_source, shader_fragment_source);
+  var r_jariTanganKanan = new myObject(r_jariTanganKananData.vertices, r_jariTanganKananData.faces, r_jariTanganKananData.colors, shader_vertex_source, shader_fragment_source);
   r_jariTanganKanan.setup();
 
   //jari tangan kiri
   var r_jariTanganKiriData = ruru.generateJari(-1.75, -0.005, 0, 0.159, 50, 0, 0, -20.45, [245 / 255, 239 / 255, 230 / 255]);
-  var r_jariTanganKiri = new myObject (r_jariTanganKiriData.vertices, r_jariTanganKiriData.faces, r_jariTanganKiriData.colors, shader_vertex_source, shader_fragment_source);
+  var r_jariTanganKiri = new myObject(r_jariTanganKiriData.vertices, r_jariTanganKiriData.faces, r_jariTanganKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_jariTanganKiri.setup();
 
   //mata kanan
-  var r_mataKananData = ruru.generateEllipsoid(0.35, 0.2, 1.09, 0.06, 50, 2.5, 0, 0, 0, [0 / 255, 0 / 255, 0 / 255]); 
-  var r_mataKanan = new myObject (r_mataKananData.vertices, r_mataKananData.faces, r_mataKananData.colors, shader_vertex_source, shader_fragment_source);
+  var r_mataKananData = ruru.generateEllipsoid(0.35, 0.2, 1.09, 0.06, 50, 2.5, 0, 0, 0, [0 / 255, 0 / 255, 0 / 255]);
+  var r_mataKanan = new myObject(r_mataKananData.vertices, r_mataKananData.faces, r_mataKananData.colors, shader_vertex_source, shader_fragment_source);
   r_mataKanan.setup();
 
   //mata kiri
-  var r_mataKiriData = ruru.generateEllipsoid(-0.35, 0.2, 1.09, 0.06, 50, 2.5, 0, 0, 0, [0 / 255, 0 / 255, 0 / 255]); 
-  var r_mataKiri = new myObject (r_mataKiriData.vertices, r_mataKiriData.faces, r_mataKiriData.colors, shader_vertex_source, shader_fragment_source);
+  var r_mataKiriData = ruru.generateEllipsoid(-0.35, 0.2, 1.09, 0.06, 50, 2.5, 0, 0, 0, [0 / 255, 0 / 255, 0 / 255]);
+  var r_mataKiri = new myObject(r_mataKiriData.vertices, r_mataKiriData.faces, r_mataKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_mataKiri.setup();
 
   //pipi kanan
-  var r_pipiKananData = ruru.generateEllipsoid(0.6, -0.15, 1.09, 0.13, 50, 1.5, 0, 0, 20.45, [255 / 255, 205 / 255, 234 / 255]); 
-  var r_pipiKanan = new myObject (r_pipiKananData.vertices, r_pipiKananData.faces, r_pipiKananData.colors, shader_vertex_source, shader_fragment_source);
+  var r_pipiKananData = ruru.generateEllipsoid(0.6, -0.15, 1.09, 0.13, 50, 1.5, 0, 0, 20.45, [255 / 255, 205 / 255, 234 / 255]);
+  var r_pipiKanan = new myObject(r_pipiKananData.vertices, r_pipiKananData.faces, r_pipiKananData.colors, shader_vertex_source, shader_fragment_source);
   r_pipiKanan.setup();
 
   //pipi kiri
-  var r_pipiKiriData = ruru.generateEllipsoid(-0.6, -0.15, 1.09, 0.13, 50, 1.5, 0, 0, 20.45, [255 / 255, 205 / 255, 234 / 255]); 
-  var r_pipiKiri = new myObject (r_pipiKiriData.vertices, r_pipiKiriData.faces, r_pipiKiriData.colors, shader_vertex_source, shader_fragment_source);
+  var r_pipiKiriData = ruru.generateEllipsoid(-0.6, -0.15, 1.09, 0.13, 50, 1.5, 0, 0, 20.45, [255 / 255, 205 / 255, 234 / 255]);
+  var r_pipiKiri = new myObject(r_pipiKiriData.vertices, r_pipiKiriData.faces, r_pipiKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_pipiKiri.setup();
 
   //topi ultah
-  var r_topiUltahData = ruru.generateEllipticParaboloid2(0, 1.70, 0, 1, 50, 0.35, 0.25, 0.70, 0, -(5*Math.PI), 0);
-  var r_topiUltah = new myObject (r_topiUltahData.vertices, r_topiUltahData.faces, r_topiUltahData.colors, shader_vertex_source, shader_fragment_source);
+  var r_topiUltahData = ruru.generateEllipticParaboloid2(0, 1.7, 0, 1, 50, 0.35, 0.25, 0.7, 0, -(5 * Math.PI), 0);
+  var r_topiUltah = new myObject(r_topiUltahData.vertices, r_topiUltahData.faces, r_topiUltahData.colors, shader_vertex_source, shader_fragment_source);
   r_topiUltah.setup();
 
   //bulat atasnya topi ultah
-  var r_circleData = ruru.generateEllipsoid(0, 1.72, 0, 0.11, 50, 1, 0, 0, 20.45, [255 / 255, 205 / 255, 234 / 255]); 
-  var r_circle = new myObject (r_circleData.vertices, r_circleData.faces, r_circleData.colors, shader_vertex_source, shader_fragment_source);
+  var r_circleData = ruru.generateEllipsoid(0, 1.72, 0, 0.11, 50, 1, 0, 0, 20.45, [255 / 255, 205 / 255, 234 / 255]);
+  var r_circle = new myObject(r_circleData.vertices, r_circleData.faces, r_circleData.colors, shader_vertex_source, shader_fragment_source);
   r_circle.setup();
 
   //matrix
@@ -641,6 +954,7 @@ function main() {
     }
 
     /* render object */
+    /* ENVIRONMENT */
     // base world render
     baseWorld.render(VIEW_MATRIX, PROJECTION_MATRIX);
 
@@ -656,6 +970,110 @@ function main() {
     matahariCone8.render(VIEW_MATRIX, PROJECTION_MATRIX);
     matahari_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
     matahari_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // kain piknik render
+    kainPiknik.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // kado render
+    kotakKado1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    TutupkotakKado1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    kotakKado2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    kotakKado3.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    kotakKado4.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    kotakKado5.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    kotakKado6.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    kotakKado7.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // awan satu render
+    awan1_1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan1_2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan1_3.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan1_4.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan1_5.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan1_6.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan1_7.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // awan dua render
+    awan2_1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan2_2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan2_3.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan2_4.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan2_5.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan2_6.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // awan tiga render
+    awan3_1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan3_2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan3_3.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan3_4.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan3_5.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // pohon satu render
+    batang.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    daunCone1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    daunCone2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // pohon dua render
+    batang1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    daunCone3.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    daunCone4.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // kue layer satu render
+    kue1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    kue2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    kue3.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    tutup_kue1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // kue layer dua render
+    kue4.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    kue5.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    kue6.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    tutup_kue2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // lilin satu render
+    lilin1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    tutup_lilin1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    api1_lilin1_cone.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    api1_lilin1_ball.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    api2_lilin1_cone.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    api2_lilin1_ball.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // lilin dua render
+    lilin2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    tutup_lilin2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    api1_lilin2_cone.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    api1_lilin2_ball.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    api2_lilin2_cone.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    api2_lilin2_ball.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // lilin tiga render
+    lilin3.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    tutup_lilin3.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    api1_lilin3_cone.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    api1_lilin3_ball.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    api2_lilin3_cone.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    api2_lilin3_ball.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // balon satu render
+    balon1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    ujungBalon1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    tali1.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // balon dua render
+    balon2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    ujungBalon2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    tali2.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // tiang satu render
+    tiang1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    tutup_tiang1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // tiang dua render
+    tiang2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    tutup_tiang2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+
+    // banner render
+    bannerPapan.render(VIEW_MATRIX, PROJECTION_MATRIX);
 
     /* RURU */
     r_badan.render(VIEW_MATRIX, PROJECTION_MATRIX);
@@ -676,7 +1094,6 @@ function main() {
     r_topiUltah.render(VIEW_MATRIX, PROJECTION_MATRIX);
     r_circle.render(VIEW_MATRIX, PROJECTION_MATRIX);
 
-
     /* BONBON */
     leftHead.render(VIEW_MATRIX, PROJECTION_MATRIX);
     rightHead.render(VIEW_MATRIX, PROJECTION_MATRIX);
@@ -692,12 +1109,11 @@ function main() {
     rightHand.render(VIEW_MATRIX, PROJECTION_MATRIX);
     leftLeg.render(VIEW_MATRIX, PROJECTION_MATRIX);
     rightLeg.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    mouth.renderCurve(VIEW_MATRIX, PROJECTION_MATRIX);
-    leftEyebrow.renderCurve(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightEyebrow.renderCurve(VIEW_MATRIX, PROJECTION_MATRIX);
+    mouth.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
+    leftEyebrow.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
+    rightEyebrow.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
 
     /* WOOPY */
-    //Woopy
     w_badankepala.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_badankepala.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
