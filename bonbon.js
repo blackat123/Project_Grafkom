@@ -81,7 +81,7 @@ var bonbon = {
         var cosLon = Math.cos(lonAngle);
 
         var xCoord = cosLon * cosLat * scaleX;
-        var yCoord = sinLon * cosLat * 1.5 * scaleY;
+        var yCoord = sinLon * cosLat * 1.4 * scaleY;
         var zCoord = sinLat * scaleZ;
 
         // Rotasi
@@ -228,7 +228,7 @@ var bonbon = {
     for (let i = 0; i < 360; i++) {
       var a = radius * Math.cos((i / 180) * Math.PI) + x;
       var b = radius * Math.sin((i / 180) * Math.PI) + z;
-      vertices.push(a, -y / 2, b);
+      vertices.push(a, y, b);
 
       var colorIndex = i % rainbowColors.length;
       colors = colors.concat(rainbowColors[colorIndex]);
@@ -258,10 +258,7 @@ var bonbon = {
       var x = Math.pow(1 - t, 3) * object[0][0] + 3 * Math.pow(1 - t, 2) * t * object[1][0] + 3 * (1 - t) * Math.pow(t, 2) * object[2][0] + Math.pow(t, 3) * object[3][0];
       var y = Math.pow(1 - t, 3) * object[0][1] + 3 * Math.pow(1 - t, 2) * t * object[1][1] + 3 * (1 - t) * Math.pow(t, 2) * object[2][1] + Math.pow(t, 3) * object[3][1];
 
-      // Add vertices for the thicker lines
-      vertices.push(x - 0.02, y - 0.02, z); // offset for thickness
-      vertices.push(x + 0.02, y - 0.02, z);
-      vertices.push(x, y + 0.02, z);
+      vertices.push(x, y, z);
 
       for (var j = 0; j <= segments; j++) {
         var colorIndex = j % rainbowColors.length;
