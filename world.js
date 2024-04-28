@@ -697,12 +697,12 @@ function main() {
   w_wajah.setup();
 
   // Pipi Kanan
-  var w_pipiKananData = woopy.generatePipi(-1, -0.519, 1, 0.2, 50);
+  var w_pipiKananData = woopy.generatePipi(-0.052, -0.542, 0.62, 0.04, 50);
   var w_pipiKanan = new myObject(w_pipiKananData.vertices, w_pipiKananData.faces, w_pipiKananData.colors, shader_vertex_source, shader_fragment_source);
   w_pipiKanan.setup();
 
   //Pipi Kiri
-  var w_pipiKiriData = woopy.generatePipi(0.3, -0.519, 0.3, 0.2, 50);
+  var w_pipiKiriData = woopy.generatePipi(0.245, -0.542, 0.62, 0.04, 50);
   var w_pipiKiri = new myObject(w_pipiKiriData.vertices, w_pipiKiriData.faces, w_pipiKiriData.colors, shader_vertex_source, shader_fragment_source);
   w_pipiKiri.setup();
 
@@ -1179,8 +1179,8 @@ function main() {
     w_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_telingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_wajah.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_pipiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_pipiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_pipiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    w_pipiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_kakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_kakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
     w_tanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
