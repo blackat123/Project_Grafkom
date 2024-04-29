@@ -678,135 +678,137 @@ function main() {
 
   /* WOOPY */
   //Badan Kepala
-  var w_badankepalaData = woopy.generateBadan(0.1, -0.519, 0.4, 0.25, 50);
+  var w_badankepalaData = woopy.generateBadan(-0.8, -0.519, 0.9, 0.25, 50);
   var w_badankepala = new myObject(w_badankepalaData.vertices, w_badankepalaData.faces, w_badankepalaData.colors, shader_vertex_source, shader_fragment_source);
-  w_badankepala.setup();
 
   // Telinga Kiri
-  var w_telingaKiriData = woopy.generateTelinga(0.29, -0.199, 0.4, 0.072, 50, 1, 1, 1, -0.3, 0.6, 0);
+  var w_telingaKiriData = woopy.generateTelinga(-0.61, -0.199, 0.9, 0.072, 50, 1, 1, 1, -0.3, 0.6, 0);
   var w_telingaKiri = new myObject(w_telingaKiriData.vertices, w_telingaKiriData.faces, w_telingaKiriData.colors, shader_vertex_source, shader_fragment_source);
-  w_telingaKiri.setup();
 
   // Telinga Kanan
-  var w_telingaKananData = woopy.generateTelinga(-0.09, -0.199, 0.4, 0.072, 50, 1, 1, 1, -0.3, -0.6, 0);
+  var w_telingaKananData = woopy.generateTelinga(-0.99, -0.199, 0.9, 0.072, 50, 1, 1, 1, -0.3, -0.6, 0);
   var w_telingaKanan = new myObject(w_telingaKananData.vertices, w_telingaKananData.faces, w_telingaKananData.colors, shader_vertex_source, shader_fragment_source);
-  w_telingaKanan.setup();
 
   // Wajah
-  var w_wajahData = woopy.generateWajah(0.1, -0.519, 0.475, 0.2, 50);
+  var w_wajahData = woopy.generateWajah(-0.8, -0.519, 0.975, 0.2, 50);
   var w_wajah = new myObject(w_wajahData.vertices, w_wajahData.faces, w_wajahData.colors, shader_vertex_source, shader_fragment_source);
-  w_wajah.setup();
 
   // Pipi Kanan
-  var w_pipiKananData = woopy.generatePipi(-0.052, -0.542, 0.62, 0.04, 50);
+  var w_pipiKananData = woopy.generatePipi(-0.952, -0.542, 1.12, 0.04, 50);
   var w_pipiKanan = new myObject(w_pipiKananData.vertices, w_pipiKananData.faces, w_pipiKananData.colors, shader_vertex_source, shader_fragment_source);
-  w_pipiKanan.setup();
 
   //Pipi Kiri
-  var w_pipiKiriData = woopy.generatePipi(0.245, -0.542, 0.62, 0.04, 50);
+  var w_pipiKiriData = woopy.generatePipi(-0.655, -0.542, 1.12, 0.04, 50);
   var w_pipiKiri = new myObject(w_pipiKiriData.vertices, w_pipiKiriData.faces, w_pipiKiriData.colors, shader_vertex_source, shader_fragment_source);
-  w_pipiKiri.setup();
 
   // Kaki Kanan
-  var w_kakiKananData = woopy.generateKaki(-0.063, -0.769, 0.4, 0.175, 1.1, 50, 0, 0, 0);
+  var w_kakiKananData = woopy.generateKaki(-0.963, -0.769, 0.9, 0.175, 1.1, 50, 0, 0, 0);
   var w_kakiKanan = new myObject(w_kakiKananData.vertices, w_kakiKananData.faces, w_kakiKananData.colors, shader_vertex_source, shader_fragment_source);
-  w_kakiKanan.setup();
 
   // Kaki Kiri
-  var w_kakiKiriData = woopy.generateKaki(0.25, -0.769, 0.4, 0.175, 1.1, 50, 0, 0, 0);
+  var w_kakiKiriData = woopy.generateKaki(-0.65, -0.769, 0.9, 0.175, 1.1, 50, 0, 0, 0);
   var w_kakiKiri = new myObject(w_kakiKiriData.vertices, w_kakiKiriData.faces, w_kakiKiriData.colors, shader_vertex_source, shader_fragment_source);
-  w_kakiKiri.setup();
 
   // Tangan kanan
-  var w_tanganKananData = woopy.generateTangan(-0.23, -0.609, 0.4, 0.15, 1.5, 50, 0, 0, LIBS.degToRad(-45));
+  var w_tanganKananData = woopy.generateTangan(-1.13, -0.609, 0.9, 0.15, 1.5, 50, 0, 0, LIBS.degToRad(-45));
   var w_tanganKanan = new myObject(w_tanganKananData.vertices, w_tanganKananData.faces, w_tanganKananData.colors, shader_vertex_source, shader_fragment_source);
-  w_tanganKanan.setup();
 
   // Tangan kiri
-  var w_tanganKiriData = woopy.generateTangan(0.43, -0.609, 0.4, 0.15, 1.5, 50, 0, 0, LIBS.degToRad(45));
+  var w_tanganKiriData = woopy.generateTangan(-0.47, -0.609, 0.9, 0.15, 1.5, 50, 0, 0, LIBS.degToRad(45));
   var w_tanganKiri = new myObject(w_tanganKiriData.vertices, w_tanganKiriData.faces, w_tanganKiriData.colors, shader_vertex_source, shader_fragment_source);
-  w_tanganKiri.setup();
 
   // Ujung kaki kanan
-  var w_ujungKakiKananData = woopy.generateUjungKaki(-0.063, -0.864, 0.4, 0.031, 50, 0, 0, 0);
+  var w_ujungKakiKananData = woopy.generateUjungKaki(-0.963, -0.864, 0.9, 0.031, 50, 0, 0, 0);
   var w_ujungKakiKanan = new myObject(w_ujungKakiKananData.vertices, w_ujungKakiKananData.faces, w_ujungKakiKananData.colors, shader_vertex_source, shader_fragment_source);
-  w_ujungKakiKanan.setup();
 
   // Ujung kaki kiri
-  var w_ujungKakiKiriData = woopy.generateUjungKaki(0.25, -0.864, 0.4, 0.031, 50, 0, 0, 0);
+  var w_ujungKakiKiriData = woopy.generateUjungKaki(-0.65, -0.864, 0.9, 0.031, 50, 0, 0, 0);
   var w_ujungKakiKiri = new myObject(w_ujungKakiKiriData.vertices, w_ujungKakiKiriData.faces, w_ujungKakiKiriData.colors, shader_vertex_source, shader_fragment_source);
-  w_ujungKakiKiri.setup();
 
   // Ujung tangan kanan
-  var w_ujungTanganKananData = woopy.generateUjungTangan(-0.31, -0.69, 0.4, 0.024, 50, 0, 0, LIBS.degToRad(45));
+  var w_ujungTanganKananData = woopy.generateUjungTangan(-1.21, -0.69, 0.9, 0.024, 50, 0, 0, LIBS.degToRad(45));
   var w_ujungTanganKanan = new myObject(w_ujungTanganKananData.vertices, w_ujungTanganKananData.faces, w_ujungTanganKananData.colors, shader_vertex_source, shader_fragment_source);
-  w_ujungTanganKanan.setup();
 
   // Ujung tangan kiri
-  var w_ujungTanganKiriData = woopy.generateUjungTangan(0.51, -0.69, 0.4, 0.024, 50, 0, 0, LIBS.degToRad(135));
+  var w_ujungTanganKiriData = woopy.generateUjungTangan(-0.39, -0.69, 0.9, 0.024, 50, 0, 0, LIBS.degToRad(135));
   var w_ujungTanganKiri = new myObject(w_ujungTanganKiriData.vertices, w_ujungTanganKiriData.faces, w_ujungTanganKiriData.colors, shader_vertex_source, shader_fragment_source);
-  w_ujungTanganKiri.setup();
 
   // Isi Wajah Woopy
   // Mata Kanan
-  var w_mataKananData = woopy.generateMata(0.02, -0.489, 0.64, 0.03, 50);
+  var w_mataKananData = woopy.generateMata(-0.88, -0.489, 1.14, 0.03, 50);
   var w_mataKanan = new myObject(w_mataKananData.vertices, w_mataKananData.faces, w_mataKananData, shader_vertex_source, shader_fragment_source);
-  w_mataKanan.setup();
 
   // Mata Kiri
-  var w_mataKiriData = woopy.generateMata(0.18, -0.489, 0.64, 0.03, 50);
+  var w_mataKiriData = woopy.generateMata(-0.72, -0.489, 1.14, 0.03, 50);
   var w_mataKiri = new myObject(w_mataKiriData.vertices, w_mataKiriData.faces, w_mataKiriData.colors, shader_vertex_source, shader_fragment_source);
-  w_mataKiri.setup();
 
   // Hidung
-  var w_HidungData = woopy.generateHidung(0.1, -0.519, 0.65, 0.034, 50);
+  var w_HidungData = woopy.generateHidung(-0.8, -0.519, 1.15, 0.034, 50);
   var w_Hidung = new myObject(w_HidungData.vertices, w_HidungData.faces, w_HidungData.colors, shader_vertex_source, shader_fragment_source);
-  w_Hidung.setup();
 
   // Alis Kanan
   var w_alisKananData = woopy.generateCurves(
     [
-      [-0.02, -0.44],
-      [0, -0.43],
-      [0.014, -0.42],
-      [0.04, -0.43],
-      [0.05, -0.44],
+      [-0.92, -0.44],
+      [-0.9, -0.43],
+      [-0.886, -0.42],
+      [-0.86, -0.43],
+      [-0.85, -0.44],
     ],
-    0.66,
+    1.16,
     100
   );
   var w_alisKanan = new myObject(w_alisKananData.vertices, w_alisKananData.faces, w_alisKananData.colors, shader_vertex_source, shader_fragment_source);
-  w_alisKanan.setup();
 
   // Alis Kiri
   var w_alisKiriData = woopy.generateCurves(
     [
-      [0.15, -0.44],
-      [0.16, -0.43],
-      [0.184, -0.42],
-      [0.21, -0.43],
-      [0.22, -0.44],
+      [-0.75, -0.44],
+      [-0.74, -0.43],
+      [-0.716, -0.42],
+      [-0.69, -0.43],
+      [-0.68, -0.44],
     ],
-    0.66,
+    1.16,
     100
   );
   var w_alisKiri = new myObject(w_alisKiriData.vertices, w_alisKiriData.faces, w_alisKiriData.colors, shader_vertex_source, shader_fragment_source);
-  w_alisKiri.setup();
 
   // Mulut
   var w_mulutData = woopy.generateCurves(
     [
-      [0.015, -0.55],
-      [0.06, -0.67],
-      [0.1, -0.42],
-      [0.12, -0.67],
-      [0.18, -0.55],
+      [-0.885, -0.55],
+      [-0.84, -0.67],
+      [-0.8, -0.42],
+      [-0.78, -0.67],
+      [-0.72, -0.55],
     ],
-    0.675,
+    1.175,
     100
   );
   var w_mulut = new myObject(w_mulutData.vertices, w_mulutData.faces, w_mulutData.colors, shader_vertex_source, shader_fragment_source);
-  w_mulut.setup();
+
+  //Untuk child push Woopy
+  w_badankepala.childs.push(w_telingaKiri);
+  w_badankepala.childs.push(w_telingaKanan);
+  w_badankepala.childs.push(w_wajah);
+  w_badankepala.childs.push(w_mataKanan);
+  w_badankepala.childs.push(w_mataKiri);
+  w_badankepala.childs.push(w_Hidung);
+  w_badankepala.childs.push(w_alisKanan);
+  w_badankepala.childs.push(w_alisKiri);
+  w_badankepala.childs.push(w_pipiKanan);
+  w_badankepala.childs.push(w_pipiKiri);
+  w_badankepala.childs.push(w_mulut);
+  w_tanganKanan.childs.push(w_ujungTanganKanan);
+  w_tanganKiri.childs.push(w_ujungTanganKiri);
+  w_kakiKanan.childs.push(w_ujungKakiKanan);
+  w_kakiKiri.childs.push(w_ujungKakiKiri);
+  w_kakiKiri.setup();
+  w_kakiKanan.setup();
+  w_tanganKanan.setup();
+  w_tanganKiri.setup();
+  w_badankepala.setup();
 
   /* RURU */
 
@@ -920,6 +922,12 @@ function main() {
   var BONBON_KAKI_KANAN_MODEL_MATRIX = LIBS.get_I4();
   var BONBON_KAKI_KIRI_MODEL_MATRIX = LIBS.get_I4();
 
+  var WOOPY_BADAN_MODEL_MATRIX = LIBS.get_I4();
+  var WOOPY_TANGAN_KANAN_MODEL_MATRIX = LIBS.get_I4();
+  var WOOPY_TANGAN_KIRI_MODEL_MATRIX = LIBS.get_I4();
+  var WOOPY_KAKI_KANAN_MODEL_MATRIX = LIBS.get_I4();
+  var WOOPY_KAKI_KIRI_MODEL_MATRIX = LIBS.get_I4();
+
   // Event listener untuk mouse movement
   document.addEventListener('mousemove', function (event) {
     if (isMouseDown) {
@@ -1013,6 +1021,7 @@ function main() {
 
   var cameraSpeed = 0.4; // Kecepatan pergerakan kamera
 
+  // animation attribute bonbon
   var bonbon_waveAngle = 0; // Initial angle for walking animation
   var bonbon_waveSpeed = 0.0006; // Speed of the walking animation
   var bonbon_maxWaveAngle = LIBS.degToRad(0.7);
@@ -1023,6 +1032,14 @@ function main() {
   var bonbon_walkAngle = 0;
   var bonbon_walkSpeed = 0.003;
   var bonbon_maxWalkAngle = LIBS.degToRad(3);
+
+  // animation attribute woopy
+  var jump = true;
+  var woopy_movementSpeed = 0.01;
+  var woopy_position = [-0.8, 0, 0.9];
+  var woopy_waveAngle = 0;
+  var woopy_waveSpeed = 0.0025;
+  var woopy_maxWaveAngle = LIBS.degToRad(2);
 
   var time_prev = 0;
   var animate = function (time) {
@@ -1046,6 +1063,7 @@ function main() {
     }
 
     /* animation */
+    /* BONBON ANIMATION */
     // Logic for waving animation
     bonbon_waveAngle += bonbon_waveSpeed;
     if (bonbon_waveAngle > bonbon_maxWaveAngle) {
@@ -1064,8 +1082,8 @@ function main() {
     }
 
     // Rotate kaki1 and kaki2 alternately
-    var kakiKananAngle = bonbon_walkAngle;
-    var kakiKiriAngle = -bonbon_walkAngle;
+    var bonbon_kakiKananAngle = bonbon_walkAngle;
+    var bonbon_kakiKiriAngle = -bonbon_walkAngle;
 
     BONBON_TANGAN_KANAN_MODEL_MATRIX = LIBS.get_I4();
     BONBON_KAKI_KANAN_MODEL_MATRIX = LIBS.get_I4();
@@ -1074,8 +1092,8 @@ function main() {
     // posisi awal
     if (walk == true) {
       bonbon_position[2] += bonbon_movementSpeed;
-      LIBS.rotateX(BONBON_KAKI_KANAN_MODEL_MATRIX, kakiKananAngle);
-      LIBS.rotateX(BONBON_KAKI_KIRI_MODEL_MATRIX, kakiKiriAngle);
+      LIBS.rotateX(BONBON_KAKI_KANAN_MODEL_MATRIX, bonbon_kakiKananAngle);
+      LIBS.rotateX(BONBON_KAKI_KIRI_MODEL_MATRIX, bonbon_kakiKiriAngle);
       if (bonbon_position[2] >= 1.3) {
         walk = false;
       }
@@ -1095,6 +1113,59 @@ function main() {
 
     LIBS.translateZ(BONBON_KAKI_KIRI_MODEL_MATRIX, bonbon_position[2]);
     leftLeg.MODEL_MATRIX = BONBON_KAKI_KIRI_MODEL_MATRIX;
+
+    /* WOOPY ANIMATION */
+    // Logic for walking animation
+    woopy_waveAngle += woopy_waveSpeed;
+    if (woopy_waveAngle > woopy_maxWaveAngle) {
+      woopy_waveSpeed = -woopy_waveSpeed; // Reverse direction if reaching the maximum angle
+    } else if (woopy_waveAngle < -woopy_maxWaveAngle) {
+      woopy_waveSpeed = -woopy_waveSpeed; // Reverse direction if reaching the minimum angle
+    }
+
+    // Rotate kaki1 and kaki2 alternately
+    var woopy_kakiKananAngle = -woopy_waveAngle;
+    var woopy_kakiKiriAngle = woopy_waveAngle;
+    var woopy_tanganKananAngle = -woopy_waveAngle;
+    var woopy_tanganKiriAngle = woopy_waveAngle;
+
+    WOOPY_BADAN_MODEL_MATRIX = LIBS.get_I4();
+    WOOPY_TANGAN_KANAN_MODEL_MATRIX = LIBS.get_I4();
+    WOOPY_TANGAN_KIRI_MODEL_MATRIX = LIBS.get_I4();
+    WOOPY_KAKI_KANAN_MODEL_MATRIX = LIBS.get_I4();
+    WOOPY_KAKI_KIRI_MODEL_MATRIX = LIBS.get_I4();
+
+    // posisi awal
+    if (jump == true) {
+      woopy_position[1] += woopy_movementSpeed;
+      if (woopy_position[1] >= 0.4) {
+        jump = false;
+      }
+    } else {
+      woopy_position[1] -= woopy_movementSpeed;
+      if (woopy_position[1] < 0) {
+        jump = true;
+      }
+    }
+
+    LIBS.translateY(WOOPY_BADAN_MODEL_MATRIX, woopy_position[1]);
+    w_badankepala.MODEL_MATRIX = WOOPY_BADAN_MODEL_MATRIX;
+
+    LIBS.rotateZ(WOOPY_TANGAN_KANAN_MODEL_MATRIX, woopy_tanganKananAngle);
+    LIBS.translateY(WOOPY_TANGAN_KANAN_MODEL_MATRIX, woopy_position[1]);
+    w_tanganKanan.MODEL_MATRIX = WOOPY_TANGAN_KANAN_MODEL_MATRIX;
+
+    LIBS.rotateZ(WOOPY_TANGAN_KIRI_MODEL_MATRIX, woopy_tanganKiriAngle);
+    LIBS.translateY(WOOPY_TANGAN_KIRI_MODEL_MATRIX, woopy_position[1]);
+    w_tanganKiri.MODEL_MATRIX = WOOPY_TANGAN_KIRI_MODEL_MATRIX;
+
+    LIBS.rotateZ(WOOPY_KAKI_KANAN_MODEL_MATRIX, woopy_kakiKananAngle);
+    LIBS.translateY(WOOPY_KAKI_KANAN_MODEL_MATRIX, woopy_position[1]);
+    w_kakiKanan.MODEL_MATRIX = WOOPY_KAKI_KANAN_MODEL_MATRIX;
+
+    LIBS.rotateZ(WOOPY_KAKI_KIRI_MODEL_MATRIX, woopy_kakiKiriAngle);
+    LIBS.translateY(WOOPY_KAKI_KIRI_MODEL_MATRIX, woopy_position[1]);
+    w_kakiKiri.MODEL_MATRIX = WOOPY_KAKI_KIRI_MODEL_MATRIX;
 
     /* render object */
     /* ENVIRONMENT */
@@ -1245,27 +1316,11 @@ function main() {
     rightLeg.render(rightLeg.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     /* WOOPY */
-    // w_badankepala.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_telingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_wajah.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_pipiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_pipiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_kakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_kakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_tanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_tanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_ujungKakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_ujungKakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_ujungTanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_ujungTanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_Hidung.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_mulut.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_alisKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // w_alisKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-
+    w_badankepala.render(w_badankepala.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    w_kakiKanan.render(w_kakiKanan.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    w_kakiKiri.render(w_kakiKiri.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    w_tanganKanan.render(w_tanganKanan.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    w_tanganKiri.render(w_tanganKiri.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
     GL.flush();
 
     window.requestAnimationFrame(animate);
