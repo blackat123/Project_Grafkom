@@ -104,4 +104,10 @@ var LIBS = {
   setPosition: function (m, x, y, z) {
     (m[12] = x), (m[13] = y), (m[14] = z);
   },
+
+  scale: function (m, scale) {
+    m[0] *= scale;
+    m[5] *= scale;
+    m[10] *= scale;
+  },
 };

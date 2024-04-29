@@ -259,36 +259,36 @@ function main() {
   matahari_mataKiri.setup();
 
   // kain piknik
-  var kainPiknikData = environment.generateKotak(-0.4, 1.4, -1, -0.88, 0.5, 1.7, 50, [199/255, 137/255, 110/255]);
+  var kainPiknikData = environment.generateKotak(-0.4, 1.4, -1, -0.88, 0.5, 1.7, 50, [199 / 255, 137 / 255, 110 / 255]);
   var kainPiknik = new myObject(kainPiknikData.vertices, kainPiknikData.faces, kainPiknikData.colors, shader_vertex_source, shader_fragment_source);
   kainPiknik.setup();
 
   // kado
-  var kotakKado1Data = environment.generateKotak(-1.1, -0.5, -1, -0.4, -0.8, -0.2, 50, [255/255, 237/255, 118/255]);
+  var kotakKado1Data = environment.generateKotak(-1.1, -0.5, -1, -0.4, -0.8, -0.2, 50, [255 / 255, 237 / 255, 118 / 255]);
   var kotakKado1 = new myObject(kotakKado1Data.vertices, kotakKado1Data.faces, kotakKado1Data.colors, shader_vertex_source, shader_fragment_source);
   kotakKado1.setup();
 
-  var TutupkotakKado1Data = environment.generateKotak(-1.125, -0.475, -0.45, -0.3, -0.825, -0.175, 50, [255/255, 197/255, 38/255]);
+  var TutupkotakKado1Data = environment.generateKotak(-1.125, -0.475, -0.45, -0.3, -0.825, -0.175, 50, [255 / 255, 197 / 255, 38 / 255]);
   var TutupkotakKado1 = new myObject(TutupkotakKado1Data.vertices, TutupkotakKado1Data.faces, TutupkotakKado1Data.colors, shader_vertex_source, shader_fragment_source);
   TutupkotakKado1.setup();
 
-  var kotakKado2Data = environment.generateKotak(-1.6, -1.1, -1, -0.5, -0.65, -0.1, 50, [137/255, 157/255, 217/255]);
+  var kotakKado2Data = environment.generateKotak(-1.6, -1.1, -1, -0.5, -0.65, -0.1, 50, [137 / 255, 157 / 255, 217 / 255]);
   var kotakKado2 = new myObject(kotakKado2Data.vertices, kotakKado2Data.faces, kotakKado2Data.colors, shader_vertex_source, shader_fragment_source);
   kotakKado2.setup();
 
-  var kotakKado3Data = environment.generateKotak(-1.45, -1.18, -0.5, -0.17, -0.6, -0.3, 50, [255/255, 110/255, 83/255]);
+  var kotakKado3Data = environment.generateKotak(-1.45, -1.18, -0.5, -0.17, -0.6, -0.3, 50, [255 / 255, 110 / 255, 83 / 255]);
   var kotakKado3 = new myObject(kotakKado3Data.vertices, kotakKado3Data.faces, kotakKado3Data.colors, shader_vertex_source, shader_fragment_source);
   kotakKado3.setup();
 
-  var kotakKado4Data = environment.generateKotak(-0.47, 0, -1, -0.6, -0.65, -0.15, 50, [248/255, 63/255, 152/255]);
+  var kotakKado4Data = environment.generateKotak(-0.47, 0, -1, -0.6, -0.65, -0.15, 50, [248 / 255, 63 / 255, 152 / 255]);
   var kotakKado4 = new myObject(kotakKado4Data.vertices, kotakKado4Data.faces, kotakKado4Data.colors, shader_vertex_source, shader_fragment_source);
   kotakKado4.setup();
 
-  var kotakKado5Data = environment.generateKotak(-0.4, -0.03, -0.7, -0.45, -0.35, -0.6, 50, [120/255, 245/255, 197/255]);
+  var kotakKado5Data = environment.generateKotak(-0.4, -0.03, -0.7, -0.45, -0.35, -0.6, 50, [120 / 255, 245 / 255, 197 / 255]);
   var kotakKado5 = new myObject(kotakKado5Data.vertices, kotakKado5Data.faces, kotakKado5Data.colors, shader_vertex_source, shader_fragment_source);
   kotakKado5.setup();
 
-  var kotakKado6Data = environment.generateKotak(-1.2, -0.8, -1, -0.7, -0.1, 0.25, 50, [0/255, 189/255, 201/255]);
+  var kotakKado6Data = environment.generateKotak(-1.2, -0.8, -1, -0.7, -0.1, 0.25, 50, [0 / 255, 189 / 255, 201 / 255]);
   var kotakKado6 = new myObject(kotakKado6Data.vertices, kotakKado6Data.faces, kotakKado6Data.colors, shader_vertex_source, shader_fragment_source);
   kotakKado6.setup();
 
@@ -299,77 +299,87 @@ function main() {
   // awan satu
   var awan1_1Data = environment.generateBall(0.1, 1.1, -1, 0.25, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan1_1 = new myObject(awan1_1Data.vertices, awan1_1Data.faces, awan1_1Data.colors, shader_vertex_source, shader_fragment_source);
-  awan1_1.setup();
+  // awan1_1.setup();
 
   var awan1_2Data = environment.generateBall(-0.29, 0.9, -1, 0.2, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan1_2 = new myObject(awan1_2Data.vertices, awan1_2Data.faces, awan1_2Data.colors, shader_vertex_source, shader_fragment_source);
-  awan1_2.setup();
+  // awan1_2.setup();
 
   var awan1_3Data = environment.generateBall(0.4, 0.9, -1, 0.2, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan1_3 = new myObject(awan1_3Data.vertices, awan1_3Data.faces, awan1_3Data.colors, shader_vertex_source, shader_fragment_source);
-  awan1_3.setup();
+  // awan1_3.setup();
 
   var awan1_4Data = environment.generateBall(0, 0.8, -1, 0.15, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan1_4 = new myObject(awan1_4Data.vertices, awan1_4Data.faces, awan1_4Data.colors, shader_vertex_source, shader_fragment_source);
-  awan1_4.setup();
+  // awan1_4.setup();
 
   var awan1_5Data = environment.generateBall(-0.15, 1.1, -1, 0.2, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan1_5 = new myObject(awan1_5Data.vertices, awan1_5Data.faces, awan1_5Data.colors, shader_vertex_source, shader_fragment_source);
-  awan1_5.setup();
+  // awan1_5.setup();
 
   var awan1_6Data = environment.generateBall(-0.55, 0.85, -1, 0.13, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan1_6 = new myObject(awan1_6Data.vertices, awan1_6Data.faces, awan1_6Data.colors, shader_vertex_source, shader_fragment_source);
-  awan1_6.setup();
+  // awan1_6.setup();
 
   var awan1_7Data = environment.generateBall(0.2, 0.8, -1, 0.1, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan1_7 = new myObject(awan1_7Data.vertices, awan1_7Data.faces, awan1_7Data.colors, shader_vertex_source, shader_fragment_source);
-  awan1_7.setup();
+  // awan1_7.setup();
+
+  awan1_1.childs.push(awan1_2);
+  awan1_1.childs.push(awan1_3);
+  awan1_1.childs.push(awan1_4);
+  awan1_1.childs.push(awan1_5);
+  awan1_1.childs.push(awan1_6);
+  awan1_1.childs.push(awan1_7);
+  awan1_1.setup();
 
   // awan dua
   var awan2_1Data = environment.generateBall(1.5, 1.3, 0, 0.25, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan2_1 = new myObject(awan2_1Data.vertices, awan2_1Data.faces, awan2_1Data.colors, shader_vertex_source, shader_fragment_source);
-  awan2_1.setup();
 
   var awan2_2Data = environment.generateBall(1.2, 1.1, 0, 0.2, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan2_2 = new myObject(awan2_2Data.vertices, awan2_2Data.faces, awan2_2Data.colors, shader_vertex_source, shader_fragment_source);
-  awan2_2.setup();
 
   var awan2_3Data = environment.generateBall(1.8, 1.1, 0, 0.2, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan2_3 = new myObject(awan2_3Data.vertices, awan2_3Data.faces, awan2_3Data.colors, shader_vertex_source, shader_fragment_source);
-  awan2_3.setup();
 
   var awan2_4Data = environment.generateBall(1.5, 1, 0, 0.15, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan2_4 = new myObject(awan2_4Data.vertices, awan2_4Data.faces, awan2_4Data.colors, shader_vertex_source, shader_fragment_source);
-  awan2_4.setup();
 
   var awan2_5Data = environment.generateBall(0.95, 1.07, 0, 0.13, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan2_5 = new myObject(awan2_5Data.vertices, awan2_5Data.faces, awan2_5Data.colors, shader_vertex_source, shader_fragment_source);
-  awan2_5.setup();
 
   var awan2_6Data = environment.generateBall(2.05, 1.07, 0, 0.13, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan2_6 = new myObject(awan2_6Data.vertices, awan2_6Data.faces, awan2_6Data.colors, shader_vertex_source, shader_fragment_source);
-  awan2_6.setup();
+
+  awan2_1.childs.push(awan2_2);
+  awan2_1.childs.push(awan2_3);
+  awan2_1.childs.push(awan2_4);
+  awan2_1.childs.push(awan2_5);
+  awan2_1.childs.push(awan2_6);
+  awan2_1.setup();
 
   // awan tiga
   var awan3_1Data = environment.generateBall(0.6, 2.3, -2.1, 0.22, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan3_1 = new myObject(awan3_1Data.vertices, awan3_1Data.faces, awan3_1Data.colors, shader_vertex_source, shader_fragment_source);
-  awan3_1.setup();
 
   var awan3_2Data = environment.generateBall(0.2, 2.1, -2.1, 0.17, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan3_2 = new myObject(awan3_2Data.vertices, awan3_2Data.faces, awan3_2Data.colors, shader_vertex_source, shader_fragment_source);
-  awan3_2.setup();
 
   var awan3_3Data = environment.generateBall(0.85, 2.1, -2.1, 0.17, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan3_3 = new myObject(awan3_3Data.vertices, awan3_3Data.faces, awan3_3Data.colors, shader_vertex_source, shader_fragment_source);
-  awan3_3.setup();
 
   var awan3_4Data = environment.generateBall(0.65, 2.05, -2.1, 0.1, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan3_4 = new myObject(awan3_4Data.vertices, awan3_4Data.faces, awan3_4Data.colors, shader_vertex_source, shader_fragment_source);
-  awan3_4.setup();
 
   var awan3_5Data = environment.generateBall(0.45, 2.11, -2.1, 0.15, 50, [220 / 255, 218 / 255, 219 / 255]);
   var awan3_5 = new myObject(awan3_5Data.vertices, awan3_5Data.faces, awan3_5Data.colors, shader_vertex_source, shader_fragment_source);
-  awan3_5.setup();
+
+  awan3_1.childs.push(awan3_2);
+  awan3_1.childs.push(awan3_3);
+  awan3_1.childs.push(awan3_4);
+  awan3_1.childs.push(awan3_5);
+  awan3_1.setup();
 
   // pohon satu
   var batangData = environment.generateKotak(1, 1.25, -0.9, -0.4, -2, -1.7, 50, [108 / 255, 60 / 255, 12 / 255]);
@@ -916,7 +926,11 @@ function main() {
   var PROJECTION_MATRIX = LIBS.get_projection(40, CANVAS.width / CANVAS.height, 1, 100);
   var VIEW_MATRIX = LIBS.get_I4();
   var MODEL_MATRIX = LIBS.get_I4();
-  // LIBS.rotateX(MODEL_MATRIX, Math.PI);
+
+  var AWAN1_MODEL_MATRIX = LIBS.get_I4();
+  var AWAN2_MODEL_MATRIX = LIBS.get_I4();
+  var AWAN3_MODEL_MATRIX = LIBS.get_I4();
+
   var BONBON_BADAN_MODEL_MATRIX = LIBS.get_I4();
   var BONBON_TANGAN_KANAN_MODEL_MATRIX = LIBS.get_I4();
   var BONBON_KAKI_KANAN_MODEL_MATRIX = LIBS.get_I4();
@@ -1063,6 +1077,28 @@ function main() {
     }
 
     /* animation */
+    /* AWAN SCALING */
+    var scalingSpeedAwan1 = 0.001;
+    var scaleFactorAwan1 = Math.sin(time * scalingSpeedAwan1) * 0.2 + 1; // Variasi skala (misal: sin wave)
+
+    var scalingSpeedAwan2 = 0.0025;
+    var scaleFactorAwan2 = Math.sin(time * scalingSpeedAwan2) * 0.08 + 1;
+
+    var scalingSpeedAwan3 = 0.0008;
+    var scaleFactorAwan3 = Math.sin(time * scalingSpeedAwan3) * 0.15 + 1;
+
+    AWAN1_MODEL_MATRIX = LIBS.get_I4();
+    LIBS.scale(AWAN1_MODEL_MATRIX, scaleFactorAwan1);
+    awan1_1.MODEL_MATRIX = AWAN1_MODEL_MATRIX;
+
+    AWAN2_MODEL_MATRIX = LIBS.get_I4();
+    LIBS.scale(AWAN2_MODEL_MATRIX, scaleFactorAwan2);
+    awan2_1.MODEL_MATRIX = AWAN2_MODEL_MATRIX;
+
+    AWAN3_MODEL_MATRIX = LIBS.get_I4();
+    LIBS.scale(AWAN3_MODEL_MATRIX, scaleFactorAwan3);
+    awan3_1.MODEL_MATRIX = AWAN3_MODEL_MATRIX;
+
     /* BONBON ANIMATION */
     // Logic for waving animation
     bonbon_waveAngle += bonbon_waveSpeed;
@@ -1199,28 +1235,28 @@ function main() {
     kotakKado7.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // awan satu render
-    awan1_1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan1_2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan1_3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan1_4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan1_5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan1_6.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan1_7.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan1_1.render(awan1_1.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan1_2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan1_3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan1_4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan1_5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan1_6.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan1_7.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // awan dua render
-    awan2_1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan2_2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan2_3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan2_4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan2_5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan2_6.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan2_1.render(awan2_1.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan2_2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan2_3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan2_4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan2_5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan2_6.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // awan tiga render
-    awan3_1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan3_2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan3_3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan3_4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    awan3_5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan3_1.render(awan3_1.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan3_2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan3_3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan3_4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    // awan3_5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // pohon satu render
     batang.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
