@@ -408,110 +408,110 @@ function main() {
   daunCone4.setup();
 
   // kue
-  var kue1Data = environment.generateTabung(0.5, -0.85, 1.3, 0.18, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
+  var kue1Data = environment.generateTabung(0.9, -0.85, 1.3, 0.18, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
   var kue1 = new myObject(kue1Data.vertices, kue1Data.faces, kue1Data.colors, shader_vertex_source, shader_fragment_source);
   kue1.setup();
 
-  var kue2Data = environment.generateTabung(0.5, -0.79, 1.3, 0.18, 0.06, 50, [229 / 255, 171 / 255, 124 / 255]);
+  var kue2Data = environment.generateTabung(0.9, -0.79, 1.3, 0.18, 0.06, 50, [229 / 255, 171 / 255, 124 / 255]);
   var kue2 = new myObject(kue2Data.vertices, kue2Data.faces, kue2Data.colors, shader_vertex_source, shader_fragment_source);
   kue2.setup();
 
-  var kue3Data = environment.generateTabung(0.5, -0.73, 1.3, 0.18, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
+  var kue3Data = environment.generateTabung(0.9, -0.73, 1.3, 0.18, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
   var kue3 = new myObject(kue3Data.vertices, kue3Data.faces, kue3Data.colors, shader_vertex_source, shader_fragment_source);
   kue3.setup();
 
-  var tutup_kue1Data = environment.generateCircle(0.5, -0.7, 1.3, 0.18, [239 / 255, 212 / 255, 188 / 255]);
+  var tutup_kue1Data = environment.generateCircle(0.9, -0.7, 1.3, 0.18, [239 / 255, 212 / 255, 188 / 255]);
   var tutup_kue1 = new myObject(tutup_kue1Data.vertices, tutup_kue1Data.faces, tutup_kue1Data.colors, shader_vertex_source, shader_fragment_source);
   tutup_kue1.setup();
 
-  var kue4Data = environment.generateTabung(0.5, -0.67, 1.3, 0.14, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
+  var kue4Data = environment.generateTabung(0.9, -0.67, 1.3, 0.14, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
   var kue4 = new myObject(kue4Data.vertices, kue4Data.faces, kue4Data.colors, shader_vertex_source, shader_fragment_source);
   kue4.setup();
 
-  var kue5Data = environment.generateTabung(0.5, -0.61, 1.3, 0.14, 0.06, 50, [229 / 255, 171 / 255, 124 / 255]);
+  var kue5Data = environment.generateTabung(0.9, -0.61, 1.3, 0.14, 0.06, 50, [229 / 255, 171 / 255, 124 / 255]);
   var kue5 = new myObject(kue5Data.vertices, kue5Data.faces, kue5Data.colors, shader_vertex_source, shader_fragment_source);
   kue5.setup();
 
-  var kue6Data = environment.generateTabung(0.5, -0.55, 1.3, 0.14, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
+  var kue6Data = environment.generateTabung(0.9, -0.55, 1.3, 0.14, 0.06, 50, [239 / 255, 212 / 255, 188 / 255]);
   var kue6 = new myObject(kue6Data.vertices, kue6Data.faces, kue6Data.colors, shader_vertex_source, shader_fragment_source);
   kue6.setup();
 
-  var tutup_kue2Data = environment.generateCircle(0.5, -0.52, 1.3, 0.14, [239 / 255, 212 / 255, 188 / 255]);
+  var tutup_kue2Data = environment.generateCircle(0.9, -0.52, 1.3, 0.14, [239 / 255, 212 / 255, 188 / 255]);
   var tutup_kue2 = new myObject(tutup_kue2Data.vertices, tutup_kue2Data.faces, tutup_kue2Data.colors, shader_vertex_source, shader_fragment_source);
   tutup_kue2.setup();
 
   // lilin satu
-  var lilin1Data = environment.generateTabung(0.5, -0.5, 1.27, 0.01, 0.09, 50, [0 / 255, 0 / 255, 188 / 255]);
+  var lilin1Data = environment.generateTabung(0.9, -0.5, 1.27, 0.01, 0.09, 50, [0 / 255, 0 / 255, 188 / 255]);
   var lilin1 = new myObject(lilin1Data.vertices, lilin1Data.faces, lilin1Data.colors, shader_vertex_source, shader_fragment_source);
   lilin1.setup();
 
-  var tutup_lilin1Data = environment.generateCircle(0.5, -0.455, 1.27, 0.01, [255 / 255, 0 / 255, 0 / 255]);
+  var tutup_lilin1Data = environment.generateCircle(0.9, -0.455, 1.27, 0.01, [255 / 255, 0 / 255, 0 / 255]);
   var tutup_lilin1 = new myObject(tutup_lilin1Data.vertices, tutup_lilin1Data.faces, tutup_lilin1Data.colors, shader_vertex_source, shader_fragment_source);
   tutup_lilin1.setup();
 
-  var api1_lilin1_coneData = environment.generateEllipticParboloid(0.5, -0.4, 1.27, 0.009, 50, 0, 0, 0, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin1_coneData = environment.generateEllipticParboloid(0.9, -0.4, 1.27, 0.009, 50, 0, 0, 0, [252 / 255, 73 / 255, 3 / 255]);
   var api1_lilin1_cone = new myObject(api1_lilin1_coneData.vertices, api1_lilin1_coneData.faces, api1_lilin1_coneData.colors, shader_vertex_source, shader_fragment_source);
   api1_lilin1_cone.setup();
 
-  var api1_lilin1_ballData = environment.generateBall(0.5, -0.425, 1.27, 0.0139, 50, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin1_ballData = environment.generateBall(0.9, -0.425, 1.27, 0.0139, 50, [252 / 255, 73 / 255, 3 / 255]);
   var api1_lilin1_ball = new myObject(api1_lilin1_ballData.vertices, api1_lilin1_ballData.faces, api1_lilin1_ballData.colors, shader_vertex_source, shader_fragment_source);
   api1_lilin1_ball.setup();
 
-  var api2_lilin1_coneData = environment.generateEllipticParboloid(0.5, -0.405, 1.2755, 0.005, 50, 0, 0, 0, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin1_coneData = environment.generateEllipticParboloid(0.9, -0.405, 1.2755, 0.005, 50, 0, 0, 0, [255 / 255, 183 / 255, 82 / 255]);
   var api2_lilin1_cone = new myObject(api2_lilin1_coneData.vertices, api2_lilin1_coneData.faces, api2_lilin1_coneData.colors, shader_vertex_source, shader_fragment_source);
   api2_lilin1_cone.setup();
 
-  var api2_lilin1_ballData = environment.generateBall(0.5, -0.425, 1.2755, 0.01, 50, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin1_ballData = environment.generateBall(0.9, -0.425, 1.2755, 0.01, 50, [255 / 255, 183 / 255, 82 / 255]);
   var api2_lilin1_ball = new myObject(api2_lilin1_ballData.vertices, api2_lilin1_ballData.faces, api2_lilin1_ballData.colors, shader_vertex_source, shader_fragment_source);
   api2_lilin1_ball.setup();
 
   // lilin dua
-  var lilin2Data = environment.generateTabung(0.44, -0.5, 1.32, 0.01, 0.09, 50, [0 / 255, 0 / 255, 188 / 255]);
+  var lilin2Data = environment.generateTabung(0.84, -0.5, 1.32, 0.01, 0.09, 50, [0 / 255, 0 / 255, 188 / 255]);
   var lilin2 = new myObject(lilin2Data.vertices, lilin2Data.faces, lilin2Data.colors, shader_vertex_source, shader_fragment_source);
   lilin2.setup();
 
-  var tutup_lilin2Data = environment.generateCircle(0.44, -0.455, 1.32, 0.01, [255 / 255, 0 / 255, 0 / 255]);
+  var tutup_lilin2Data = environment.generateCircle(0.84, -0.455, 1.32, 0.01, [255 / 255, 0 / 255, 0 / 255]);
   var tutup_lilin2 = new myObject(tutup_lilin2Data.vertices, tutup_lilin2Data.faces, tutup_lilin2Data.colors, shader_vertex_source, shader_fragment_source);
   tutup_lilin2.setup();
 
-  var api1_lilin2_coneData = environment.generateEllipticParboloid(0.44, -0.4, 1.32, 0.009, 50, 0, 0, 0, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin2_coneData = environment.generateEllipticParboloid(0.84, -0.4, 1.32, 0.009, 50, 0, 0, 0, [252 / 255, 73 / 255, 3 / 255]);
   var api1_lilin2_cone = new myObject(api1_lilin2_coneData.vertices, api1_lilin2_coneData.faces, api1_lilin2_coneData.colors, shader_vertex_source, shader_fragment_source);
   api1_lilin2_cone.setup();
 
-  var api1_lilin2_ballData = environment.generateBall(0.44, -0.425, 1.32, 0.0139, 50, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin2_ballData = environment.generateBall(0.84, -0.425, 1.32, 0.0139, 50, [252 / 255, 73 / 255, 3 / 255]);
   var api1_lilin2_ball = new myObject(api1_lilin2_ballData.vertices, api1_lilin2_ballData.faces, api1_lilin2_ballData.colors, shader_vertex_source, shader_fragment_source);
   api1_lilin2_ball.setup();
 
-  var api2_lilin2_coneData = environment.generateEllipticParboloid(0.44, -0.405, 1.3255, 0.005, 50, 0, 0, 0, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin2_coneData = environment.generateEllipticParboloid(0.84, -0.405, 1.3255, 0.005, 50, 0, 0, 0, [255 / 255, 183 / 255, 82 / 255]);
   var api2_lilin2_cone = new myObject(api2_lilin2_coneData.vertices, api2_lilin2_coneData.faces, api2_lilin2_coneData.colors, shader_vertex_source, shader_fragment_source);
   api2_lilin2_cone.setup();
 
-  var api2_lilin2_ballData = environment.generateBall(0.44, -0.425, 1.3255, 0.01, 50, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin2_ballData = environment.generateBall(0.84, -0.425, 1.3255, 0.01, 50, [255 / 255, 183 / 255, 82 / 255]);
   var api2_lilin2_ball = new myObject(api2_lilin2_ballData.vertices, api2_lilin2_ballData.faces, api2_lilin2_ballData.colors, shader_vertex_source, shader_fragment_source);
   api2_lilin2_ball.setup();
 
   // lilin tiga
-  var lilin3Data = environment.generateTabung(0.56, -0.5, 1.32, 0.01, 0.09, 50, [0 / 255, 0 / 255, 188 / 255]);
+  var lilin3Data = environment.generateTabung(0.96, -0.5, 1.32, 0.01, 0.09, 50, [0 / 255, 0 / 255, 188 / 255]);
   var lilin3 = new myObject(lilin3Data.vertices, lilin3Data.faces, lilin3Data.colors, shader_vertex_source, shader_fragment_source);
   lilin3.setup();
 
-  var tutup_lilin3Data = environment.generateCircle(0.56, -0.455, 1.32, 0.01, [255 / 255, 0 / 255, 0 / 255]);
+  var tutup_lilin3Data = environment.generateCircle(0.96, -0.455, 1.32, 0.01, [255 / 255, 0 / 255, 0 / 255]);
   var tutup_lilin3 = new myObject(tutup_lilin3Data.vertices, tutup_lilin3Data.faces, tutup_lilin3Data.colors, shader_vertex_source, shader_fragment_source);
   tutup_lilin3.setup();
 
-  var api1_lilin3_coneData = environment.generateEllipticParboloid(0.56, -0.4, 1.32, 0.009, 50, 0, 0, 0, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin3_coneData = environment.generateEllipticParboloid(0.96, -0.4, 1.32, 0.009, 50, 0, 0, 0, [252 / 255, 73 / 255, 3 / 255]);
   var api1_lilin3_cone = new myObject(api1_lilin3_coneData.vertices, api1_lilin3_coneData.faces, api1_lilin3_coneData.colors, shader_vertex_source, shader_fragment_source);
   api1_lilin3_cone.setup();
 
-  var api1_lilin3_ballData = environment.generateBall(0.56, -0.425, 1.32, 0.0139, 50, [252 / 255, 73 / 255, 3 / 255]);
+  var api1_lilin3_ballData = environment.generateBall(0.96, -0.425, 1.32, 0.0139, 50, [252 / 255, 73 / 255, 3 / 255]);
   var api1_lilin3_ball = new myObject(api1_lilin3_ballData.vertices, api1_lilin3_ballData.faces, api1_lilin3_ballData.colors, shader_vertex_source, shader_fragment_source);
   api1_lilin3_ball.setup();
 
-  var api2_lilin3_coneData = environment.generateEllipticParboloid(0.56, -0.405, 1.3255, 0.005, 50, 0, 0, 0, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin3_coneData = environment.generateEllipticParboloid(0.96, -0.405, 1.3255, 0.005, 50, 0, 0, 0, [255 / 255, 183 / 255, 82 / 255]);
   var api2_lilin3_cone = new myObject(api2_lilin3_coneData.vertices, api2_lilin3_coneData.faces, api2_lilin3_coneData.colors, shader_vertex_source, shader_fragment_source);
   api2_lilin3_cone.setup();
 
-  var api2_lilin3_ballData = environment.generateBall(0.56, -0.425, 1.3255, 0.01, 50, [255 / 255, 183 / 255, 82 / 255]);
+  var api2_lilin3_ballData = environment.generateBall(0.96, -0.425, 1.3255, 0.01, 50, [255 / 255, 183 / 255, 82 / 255]);
   var api2_lilin3_ball = new myObject(api2_lilin3_ballData.vertices, api2_lilin3_ballData.faces, api2_lilin3_ballData.colors, shader_vertex_source, shader_fragment_source);
   api2_lilin3_ball.setup();
 
@@ -821,7 +821,6 @@ function main() {
   w_badankepala.setup();
 
   /* RURU */
-
   //badan
   var r_badanData = ruru.generateSphere(0.1, -0.55, 0.4, 0.3, 50, 1.15, 0.9, 1);
   var r_badan = new myObject(r_badanData.vertices, r_badanData.faces, r_badanData.colors, shader_vertex_source, shader_fragment_source);
@@ -830,12 +829,10 @@ function main() {
   //telinga kanan
   var r_telingaKananData = ruru.generateEllipticParaboloid(0.29, -0.25, 0.4, 0.15, 50, 0.35, 0.25, 0.35, 0, 5 * Math.PI, 0.3);
   var r_telingaKanan = new myObject(r_telingaKananData.vertices, r_telingaKananData.faces, r_telingaKananData.colors, shader_vertex_source, shader_fragment_source);
-  r_telingaKanan.setup();
 
   //telinga kiri
   var r_telingaKiriData = ruru.generateEllipticParaboloid(-0.1, -0.25, 0.4, 0.15, 50, 0.35, 0.25, 0.35, 0, -(5 * Math.PI), -0.3);
   var r_telingaKiri = new myObject(r_telingaKiriData.vertices, r_telingaKiriData.faces, r_telingaKiriData.colors, shader_vertex_source, shader_fragment_source);
-  r_telingaKiri.setup();
 
   //kaki kanan
   var r_kakiKananData = ruru.generateEllipticParaboloid1(0.28, -0.887, 0.4, 0.25, 50, 0.25, 0.25, 0.35, 0, (18 * Math.PI) / 180, 0.3);
@@ -850,52 +847,42 @@ function main() {
   //dalam telinga kanan
   var r_dalamTelingaKananData = ruru.generateTelinga(0.28, -0.289, 0.435, 0.25, 50, 0.04, 0.01, 0.1, 0.5, 5 * Math.PI, 0.5);
   var r_dalamTelingaKanan = new myObject(r_dalamTelingaKananData.vertices, r_dalamTelingaKananData.faces, r_dalamTelingaKananData.colors, shader_vertex_source, shader_fragment_source);
-  r_dalamTelingaKanan.setup();
 
   //dalam telinga kiri
   var r_dalamTelingaKiriData = ruru.generateTelinga(-0.1, -0.289, 0.433, 0.25, 50, 0.04, 0.01, 0.1, -0.5, -(8 * Math.PI), 0.3);
   var r_dalamTelingaKiri = new myObject(r_dalamTelingaKiriData.vertices, r_dalamTelingaKiriData.faces, r_dalamTelingaKiriData.colors, shader_vertex_source, shader_fragment_source);
-  r_dalamTelingaKiri.setup();
 
   //tangan kanan
-  var r_tanganKananData = ruru.generateTangan(0.5, -0.55, 0.4, 0.2, 1, 50, 50, 0, 1.6);
+  var r_tanganKananData = ruru.generateTangan(0.48, -0.53, 0.4, 0.2, 1, 50, 50, 0, LIBS.degToRad(-50));
   var r_tanganKanan = new myObject(r_tanganKananData.vertices, r_tanganKananData.faces, r_tanganKananData.colors, shader_vertex_source, shader_fragment_source);
-  r_tanganKanan.setup();
 
   //tangan kiri
-  var r_tanganKiriData = ruru.generateTangan(-0.3, -0.55, 0.4, 0.2, 1, 50, 50, 0, 1.6);
+  var r_tanganKiriData = ruru.generateTangan(-0.28, -0.53, 0.4, 0.2, 1, 50, 50, 0, LIBS.degToRad(50));
   var r_tanganKiri = new myObject(r_tanganKiriData.vertices, r_tanganKiriData.faces, r_tanganKiriData.colors, shader_vertex_source, shader_fragment_source);
-  r_tanganKiri.setup();
 
   //jari tangan kanan
-  var r_jariTanganKananData = ruru.generateJari(0.6, -0.55, 0.4, 0.039, 50, 0, 0, 20.45, [245 / 255, 239 / 255, 230 / 255]);
+  var r_jariTanganKananData = ruru.generateJari(0.556, -0.466, 0.39, 0.039, 50, 0, 0, LIBS.degToRad(135), [245 / 255, 239 / 255, 230 / 255]);
   var r_jariTanganKanan = new myObject(r_jariTanganKananData.vertices, r_jariTanganKananData.faces, r_jariTanganKananData.colors, shader_vertex_source, shader_fragment_source);
-  r_jariTanganKanan.setup();
 
   //jari tangan kiri
-  var r_jariTanganKiriData = ruru.generateJari(-0.4, -0.55, 0.4, 0.039, 50, 0, 0, -20.45, [245 / 255, 239 / 255, 230 / 255]);
+  var r_jariTanganKiriData = ruru.generateJari(-0.355, -0.470, 0.38, 0.039, 50, 0, 0, LIBS.degToRad(-135), [245 / 255, 239 / 255, 230 / 255]);
   var r_jariTanganKiri = new myObject(r_jariTanganKiriData.vertices, r_jariTanganKiriData.faces, r_jariTanganKiriData.colors, shader_vertex_source, shader_fragment_source);
-  r_jariTanganKiri.setup();
 
   //mata kanan
   var r_mataKananData = ruru.generateEllipsoid(0.22, -0.45, 0.657, 0.013, 50, 2.5, 0, 0, 0, [0 / 255, 0 / 255, 0 / 255]);
   var r_mataKanan = new myObject(r_mataKananData.vertices, r_mataKananData.faces, r_mataKananData.colors, shader_vertex_source, shader_fragment_source);
-  r_mataKanan.setup();
 
   //mata kiri
   var r_mataKiriData = ruru.generateEllipsoid(-0.03, -0.45, 0.652, 0.013, 50, 2.5, 0, 0, 0, [0 / 255, 0 / 255, 0 / 255]);
   var r_mataKiri = new myObject(r_mataKiriData.vertices, r_mataKiriData.faces, r_mataKiriData.colors, shader_vertex_source, shader_fragment_source);
-  r_mataKiri.setup();
 
   //pipi kanan
   var r_pipiKananData = ruru.generateEllipsoid(0.285, -0.57, 0.665, 0.04, 50, 1.5, 0, 0, 20.45, [255 / 255, 205 / 255, 234 / 255]);
   var r_pipiKanan = new myObject(r_pipiKananData.vertices, r_pipiKananData.faces, r_pipiKananData.colors, shader_vertex_source, shader_fragment_source);
-  r_pipiKanan.setup();
 
   //pipi kiri
   var r_pipiKiriData = ruru.generateEllipsoid(-0.1, -0.57, 0.665, 0.04, 50, 1.5, 0, 0, 20.45, [255 / 255, 205 / 255, 234 / 255]);
   var r_pipiKiri = new myObject(r_pipiKiriData.vertices, r_pipiKiriData.faces, r_pipiKiriData.colors, shader_vertex_source, shader_fragment_source);
-  r_pipiKiri.setup();
 
   //mulut
   var r_mulutData = ruru.generateCurves(
@@ -910,17 +897,34 @@ function main() {
     100
   );
   var r_mulut = new myObject(r_mulutData.vertices, r_mulutData.faces, r_mulutData.colors, shader_vertex_source, shader_fragment_source);
-  r_mulut.setup();
 
   //topi ultah
   var r_topiUltahData = ruru.generateEllipticParaboloid2(0.1, -0.1, 0.4, 0.25, 50, 0.35, 0.25, 0.7, 0, -(5 * Math.PI), 0);
   var r_topiUltah = new myObject(r_topiUltahData.vertices, r_topiUltahData.faces, r_topiUltahData.colors, shader_vertex_source, shader_fragment_source);
-  r_topiUltah.setup();
 
   //bulat atasnya topi ultah
   var r_circleData = ruru.generateEllipsoid(0.1, -0.1, 0.4, 0.035, 50, 1, 0, 0, 20.45, [255 / 255, 205 / 255, 234 / 255]);
   var r_circle = new myObject(r_circleData.vertices, r_circleData.faces, r_circleData.colors, shader_vertex_source, shader_fragment_source);
-  r_circle.setup();
+
+  //untuk child push ruru
+  r_badan.childs.push(r_telingaKanan);
+  r_badan.childs.push(r_telingaKiri);
+  r_badan.childs.push(r_dalamTelingaKanan);
+  r_badan.childs.push(r_dalamTelingaKiri);
+  // r_badan.childs.push(r_kakiKanan);
+  // r_badan.childs.push(r_kakiKiri);
+  r_badan.childs.push(r_tanganKanan);
+  r_badan.childs.push(r_tanganKiri);
+  r_badan.childs.push(r_jariTanganKanan); 
+  r_badan.childs.push(r_jariTanganKiri);
+  r_badan.childs.push(r_mataKanan);
+  r_badan.childs.push(r_mataKiri);
+  r_badan.childs.push(r_pipiKanan);
+  r_badan.childs.push(r_pipiKiri);
+  r_badan.childs.push(r_mulut);
+  r_badan.childs.push(r_topiUltah);
+  r_badan.childs.push(r_circle);
+  r_badan.setup();
 
   //matrix
   var PROJECTION_MATRIX = LIBS.get_projection(40, CANVAS.width / CANVAS.height, 1, 100);
@@ -941,6 +945,10 @@ function main() {
   var WOOPY_TANGAN_KIRI_MODEL_MATRIX = LIBS.get_I4();
   var WOOPY_KAKI_KANAN_MODEL_MATRIX = LIBS.get_I4();
   var WOOPY_KAKI_KIRI_MODEL_MATRIX = LIBS.get_I4();
+
+  var RURU_BADAN_MODEL_MATRIX = LIBS.get_I4();
+  var RURU_KAKI_KANAN_MODEL_MATRIX = LIBS.get_I4();
+  var RURU_KAKI_KIRI_MODEL_MATRIX = LIBS.get_I4();
 
   // Event listener untuk mouse movement
   document.addEventListener('mousemove', function (event) {
@@ -1055,6 +1063,14 @@ function main() {
   var woopy_waveSpeed = 0.0025;
   var woopy_maxWaveAngle = LIBS.degToRad(2);
 
+  //animasi attribute ruru
+  var ruru_movementSpeed = 0.005;
+  var walk1 = true;
+  var ruru_position = [0.1, -0.55, 0.4];
+  var ruru_walkAngle = 0;
+  var ruru_walkSpeed = 0.003;
+  var ruru_maxWalkAngle = LIBS.degToRad(3);
+
   var time_prev = 0;
   var animate = function (time) {
     GL.viewport(0, 0, CANVAS.width, CANVAS.height);
@@ -1075,6 +1091,10 @@ function main() {
     if (keysPressed.d) {
       LIBS.translateX(VIEW_MATRIX, -cameraSpeed);
     }
+
+    dY *= FRICTION;
+    ALPHA += (dY * 2 * Math.PI) / CANVAS.height;
+    dY += 0.5;
 
     /* animation */
     /* AWAN SCALING */
@@ -1203,6 +1223,55 @@ function main() {
     LIBS.translateY(WOOPY_KAKI_KIRI_MODEL_MATRIX, woopy_position[1]);
     w_kakiKiri.MODEL_MATRIX = WOOPY_KAKI_KIRI_MODEL_MATRIX;
 
+    /* RURU ANIMATION */
+    //logic for walking animation
+    ruru_walkAngle += ruru_walkSpeed;
+    if (ruru_walkAngle > ruru_maxWalkAngle) {
+      ruru_walkSpeed = -ruru_walkSpeed; // Reverse direction if reaching the maximum angle
+    } else if (ruru_walkAngle < -ruru_maxWalkAngle) {
+      ruru_walkSpeed = -ruru_walkSpeed; // Reverse direction if reaching the minimum angle
+    }
+
+    var ruru_jalan = ruru_walkAngle;
+
+    // Rotate kaki1 and kaki2 alternately
+    var ruru_kakiKananAngle = ruru_walkAngle;
+    var ruru_kakiKiriAngle = -ruru_walkAngle;
+
+    RURU_KAKI_KANAN_MODEL_MATRIX = LIBS.get_I4();
+    RURU_KAKI_KIRI_MODEL_MATRIX = LIBS.get_I4();
+    RURU_BADAN_MODEL_MATRIX = LIBS.get_I4();
+
+    //posisi awal
+    if (walk1 == true) {
+      ruru_position[2] += ruru_movementSpeed;
+      LIBS.rotateX(RURU_KAKI_KANAN_MODEL_MATRIX, ruru_kakiKananAngle);
+      LIBS.rotateX(RURU_KAKI_KIRI_MODEL_MATRIX, ruru_kakiKiriAngle);
+      if (ruru_position[2] >= 1.85) {
+        walk1 = false;
+      }
+    } else {
+      LIBS.rotateY(RURU_BADAN_MODEL_MATRIX, ALPHA * 0.1);
+      LIBS.rotateY(RURU_KAKI_KANAN_MODEL_MATRIX, ALPHA * 0.1);
+      LIBS.rotateY(RURU_KAKI_KIRI_MODEL_MATRIX, ALPHA * 0.1);
+    }
+
+    // LIBS.translateZ(RURU_TANGAN_KANAN_MODEL_MATRIX, ruru_position[2]);
+    // rightHand.MODEL_MATRIX = BONBON_TANGAN_KANAN_MODEL_MATRIX;
+
+    LIBS.translateZ(RURU_BADAN_MODEL_MATRIX, ruru_position[2]);
+
+    LIBS.translateZ(RURU_KAKI_KANAN_MODEL_MATRIX, ruru_position[2]);
+    r_kakiKanan.MODEL_MATRIX = RURU_KAKI_KANAN_MODEL_MATRIX;
+
+    LIBS.translateZ(RURU_KAKI_KIRI_MODEL_MATRIX, ruru_position[2]);
+    r_kakiKiri.MODEL_MATRIX = RURU_KAKI_KIRI_MODEL_MATRIX;
+
+
+    //logic for rotate animation
+    r_badan.MODEL_MATRIX = RURU_BADAN_MODEL_MATRIX;
+
+
     /* render object */
     /* ENVIRONMENT */
     // base world render
@@ -1326,24 +1395,9 @@ function main() {
     bannerPapan.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     /* RURU */
-    // r_badan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_telingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_kakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_kakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_dalamTelingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_dalamTelingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_tanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_tanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_jariTanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_jariTanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_pipiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_pipiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_mulut.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_topiUltah.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    // r_circle.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    r_badan.render(r_badan.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    r_kakiKanan.render(r_kakiKanan.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    r_kakiKiri.render(r_kakiKiri.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // /* BONBON */
     body.render(body.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
