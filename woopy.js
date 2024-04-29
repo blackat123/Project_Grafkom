@@ -48,7 +48,7 @@ var woopy = {
     return { vertices: vertices, colors: colors, faces: faces, center: center };
   },
 
-  // Elliptic Cone (untuk telinga)
+  // Elliptic Paraboloid (untuk telinga)
   generateTelinga: function (x, y, z, radius, segments, scaleX, scaleY, scaleZ, rotationX, rotationY, rotationZ) {
     var vertices = [];
     var colors = [];
@@ -140,7 +140,7 @@ var woopy = {
     return { vertices: vertices, colors: colors, faces: faces };
   },
 
-  //Pipi
+  //Pipi -> sphere
   generatePipi: function (x, y, z, radius, segments) {
       var vertices = [];
     var colors = [];
