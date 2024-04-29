@@ -696,11 +696,11 @@ function main() {
   var w_badankepala = new myObject(w_badankepalaData.vertices, w_badankepalaData.faces, w_badankepalaData.colors, shader_vertex_source, shader_fragment_source);
 
   // Telinga Kiri
-  var w_telingaKiriData = woopy.generateTelinga(-0.61, -0.199, 0.9, 0.072, 50, 1, 1, 1, -0.3, 0.6, 0);
+  var w_telingaKiriData = woopy.generateTelinga(-0.61, -0.199, 0.9, 0.072, 50, 1.3, 1, 1, 0, LIBS.degToRad(20), LIBS.degToRad(-20));
   var w_telingaKiri = new myObject(w_telingaKiriData.vertices, w_telingaKiriData.faces, w_telingaKiriData.colors, shader_vertex_source, shader_fragment_source);
 
   // Telinga Kanan
-  var w_telingaKananData = woopy.generateTelinga(-0.99, -0.199, 0.9, 0.072, 50, 1, 1, 1, -0.3, -0.6, 0);
+  var w_telingaKananData = woopy.generateTelinga(-0.99, -0.199, 0.9, 0.072, 50, 1.3, 1, 1, 0, LIBS.degToRad(-20), LIBS.degToRad(20));
   var w_telingaKanan = new myObject(w_telingaKananData.vertices, w_telingaKananData.faces, w_telingaKananData.colors, shader_vertex_source, shader_fragment_source);
 
   // Wajah
