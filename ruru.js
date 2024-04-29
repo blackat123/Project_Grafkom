@@ -6,7 +6,7 @@ var ruru = {
     return [nx, ny];
   },
 
-  // Kepala
+  // Kepala dan ujung topi ulang tahun
   generateSphere: function (x, y, z, radius, segments, scaleX, scaleY, scaleZ) {
     var vertices = [];
     var colors = [];
@@ -158,7 +158,7 @@ var ruru = {
     return { vertices: vertices, colors: colors, faces: faces };
   },
 
-  //dalamnya telinga
+  //dalamnya telinga -> elliptic paraboloid
   generateTelinga: function (x, y, z, radius, segments, scaleX, scaleY, scaleZ, rotasiX, rotasiY, rotasiZ) {
     var vertices = [];
     var colors = [];
@@ -193,9 +193,6 @@ var ruru = {
         var vertexY = y + rotatedY * radius;
         var vertexZ = z + rotatedZ * radius;
 
-        // var vertexX = x + radius * xCoord;
-        // var vertexY = y + radius * yCoord;
-        // var vertexZ = z + radius * zCoord;
         vertices.push(vertexX, vertexY, vertexZ);
         var colorIndex = j % rainbowColors.length;
         colors = colors.concat(rainbowColors[colorIndex]);
@@ -214,7 +211,7 @@ var ruru = {
     return { vertices: vertices, colors: colors, faces: faces };
   },
 
-  //tangan
+  //tangan -> tabung
   generateTangan: function (x, y, z, radius, height, segments, rotationX, rotationY, rotationZ) {
     var vertices = [];
     var colors = [];
@@ -230,10 +227,6 @@ var ruru = {
         var xCoord = radius * cosAngle;
         var yCoord = height * heightFraction - height / 2;
         var zCoord = radius * sinAngle;
-
-        // var vertexX = x + xCoord;
-        // var vertexY = y + yCoord;
-        // var vertexZ = z + zCoord;
 
         // Rotasi
         var rotatedX = xCoord * Math.cos(rotationZ) - yCoord * Math.sin(rotationZ);
@@ -270,7 +263,7 @@ var ruru = {
     return { vertices: vertices, colors: colors, faces: faces };
   },
 
-  // jari tangan
+  // jari tangan -> half sphere
   generateJari: function (x, y, z, radius, segments, rotationX, rotationY, rotationZ, warna) {
     var vertices = [];
     var colors = [];
@@ -305,10 +298,6 @@ var ruru = {
         var vertexX = x + radius * rotatedX;
         var vertexY = y + radius * rotatedY;
         var vertexZ = z + radius * rotatedZ;
-
-        // var vertexX = x + radius * xCoord;
-        // var vertexY = y + radius * yCoord;
-        // var vertexZ = z + radius * zCoord;
 
         vertices.push(vertexX, vertexY, vertexZ);
 
@@ -384,10 +373,6 @@ var ruru = {
         var vertexX = x + radius * rotatedX;
         var vertexY = y + radius * rotatedY;
         var vertexZ = z + radius * rotatedZ;
-
-        // var vertexX = x + radius * xCoord;
-        // var vertexY = y + radius * yCoord;
-        // var vertexZ = z + radius * zCoord;
 
         vertices.push(vertexX, vertexY, vertexZ);
 
@@ -465,7 +450,6 @@ var ruru = {
   },
 
   // mulut
-  // generate curves
   generateCurves: function (object, z, segments) {
     var vertices = [];
     var colors = [];

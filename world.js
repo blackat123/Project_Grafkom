@@ -915,8 +915,6 @@ function main() {
   r_badan.childs.push(r_telingaKiri);
   r_badan.childs.push(r_dalamTelingaKanan);
   r_badan.childs.push(r_dalamTelingaKiri);
-  // r_badan.childs.push(r_kakiKanan);
-  // r_badan.childs.push(r_kakiKiri);
   r_badan.childs.push(r_tanganKanan);
   r_badan.childs.push(r_tanganKiri);
   r_badan.childs.push(r_jariTanganKanan);
