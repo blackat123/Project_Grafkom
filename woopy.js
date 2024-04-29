@@ -48,12 +48,12 @@ var woopy = {
     return { vertices: vertices, colors: colors, faces: faces, center: center };
   },
 
-  // Elliptic Cone (untuk tanduk)
+  // Elliptic Cone (untuk telinga)
   generateTelinga: function (x, y, z, radius, segments, scaleX, scaleY, scaleZ, rotationX, rotationY, rotationZ) {
     var vertices = [];
     var colors = [];
     var rainbowColors = [
-      [228 / 255, 24 / 255, 61 / 255], // warna : #e4183
+      [228 / 255, 24 / 255, 61 / 255],
     ];
 
     for (var i = 0; i <= segments; i++) {
@@ -66,9 +66,6 @@ var woopy = {
         var xCoord = cosLon * vLat * scaleX;
         var yCoord = -Math.pow(vLat, 2) * scaleY;
         var zCoord = sinLon * vLat * scaleZ;
-        // var vertexX = x + radius * xCoord;
-        // var vertexY = y + radius * yCoord;
-        // var vertexZ = z + radius * zCoord;
 
         // Rotasi
         var rotatedX = xCoord * Math.cos(rotationZ) - yCoord * Math.sin(rotationZ);
@@ -226,10 +223,6 @@ var woopy = {
         var yCoord = height * heightFraction - height / 2;
         var zCoord = radius * sinAngle;
 
-        // var vertexX = x + xCoord;
-        // var vertexY = y + yCoord;
-        // var vertexZ = z + zCoord;
-
         // Rotasi
         var rotatedX = xCoord * Math.cos(rotationZ) - yCoord * Math.sin(rotationZ);
         var rotatedY = xCoord * Math.sin(rotationZ) + yCoord * Math.cos(rotationZ);
@@ -283,10 +276,6 @@ var woopy = {
         var xCoord = radius * cosAngle;
         var yCoord = height * heightFraction - height / 2;
         var zCoord = radius * sinAngle;
-
-        // var vertexX = x + xCoord;
-        // var vertexY = y + yCoord;
-        // var vertexZ = z + zCoord;
 
         // Rotasi
         var rotatedX = xCoord * Math.cos(rotationZ) - yCoord * Math.sin(rotationZ);
@@ -406,10 +395,6 @@ var woopy = {
         var xCoord = sinLat;
         var yCoord = sinLon * cosLat;
         var zCoord = cosLon * cosLat;
-
-        // var vertexX = x + radius * xCoord;
-        // var vertexY = y + radius * yCoord;
-        // var vertexZ = z + radius * zCoord;
 
         // Rotasi
         var rotatedX = xCoord * Math.cos(rotationZ) - yCoord * Math.sin(rotationZ);
