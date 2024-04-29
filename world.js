@@ -157,6 +157,10 @@ function main() {
   CANVAS.width = window.innerWidth;
   CANVAS.height = window.innerHeight;
 
+  var FRICTION = 0.95;
+  var dY = 1;
+  var ALPHA = 0;
+
   //eventListener
   var mouseDown = function (e) {
     var coord = normalizeScreen(e.pageX, e.pageY, CANVAS.width, CANVAS.height);
