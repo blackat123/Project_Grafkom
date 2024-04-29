@@ -95,7 +95,7 @@ class myObject {
     });
   }
 
-  render(VIEW_MATRIX, PROJECTION_MATRIX) {
+  render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX) {
     GL.useProgram(this.SHADER_PROGRAM);
 
     GL.bindBuffer(GL.ARRAY_BUFFER, this.object_vbo);
@@ -106,11 +106,11 @@ class myObject {
 
     GL.uniformMatrix4fv(this._PMatrix, false, PROJECTION_MATRIX);
     GL.uniformMatrix4fv(this._VMatrix, false, VIEW_MATRIX);
-    GL.uniformMatrix4fv(this._MMatrix, false, this.MODEL_MATRIX);
+    GL.uniformMatrix4fv(this._MMatrix, false, MODEL_MATRIX);
     GL.drawElements(GL.TRIANGLES, this.faces.length, GL.UNSIGNED_SHORT, 0);
 
     this.childs.forEach((childs) => {
-      childs.render(VIEW_MATRIX, PROJECTION_MATRIX);
+      childs.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
     });
 
     GL.flush();
@@ -577,52 +577,41 @@ function main() {
   // kepala
   var leftHeadData = bonbon.generateHead(1.4, -0.44, 0, 0.25, 50);
   var leftHead = new myObject(leftHeadData.vertices, leftHeadData.faces, leftHeadData.colors, shader_vertex_source, shader_fragment_source);
-  leftHead.setup();
 
   var rightHeadData = bonbon.generateHead(1.7, -0.44, 0, 0.25, 50);
   var rightHead = new myObject(rightHeadData.vertices, rightHeadData.faces, rightHeadData.colors, shader_vertex_source, shader_fragment_source);
-  rightHead.setup();
 
   // mata
   var leftEyeData = bonbon.generateEyes(1.43, -0.52, 0.22, 0.05, 50, 1, 1, 1, 0, 0, 0, [2 / 255, 147 / 255, 238 / 255]);
   var leftEye = new myObject(leftEyeData.vertices, leftEyeData.faces, leftEyeData.colors, shader_vertex_source, shader_fragment_source);
-  leftEye.setup();
 
   var rightEyeData = bonbon.generateEyes(1.67, -0.52, 0.22, 0.05, 50, 1, 1, 1, 0, 0, 0, [255 / 255, 47 / 255, 84 / 255]);
   var rightEye = new myObject(rightEyeData.vertices, rightEyeData.faces, rightEyeData.colors, shader_vertex_source, shader_fragment_source);
-  rightEye.setup();
 
   var leftEyeHorizontalData = bonbon.generateEyes(1.43, -0.525, 0.25, 0.025, 50, 0.4, 1, 1, 0, 0, Math.PI / 2, [0, 0, 0]);
   var leftEyeHorizontal = new myObject(leftEyeHorizontalData.vertices, leftEyeHorizontalData.faces, leftEyeHorizontalData.colors, shader_vertex_source, shader_fragment_source);
-  leftEyeHorizontal.setup();
 
   var leftEyeVerticalData = bonbon.generateEyes(1.43, -0.525, 0.25, 0.03, 50, 0.3, 1, 1, 0, 0, 0, [0, 0, 0]);
   var leftEyeVertical = new myObject(leftEyeVerticalData.vertices, leftEyeVerticalData.faces, leftEyeVerticalData.colors, shader_vertex_source, shader_fragment_source);
-  leftEyeVertical.setup();
 
   var rightEyeHorizontalData = bonbon.generateEyes(1.67, -0.525, 0.25, 0.025, 50, 0.4, 1, 1, 0, 0, Math.PI / 2, [0, 0, 0]);
   var rightEyeHorizontal = new myObject(rightEyeHorizontalData.vertices, rightEyeHorizontalData.faces, rightEyeHorizontalData.colors, shader_vertex_source, shader_fragment_source);
-  rightEyeHorizontal.setup();
 
   var rightEyeVerticalData = bonbon.generateEyes(1.67, -0.525, 0.25, 0.03, 50, 0.3, 1, 1, 0, 0, 0, [0, 0, 0]);
   var rightEyeVertical = new myObject(rightEyeVerticalData.vertices, rightEyeVerticalData.faces, rightEyeVerticalData.colors, shader_vertex_source, shader_fragment_source);
-  rightEyeVertical.setup();
 
   // badan
   var bodyData = bonbon.generateBody(1.55, -0.62, 0, 0.165, 0.35, 50, 0, 0, 0, 0.1, 50);
   var body = new myObject(bodyData.vertices, bodyData.faces, bodyData.colors, shader_vertex_source, shader_fragment_source);
-  body.setup();
 
   var circleData = bonbon.generateCircle(1.55, -0.795, 0, 0.165);
   var circle = new myObject(circleData.vertices, circleData.faces, circleData.colors, shader_vertex_source, shader_fragment_source);
-  circle.setup();
 
   // tangan
   var leftHandData = bonbon.generateBodyParts(1.4, -0.67, 0, 0.04, 50, 1.2, 4, 1.2, 0, 0, LIBS.degToRad(-45));
   var leftHand = new myObject(leftHandData.vertices, leftHandData.faces, leftHandData.colors, shader_vertex_source, shader_fragment_source);
-  leftHand.setup();
 
-  var rightHandData = bonbon.generateBodyParts(1.7, -0.67, 0, 0.04, 50, 1.2, 4, 1.2, 0, 0, LIBS.degToRad(80));
+  var rightHandData = bonbon.generateBodyParts(1.7, -0.68, 0, 0.04, 50, 1.2, 4, 1.2, 0, 0, LIBS.degToRad(80));
   var rightHand = new myObject(rightHandData.vertices, rightHandData.faces, rightHandData.colors, shader_vertex_source, shader_fragment_source);
   rightHand.setup();
 
@@ -647,7 +636,6 @@ function main() {
     100
   );
   var mouth = new myObject(mouthData.vertices, mouthData.faces, mouthData.colors, shader_vertex_source, shader_fragment_source);
-  mouth.setup();
 
   var leftEyebrowData = bonbon.generateCurves(
     [
@@ -660,7 +648,6 @@ function main() {
     100
   );
   var leftEyebrow = new myObject(leftEyebrowData.vertices, leftEyebrowData.faces, leftEyebrowData.colors, shader_vertex_source, shader_fragment_source);
-  leftEyebrow.setup();
 
   var rightEyebrowData = bonbon.generateCurves(
     [
@@ -673,7 +660,21 @@ function main() {
     100
   );
   var rightEyebrow = new myObject(rightEyebrowData.vertices, rightEyebrowData.faces, rightEyebrowData.colors, shader_vertex_source, shader_fragment_source);
-  rightEyebrow.setup();
+
+  body.childs.push(rightHead);
+  body.childs.push(leftHead);
+  body.childs.push(rightEye);
+  body.childs.push(leftEye);
+  body.childs.push(rightEyeHorizontal);
+  body.childs.push(rightEyeVertical);
+  body.childs.push(leftEyeHorizontal);
+  body.childs.push(leftEyeVertical);
+  body.childs.push(circle);
+  body.childs.push(leftHand);
+  body.childs.push(mouth);
+  body.childs.push(rightEyebrow);
+  body.childs.push(leftEyebrow);
+  body.setup();
 
   /* WOOPY */
   //Badan Kepala
@@ -820,7 +821,7 @@ function main() {
   r_telingaKanan.setup();
 
   //telinga kiri
-  var r_telingaKiriData = ruru.generateEllipticParaboloid(-0.10, -0.25, 0.4, 0.15, 50, 0.35, 0.25, 0.35, 0, -(5 * Math.PI), -0.3);
+  var r_telingaKiriData = ruru.generateEllipticParaboloid(-0.1, -0.25, 0.4, 0.15, 50, 0.35, 0.25, 0.35, 0, -(5 * Math.PI), -0.3);
   var r_telingaKiri = new myObject(r_telingaKiriData.vertices, r_telingaKiriData.faces, r_telingaKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_telingaKiri.setup();
 
@@ -840,27 +841,27 @@ function main() {
   r_dalamTelingaKanan.setup();
 
   //dalam telinga kiri
-  var r_dalamTelingaKiriData = ruru.generateTelinga(-0.10, -0.289, 0.433, 0.25, 50, 0.04, 0.01, 0.1, -0.5, -(8 * Math.PI), 0.3);
+  var r_dalamTelingaKiriData = ruru.generateTelinga(-0.1, -0.289, 0.433, 0.25, 50, 0.04, 0.01, 0.1, -0.5, -(8 * Math.PI), 0.3);
   var r_dalamTelingaKiri = new myObject(r_dalamTelingaKiriData.vertices, r_dalamTelingaKiriData.faces, r_dalamTelingaKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_dalamTelingaKiri.setup();
 
   //tangan kanan
-  var r_tanganKananData = ruru.generateTangan(0.50, -0.55, 0.4, 0.2, 1, 50, 50, 0, 1.6);
+  var r_tanganKananData = ruru.generateTangan(0.5, -0.55, 0.4, 0.2, 1, 50, 50, 0, 1.6);
   var r_tanganKanan = new myObject(r_tanganKananData.vertices, r_tanganKananData.faces, r_tanganKananData.colors, shader_vertex_source, shader_fragment_source);
   r_tanganKanan.setup();
 
   //tangan kiri
-  var r_tanganKiriData = ruru.generateTangan(-0.30, -0.55, 0.4, 0.2, 1, 50, 50, 0, 1.6);
+  var r_tanganKiriData = ruru.generateTangan(-0.3, -0.55, 0.4, 0.2, 1, 50, 50, 0, 1.6);
   var r_tanganKiri = new myObject(r_tanganKiriData.vertices, r_tanganKiriData.faces, r_tanganKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_tanganKiri.setup();
 
   //jari tangan kanan
-  var r_jariTanganKananData = ruru.generateJari(0.60, -0.55, 0.4, 0.039, 50, 0, 0, 20.45, [245 / 255, 239 / 255, 230 / 255]);
+  var r_jariTanganKananData = ruru.generateJari(0.6, -0.55, 0.4, 0.039, 50, 0, 0, 20.45, [245 / 255, 239 / 255, 230 / 255]);
   var r_jariTanganKanan = new myObject(r_jariTanganKananData.vertices, r_jariTanganKananData.faces, r_jariTanganKananData.colors, shader_vertex_source, shader_fragment_source);
   r_jariTanganKanan.setup();
 
   //jari tangan kiri
-  var r_jariTanganKiriData = ruru.generateJari(-0.40, -0.55, 0.4, 0.039, 50, 0, 0, -20.45, [245 / 255, 239 / 255, 230 / 255]);
+  var r_jariTanganKiriData = ruru.generateJari(-0.4, -0.55, 0.4, 0.039, 50, 0, 0, -20.45, [245 / 255, 239 / 255, 230 / 255]);
   var r_jariTanganKiri = new myObject(r_jariTanganKiriData.vertices, r_jariTanganKiriData.faces, r_jariTanganKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_jariTanganKiri.setup();
 
@@ -880,7 +881,7 @@ function main() {
   r_pipiKanan.setup();
 
   //pipi kiri
-  var r_pipiKiriData = ruru.generateEllipsoid(-0.10, -0.57, 0.665, 0.04, 50, 1.5, 0, 0, 20.45, [255 / 255, 205 / 255, 234 / 255]);
+  var r_pipiKiriData = ruru.generateEllipsoid(-0.1, -0.57, 0.665, 0.04, 50, 1.5, 0, 0, 20.45, [255 / 255, 205 / 255, 234 / 255]);
   var r_pipiKiri = new myObject(r_pipiKiriData.vertices, r_pipiKiriData.faces, r_pipiKiriData.colors, shader_vertex_source, shader_fragment_source);
   r_pipiKiri.setup();
 
@@ -914,6 +915,10 @@ function main() {
   var VIEW_MATRIX = LIBS.get_I4();
   var MODEL_MATRIX = LIBS.get_I4();
   // LIBS.rotateX(MODEL_MATRIX, Math.PI);
+  var BONBON_BADAN_MODEL_MATRIX = LIBS.get_I4();
+  var BONBON_TANGAN_KANAN_MODEL_MATRIX = LIBS.get_I4();
+  var BONBON_KAKI_KANAN_MODEL_MATRIX = LIBS.get_I4();
+  var BONBON_KAKI_KIRI_MODEL_MATRIX = LIBS.get_I4();
 
   // Event listener untuk mouse movement
   document.addEventListener('mousemove', function (event) {
@@ -1007,9 +1012,17 @@ function main() {
   GL.depthFunc(GL.LEQUAL);
 
   var cameraSpeed = 0.4; // Kecepatan pergerakan kamera
-  var waveAngle = 0; // Initial angle for walking animation
-  var waveSpeed = 0.0006; // Speed of the walking animation
-  var maxWaveAngle = LIBS.degToRad(0.7)
+
+  var bonbon_waveAngle = 0; // Initial angle for walking animation
+  var bonbon_waveSpeed = 0.0006; // Speed of the walking animation
+  var bonbon_maxWaveAngle = LIBS.degToRad(0.7);
+
+  var bonbon_movementSpeed = 0.005;
+  var walk = true;
+  var bonbon_position = [1.55, -0.62, 0];
+  var bonbon_walkAngle = 0;
+  var bonbon_walkSpeed = 0.003;
+  var bonbon_maxWalkAngle = LIBS.degToRad(3);
 
   var time_prev = 0;
   var animate = function (time) {
@@ -1034,201 +1047,224 @@ function main() {
 
     /* animation */
     // Logic for waving animation
-    waveAngle += waveSpeed;
-    if (waveAngle > maxWaveAngle) {
-      waveSpeed = -waveSpeed; // Reverse direction if reaching the maximum angle
-    } else if (waveAngle < -maxWaveAngle) {
-      waveSpeed = -waveSpeed; // Reverse direction if reaching the minimum angle
+    bonbon_waveAngle += bonbon_waveSpeed;
+    if (bonbon_waveAngle > bonbon_maxWaveAngle) {
+      bonbon_waveSpeed = -bonbon_waveSpeed; // Reverse direction if reaching the maximum angle
+    } else if (bonbon_waveAngle < -bonbon_maxWaveAngle) {
+      bonbon_waveSpeed = -bonbon_waveSpeed; // Reverse direction if reaching the minimum angle
+    }
+    var bonbon_tanganAngle = bonbon_waveAngle;
+
+    // Logic for walking animation
+    bonbon_walkAngle += bonbon_walkSpeed;
+    if (bonbon_walkAngle > bonbon_maxWalkAngle) {
+      bonbon_walkSpeed = -bonbon_walkSpeed; // Reverse direction if reaching the maximum angle
+    } else if (bonbon_walkAngle < -bonbon_maxWalkAngle) {
+      bonbon_walkSpeed = -bonbon_walkSpeed; // Reverse direction if reaching the minimum angle
     }
 
-    var tanganAngle = waveAngle;
+    // Rotate kaki1 and kaki2 alternately
+    var kakiKananAngle = bonbon_walkAngle;
+    var kakiKiriAngle = -bonbon_walkAngle;
 
-    TANGAN_MODEL_MATRIX = LIBS.get_I4();
-    LIBS.rotateZ(TANGAN_MODEL_MATRIX, tanganAngle);
-    rightHand.MODEL_MATRIX = TANGAN_MODEL_MATRIX;
+    BONBON_TANGAN_KANAN_MODEL_MATRIX = LIBS.get_I4();
+    BONBON_KAKI_KANAN_MODEL_MATRIX = LIBS.get_I4();
+    BONBON_KAKI_KIRI_MODEL_MATRIX = LIBS.get_I4();
+
+    // posisi awal
+    if (walk == true) {
+      bonbon_position[2] += bonbon_movementSpeed;
+      LIBS.rotateX(BONBON_KAKI_KANAN_MODEL_MATRIX, kakiKananAngle);
+      LIBS.rotateX(BONBON_KAKI_KIRI_MODEL_MATRIX, kakiKiriAngle);
+      if (bonbon_position[2] >= 1.3) {
+        walk = false;
+      }
+    } else {
+      LIBS.rotateZ(BONBON_TANGAN_KANAN_MODEL_MATRIX, bonbon_tanganAngle);
+    }
+
+    LIBS.translateZ(BONBON_TANGAN_KANAN_MODEL_MATRIX, bonbon_position[2]);
+    rightHand.MODEL_MATRIX = BONBON_TANGAN_KANAN_MODEL_MATRIX;
+
+    BONBON_BADAN_MODEL_MATRIX = LIBS.get_I4();
+    LIBS.translateZ(BONBON_BADAN_MODEL_MATRIX, bonbon_position[2]);
+    body.MODEL_MATRIX = BONBON_BADAN_MODEL_MATRIX;
+
+    LIBS.translateZ(BONBON_KAKI_KANAN_MODEL_MATRIX, bonbon_position[2]);
+    rightLeg.MODEL_MATRIX = BONBON_KAKI_KANAN_MODEL_MATRIX;
+
+    LIBS.translateZ(BONBON_KAKI_KIRI_MODEL_MATRIX, bonbon_position[2]);
+    leftLeg.MODEL_MATRIX = BONBON_KAKI_KIRI_MODEL_MATRIX;
 
     /* render object */
     /* ENVIRONMENT */
     // base world render
-    baseWorld.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    baseWorld.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // matahari render
-    matahariBulat.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    matahariCone1.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    matahariCone2.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    matahariCone3.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    matahariCone4.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    matahariCone5.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    matahariCone6.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    matahariCone7.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    matahariCone8.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    matahari_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    matahari_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariBulat.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone6.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone7.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    matahariCone8.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    matahari_mataKanan.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    matahari_mataKiri.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // kain piknik render
-    kainPiknik.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    kainPiknik.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // kado render
-    kotakKado1.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    TutupkotakKado1.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    kotakKado2.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    kotakKado3.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    kotakKado4.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    kotakKado5.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    kotakKado6.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    kotakKado7.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    kotakKado1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    TutupkotakKado1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    kotakKado2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    kotakKado3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    kotakKado4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    kotakKado5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    kotakKado6.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    kotakKado7.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // awan satu render
-    awan1_1.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan1_2.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan1_3.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan1_4.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan1_5.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan1_6.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan1_7.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan1_1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan1_2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan1_3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan1_4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan1_5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan1_6.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan1_7.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // awan dua render
-    awan2_1.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan2_2.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan2_3.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan2_4.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan2_5.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan2_6.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan2_1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan2_2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan2_3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan2_4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan2_5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan2_6.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // awan tiga render
-    awan3_1.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan3_2.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan3_3.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan3_4.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    awan3_5.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    awan3_1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan3_2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan3_3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan3_4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    awan3_5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // pohon satu render
-    batang.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    daunCone1.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    daunCone2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    batang.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    daunCone1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    daunCone2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // pohon dua render
-    batang1.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    daunCone3.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    daunCone4.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    batang1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    daunCone3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    daunCone4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // kue layer satu render
-    kue1.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    kue2.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    kue3.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    tutup_kue1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    kue1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    kue2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    kue3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    tutup_kue1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // kue layer dua render
-    kue4.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    kue5.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    kue6.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    tutup_kue2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    kue4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    kue5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    kue6.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    tutup_kue2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // lilin satu render
-    lilin1.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    tutup_lilin1.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    api1_lilin1_cone.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    api1_lilin1_ball.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    api2_lilin1_cone.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    api2_lilin1_ball.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    lilin1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    tutup_lilin1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    api1_lilin1_cone.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    api1_lilin1_ball.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    api2_lilin1_cone.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    api2_lilin1_ball.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // lilin dua render
-    lilin2.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    tutup_lilin2.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    api1_lilin2_cone.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    api1_lilin2_ball.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    api2_lilin2_cone.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    api2_lilin2_ball.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    lilin2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    tutup_lilin2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    api1_lilin2_cone.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    api1_lilin2_ball.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    api2_lilin2_cone.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    api2_lilin2_ball.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // lilin tiga render
-    lilin3.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    tutup_lilin3.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    api1_lilin3_cone.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    api1_lilin3_ball.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    api2_lilin3_cone.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    api2_lilin3_ball.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    lilin3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    tutup_lilin3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    api1_lilin3_cone.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    api1_lilin3_ball.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    api2_lilin3_cone.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    api2_lilin3_ball.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // balon satu render
-    balon1.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    ujungBalon1.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    tali1.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
+    balon1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    ujungBalon1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    tali1.renderCurves(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // balon dua render
-    balon2.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    ujungBalon2.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    tali2.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
+    balon2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    ujungBalon2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    tali2.renderCurves(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // tiang satu render
-    tiang1.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    tutup_tiang1.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    tiang1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    tutup_tiang1.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // tiang dua render
-    tiang2.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    tutup_tiang2.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    tiang2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    tutup_tiang2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // banner render
-    bannerPapan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    bannerPapan.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     /* RURU */
-    r_badan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_telingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_kakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_kakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_dalamTelingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_dalamTelingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_tanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_tanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_jariTanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_jariTanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_pipiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_pipiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_mulut.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_topiUltah.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    r_circle.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_badan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_telingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_kakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_kakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_dalamTelingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_dalamTelingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_tanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_tanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_jariTanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_jariTanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_pipiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_pipiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_mulut.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_topiUltah.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // r_circle.render(VIEW_MATRIX, PROJECTION_MATRIX);
 
     // /* BONBON */
-    leftHead.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightHead.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    leftEye.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightEye.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    leftEyeHorizontal.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    leftEyeVertical.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightEyeHorizontal.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightEyeVertical.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    body.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    circle.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    leftHand.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightHand.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    leftLeg.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightLeg.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    mouth.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
-    leftEyebrow.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
-    rightEyebrow.renderCurves(VIEW_MATRIX, PROJECTION_MATRIX);
+    body.render(body.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    rightHand.render(rightHand.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    leftLeg.render(leftLeg.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
+    rightLeg.render(rightLeg.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     /* WOOPY */
-    w_badankepala.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_telingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_wajah.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_pipiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_pipiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_kakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_kakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_tanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_tanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_ujungKakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_ujungKakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_ujungTanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_ujungTanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_Hidung.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_mulut.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_alisKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
-    w_alisKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_badankepala.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_telingaKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_telingaKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_wajah.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_pipiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_pipiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_kakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_kakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_tanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_tanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_ujungKakiKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_ujungKakiKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_ujungTanganKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_ujungTanganKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_mataKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_mataKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_Hidung.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_mulut.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_alisKanan.render(VIEW_MATRIX, PROJECTION_MATRIX);
+    // w_alisKiri.render(VIEW_MATRIX, PROJECTION_MATRIX);
 
     GL.flush();
 
