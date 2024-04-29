@@ -116,7 +116,7 @@ class myObject {
     GL.flush();
   }
 
-  renderCurves(VIEW_MATRIX, PROJECTION_MATRIX) {
+  renderCurves(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX) {
     GL.useProgram(this.SHADER_PROGRAM);
 
     GL.bindBuffer(GL.ARRAY_BUFFER, this.object_vbo);
@@ -127,11 +127,11 @@ class myObject {
 
     GL.uniformMatrix4fv(this._PMatrix, false, PROJECTION_MATRIX);
     GL.uniformMatrix4fv(this._VMatrix, false, VIEW_MATRIX);
-    GL.uniformMatrix4fv(this._MMatrix, false, this.MODEL_MATRIX);
+    GL.uniformMatrix4fv(this._MMatrix, false, MODEL_MATRIX);
     GL.drawArrays(GL.LINE_STRIP, 0, this.vertex.length / 3);
 
     this.childs.forEach((childs) => {
-      childs.render(VIEW_MATRIX, PROJECTION_MATRIX);
+      childs.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
     });
 
     GL.flush();
@@ -259,36 +259,36 @@ function main() {
   matahari_mataKiri.setup();
 
   // kain piknik
-  var kainPiknikData = environment.generateKotak(-0.4, 1.4, -1, -0.88, 0.5, 1.7, 50, [1, 0, 0]);
+  var kainPiknikData = environment.generateKotak(-0.4, 1.4, -1, -0.88, 0.5, 1.7, 50, [199/255, 137/255, 110/255]);
   var kainPiknik = new myObject(kainPiknikData.vertices, kainPiknikData.faces, kainPiknikData.colors, shader_vertex_source, shader_fragment_source);
   kainPiknik.setup();
 
   // kado
-  var kotakKado1Data = environment.generateKotak(-1.1, -0.5, -1, -0.4, -0.8, -0.2, 50, [0, 0, 1]);
+  var kotakKado1Data = environment.generateKotak(-1.1, -0.5, -1, -0.4, -0.8, -0.2, 50, [255/255, 237/255, 118/255]);
   var kotakKado1 = new myObject(kotakKado1Data.vertices, kotakKado1Data.faces, kotakKado1Data.colors, shader_vertex_source, shader_fragment_source);
   kotakKado1.setup();
 
-  var TutupkotakKado1Data = environment.generateKotak(-1.125, -0.475, -0.45, -0.3, -0.825, -0.175, 50, [1, 0, 1]);
+  var TutupkotakKado1Data = environment.generateKotak(-1.125, -0.475, -0.45, -0.3, -0.825, -0.175, 50, [255/255, 197/255, 38/255]);
   var TutupkotakKado1 = new myObject(TutupkotakKado1Data.vertices, TutupkotakKado1Data.faces, TutupkotakKado1Data.colors, shader_vertex_source, shader_fragment_source);
   TutupkotakKado1.setup();
 
-  var kotakKado2Data = environment.generateKotak(-1.6, -1.1, -1, -0.5, -0.65, -0.1, 50, [0.5, 0.5, 0.5]);
+  var kotakKado2Data = environment.generateKotak(-1.6, -1.1, -1, -0.5, -0.65, -0.1, 50, [137/255, 157/255, 217/255]);
   var kotakKado2 = new myObject(kotakKado2Data.vertices, kotakKado2Data.faces, kotakKado2Data.colors, shader_vertex_source, shader_fragment_source);
   kotakKado2.setup();
 
-  var kotakKado3Data = environment.generateKotak(-1.45, -1.18, -0.5, -0.17, -0.6, -0.3, 50, [1, 0, 0]);
+  var kotakKado3Data = environment.generateKotak(-1.45, -1.18, -0.5, -0.17, -0.6, -0.3, 50, [255/255, 110/255, 83/255]);
   var kotakKado3 = new myObject(kotakKado3Data.vertices, kotakKado3Data.faces, kotakKado3Data.colors, shader_vertex_source, shader_fragment_source);
   kotakKado3.setup();
 
-  var kotakKado4Data = environment.generateKotak(-0.47, 0, -1, -0.6, -0.65, -0.15, 50, [0.5, 0.5, 0.5]);
+  var kotakKado4Data = environment.generateKotak(-0.47, 0, -1, -0.6, -0.65, -0.15, 50, [248/255, 63/255, 152/255]);
   var kotakKado4 = new myObject(kotakKado4Data.vertices, kotakKado4Data.faces, kotakKado4Data.colors, shader_vertex_source, shader_fragment_source);
   kotakKado4.setup();
 
-  var kotakKado5Data = environment.generateKotak(-0.4, -0.03, -0.7, -0.45, -0.35, -0.6, 50, [1, 1, 0]);
+  var kotakKado5Data = environment.generateKotak(-0.4, -0.03, -0.7, -0.45, -0.35, -0.6, 50, [120/255, 245/255, 197/255]);
   var kotakKado5 = new myObject(kotakKado5Data.vertices, kotakKado5Data.faces, kotakKado5Data.colors, shader_vertex_source, shader_fragment_source);
   kotakKado5.setup();
 
-  var kotakKado6Data = environment.generateKotak(-1.2, -0.8, -1, -0.7, -0.1, 0.25, 50, [0, 0, 0]);
+  var kotakKado6Data = environment.generateKotak(-1.2, -0.8, -1, -0.7, -0.1, 0.25, 50, [0/255, 189/255, 201/255]);
   var kotakKado6 = new myObject(kotakKado6Data.vertices, kotakKado6Data.faces, kotakKado6Data.colors, shader_vertex_source, shader_fragment_source);
   kotakKado6.setup();
 
