@@ -869,7 +869,7 @@ function main() {
   var r_jariTanganKanan = new myObject(r_jariTanganKananData.vertices, r_jariTanganKananData.faces, r_jariTanganKananData.colors, shader_vertex_source, shader_fragment_source);
 
   //jari tangan kiri
-  var r_jariTanganKiriData = ruru.generateJari(-0.355, -0.470, 0.38, 0.039, 50, 0, 0, LIBS.degToRad(-135), [245 / 255, 239 / 255, 230 / 255]);
+  var r_jariTanganKiriData = ruru.generateJari(-0.355, -0.47, 0.38, 0.039, 50, 0, 0, LIBS.degToRad(-135), [245 / 255, 239 / 255, 230 / 255]);
   var r_jariTanganKiri = new myObject(r_jariTanganKiriData.vertices, r_jariTanganKiriData.faces, r_jariTanganKiriData.colors, shader_vertex_source, shader_fragment_source);
 
   //mata kanan
@@ -919,7 +919,7 @@ function main() {
   // r_badan.childs.push(r_kakiKiri);
   r_badan.childs.push(r_tanganKanan);
   r_badan.childs.push(r_tanganKiri);
-  r_badan.childs.push(r_jariTanganKanan); 
+  r_badan.childs.push(r_jariTanganKanan);
   r_badan.childs.push(r_jariTanganKiri);
   r_badan.childs.push(r_mataKanan);
   r_badan.childs.push(r_mataKiri);
@@ -1260,9 +1260,6 @@ function main() {
       LIBS.rotateY(RURU_KAKI_KIRI_MODEL_MATRIX, ALPHA * 0.1);
     }
 
-    // LIBS.translateZ(RURU_TANGAN_KANAN_MODEL_MATRIX, ruru_position[2]);
-    // rightHand.MODEL_MATRIX = BONBON_TANGAN_KANAN_MODEL_MATRIX;
-
     LIBS.translateZ(RURU_BADAN_MODEL_MATRIX, ruru_position[2]);
 
     LIBS.translateZ(RURU_KAKI_KANAN_MODEL_MATRIX, ruru_position[2]);
@@ -1271,10 +1268,8 @@ function main() {
     LIBS.translateZ(RURU_KAKI_KIRI_MODEL_MATRIX, ruru_position[2]);
     r_kakiKiri.MODEL_MATRIX = RURU_KAKI_KIRI_MODEL_MATRIX;
 
-
     //logic for rotate animation
     r_badan.MODEL_MATRIX = RURU_BADAN_MODEL_MATRIX;
-
 
     /* render object */
     /* ENVIRONMENT */
@@ -1309,27 +1304,12 @@ function main() {
 
     // awan satu render
     awan1_1.render(awan1_1.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan1_2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan1_3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan1_4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan1_5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan1_6.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan1_7.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // awan dua render
     awan2_1.render(awan2_1.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan2_2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan2_3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan2_4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan2_5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan2_6.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // awan tiga render
     awan3_1.render(awan3_1.MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan3_2.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan3_3.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan3_4.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
-    // awan3_5.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
 
     // pohon satu render
     batang.render(MODEL_MATRIX, VIEW_MATRIX, PROJECTION_MATRIX);
